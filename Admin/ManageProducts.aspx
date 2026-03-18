@@ -65,18 +65,46 @@
 
         <h3 class="mb-3">Current Inventory</h3>
         <div class="table-responsive">
-            <asp:GridView ID="gvProducts" runat="server" CssClass="table table-hover border" AutoGenerateColumns="False" DataKeyNames="ProductID" OnRowDeleting="gvProducts_RowDeleting">
+            <asp:GridView ID="gvProducts" runat="server" CssClass="table table-hover border"
+                AutoGenerateColumns="False" DataKeyNames="ProductID"
+                OnRowEditing="gvProducts_RowEditing"
+                OnRowDeleting="gvProducts_RowDeleting"
+                OnRowUpdating="gvProducts_RowUpdating"
+                OnRowCancelingEdit="gvProducts_RowCancelingEdit">
                 <Columns>
-                    <asp:BoundField DataField="ProductID" HeaderText="ID" />
-                    <asp:TemplateField HeaderText="Image">
-                        <ItemTemplate>
-                            <img src='<%# Eval("ImagePath") %>' style="width: 50px; height: 50px; object-fit: cover;" class="rounded" />
-                        </ItemTemplate>
+                    <asp:BoundField DataField="ProductID" HeaderText="ID" ReadOnly="True" />
+
+                    <asp:TemplateField HeaderText="Product Name">
+                        <ItemTemplate><%# Eval("ProductName") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditName" runat="server" Text='<%# Bind("ProductName") %>' CssClass="form-control form-control-sm"></asp:TextBox>
+                        </EditItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="ProductName" HeaderText="Name" />
-                    <asp:BoundField DataField="Price" HeaderText="Price (RM)" DataFormatString="{0:N2}" />
-                    <asp:BoundField DataField="StockQuantity" HeaderText="Stock" />
-                    <asp:CommandField ShowDeleteButton="True" ControlStyle-CssClass="btn btn-sm btn-outline-danger" />
+
+                    <asp:TemplateField HeaderText="Category">
+                        <ItemTemplate><%# Eval("CategoryName") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlEditCat" runat="server" CssClass="form-select form-select-sm"></asp:DropDownList>
+                            <asp:HiddenField ID="hfCatID" runat="server" Value='<%# Eval("CategoryID") %>' />
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Price (RM)">
+                        <ItemTemplate><%# Eval("Price", "{0:N2}") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditPrice" runat="server" Text='<%# Bind("Price") %>' CssClass="form-control form-control-sm"></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Stock">
+                        <ItemTemplate><%# Eval("StockQuantity") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditStock" runat="server" Text='<%# Bind("StockQuantity") %>' CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True"
+                        ControlStyle-CssClass="btn btn-sm btn-outline-secondary m-1" />
                 </Columns>
             </asp:GridView>
         </div>

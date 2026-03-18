@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace MWM_Assignment_New.Admin
 {
@@ -139,6 +140,66 @@ namespace MWM_Assignment_New.Admin
                 cmdDelete.ExecuteNonQuery();
 
                 BindProducts();
+            }
+        }
+
+        protected void gvProducts_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvProducts.EditIndex = e.NewEditIndex;
+            BindProducts();
+
+            // After binding, we need to populate the dropdown in the edit row
+            GridViewRow row = gvProducts.Rows[e.NewEditIndex];
+            DropDownList ddl = (DropDownList)row.FindControl("ddlEditCat");
+            if (ddl != null)
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT CategoryID, CategoryName FROM Categories", con);
+                    con.Open();
+                    ddl.DataSource = cmd.ExecuteReader();
+                    ddl.DataTextField = "CategoryName";
+                    ddl.DataValueField = "CategoryID";
+                    ddl.DataBind();
+
+                    // Set the selected value based on the hidden field
+                    HiddenField hf = (HiddenField)row.FindControl("hfCatID");
+                    ddl.SelectedValue = hf.Value;
+                }
+            }
+        }
+
+        protected void gvProducts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvProducts.EditIndex = -1;
+            BindProducts();
+        }
+
+        protected void gvProducts_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int prodId = Convert.ToInt32(gvProducts.DataKeys[e.RowIndex].Value);
+            GridViewRow row = gvProducts.Rows[e.RowIndex];
+
+            string name = ((TextBox)row.FindControl("txtEditName")).Text.Trim();
+            decimal price = decimal.Parse(((TextBox)row.FindControl("txtEditPrice")).Text);
+            int stock = int.Parse(((TextBox)row.FindControl("txtEditStock")).Text);
+            int catId = int.Parse(((DropDownList)row.FindControl("ddlEditCat")).SelectedValue);
+
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                string query = "UPDATE Products SET ProductName=@Name, Price=@Price, StockQuantity=@Stock, CategoryID=@CatID WHERE ProductID=@ID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Price", price);
+                cmd.Parameters.AddWithValue("@Stock", stock);
+                cmd.Parameters.AddWithValue("@CatID", catId);
+                cmd.Parameters.AddWithValue("@ID", prodId);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                gvProducts.EditIndex = -1;
+                BindProducts();
+                lblUploadMsg.Text = "Product updated!";
             }
         }
     }
