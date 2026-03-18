@@ -19,16 +19,18 @@
                 OnRowUpdating="gvOrders_RowUpdating" OnRowEditing="gvOrders_RowEditing"
                 OnRowCancelingEdit="gvOrders_RowCancelingEdit">
                 <Columns>
-                    <asp:BoundField DataField="OrderID" HeaderText="Order #" ReadOnly="True" />
+                    <asp:BoundField DataField="OrderID" HeaderText="Order ID" ReadOnly="True" />
                     <asp:BoundField DataField="OrderDate" HeaderText="Date" DataFormatString="{0:dd MMM yyyy}" ReadOnly="True" />
-                    <asp:BoundField DataField="CustomerName" HeaderText="Customer" ReadOnly="True" />
+
+                    <asp:BoundField DataField="FullName" HeaderText="Customer" ReadOnly="True" />
+
                     <asp:BoundField DataField="TotalAmount" HeaderText="Total (RM)" DataFormatString="{0:N2}" ReadOnly="True" />
 
                     <asp:TemplateField HeaderText="Status">
                         <ItemTemplate>
                             <span class='badge <%# GetStatusClass(Eval("Status").ToString()) %>'>
                                 <%# Eval("Status") %>
-                        </span>
+                            </span>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select form-select-sm">

@@ -24,8 +24,11 @@ namespace MWM_Assignment_New.Admin
         {
             using (SqlConnection con = new SqlConnection(connString))
             {
-                // Note: Ensure your Orders table has a CustomerName or join with Users table
-                string query = "SELECT OrderID, OrderDate, TotalAmount, Status, CustomerName FROM Orders ORDER BY OrderDate DESC";
+                string query = @"SELECT o.OrderID, o.OrderDate, o.TotalAmount, o.Status, u.FullName 
+                         FROM Orders o 
+                         INNER JOIN Users u ON o.UserID = u.UserID 
+                         ORDER BY o.OrderDate DESC";
+
                 SqlDataAdapter sda = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);

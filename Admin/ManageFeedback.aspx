@@ -16,21 +16,23 @@
         <asp:GridView ID="gvFeedback" runat="server" CssClass="table table-hover border shadow-sm"
             AutoGenerateColumns="False" DataKeyNames="FeedbackID" OnRowDeleting="gvFeedback_RowDeleting">
             <Columns>
-                <asp:BoundField DataField="DateSubmitted" HeaderText="Date" DataFormatString="{0:dd/MM/yyyy HH:mm}" />
-                <asp:BoundField DataField="Name" HeaderText="Customer" />
-                <asp:BoundField DataField="Email" HeaderText="Email" />
-                <asp:BoundField DataField="Subject" HeaderText="Subject" />
+                <asp:BoundField DataField="DateSubmitted" HeaderText="Date" DataFormatString="{0:dd/MM/yyyy}" />
 
-                <asp:TemplateField HeaderText="Message">
+                <asp:BoundField DataField="FullName" HeaderText="Customer" />
+                <asp:BoundField DataField="OrderID" HeaderText="Order #" />
+
+                <asp:TemplateField HeaderText="Rating">
                     <ItemTemplate>
-                        <div style="max-width: 300px; max-height: 80px; overflow-y: auto; font-size: 0.9rem;">
-                            <%# Eval("Message") %>
-                        </div>
+                        <span class="text-warning">
+                            <%# ShowStars(Eval("Rating")) %>
+                </span>
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:CommandField ShowDeleteButton="True" ButtonType="Button"
-                    DeleteText="Archive" ControlStyle-CssClass="btn btn-sm btn-outline-danger" />
+                <asp:BoundField DataField="Comment" HeaderText="Comment" />
+
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Remove"
+                    ControlStyle-CssClass="btn btn-sm btn-outline-danger" />
             </Columns>
         </asp:GridView>
     </div>
