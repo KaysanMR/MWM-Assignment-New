@@ -109,6 +109,8 @@
     <None Include="Admin\Web.config" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\ManageCategories.aspx" />
+    <Content Include="Admin\ManageFeedback.aspx" />
+    <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="App_Data\myData.mdf" />
@@ -184,6 +186,20 @@
     </Compile>
     <Compile Include="Admin\ManageCategories.aspx.designer.cs">
       <DependentUpon>ManageCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageFeedback.aspx.cs">
+      <DependentUpon>ManageFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageFeedback.aspx.designer.cs">
+      <DependentUpon>ManageFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageOrders.aspx.cs">
+      <DependentUpon>ManageOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageOrders.aspx.designer.cs">
+      <DependentUpon>ManageOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageProducts.aspx.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>
