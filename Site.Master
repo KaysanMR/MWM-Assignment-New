@@ -48,7 +48,7 @@
                             </asp:View>
                             <%-- View 1: Logged In Users --%>
                             <asp:View ID="vLoggedIn" runat="server">
-                                <li class="nav-item">
+                                <li class="nav-item">da
                                     <span class="nav-link text-light">Hello,
                                         <asp:Literal ID="litUsername" runat="server" /></span>
                                 </li>
@@ -62,7 +62,7 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container mt-4">dz
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 
