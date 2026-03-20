@@ -38,5 +38,11 @@ namespace MWM_Assignment_New
             Session["Cart"] = dt;
             BindCart();
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            // We will build this logic next!
+            Response.Redirect("Checkout.aspx");
+        }
     }
 }

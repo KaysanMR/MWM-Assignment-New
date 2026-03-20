@@ -19,13 +19,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="Products.aspx">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Products.aspx">Shop</a></li>
 
                         <%-- Requirement: Admin-only links --%>
                         <asp:PlaceHolder ID="phAdminLinks" runat="server" Visible="false">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-warning" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Panel
-        </a>
+                                </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
                                     <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/Dashboard.aspx") %>'>Dashboard Home</a></li>
                                     <li>
@@ -43,17 +43,31 @@
                         <asp:MultiView ID="mvAuth" runat="server" ActiveViewIndex="0">
                             <%-- View 0: Guest Users --%>
                             <asp:View ID="vGuest" runat="server">
-                                <li class="nav-item"><a class="nav-link" href="Login.aspx">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="SignUp.aspx">Sign Up</a></li>
+                                <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/Login.aspx") %>'>Login</a></li>
+                                <li class="nav-item"><a class="nav-link btn btn-outline-light ms-lg-2" href='<%= ResolveUrl("~/SignUp.aspx") %>'>Sign Up</a></li>
                             </asp:View>
+
                             <%-- View 1: Logged In Users --%>
                             <asp:View ID="vLoggedIn" runat="server">
-                                <li class="nav-item">da
-                                    <span class="nav-link text-light">Hello,
-                                        <asp:Literal ID="litUsername" runat="server" /></span>
-                                </li>
-                                <li class="nav-item">
-                                    <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-circle me-1"></i>Hi,
+                                        <asp:Literal ID="litUsername" runat="server" />
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href='<%= ResolveUrl("~/Cart.aspx") %>'>View Cart</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>'>My Orders</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="btnLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="btnLogout_Click">Logout</asp:LinkButton>
+                                        </li>
+                                    </ul>
                                 </li>
                             </asp:View>
                         </asp:MultiView>
@@ -62,7 +76,7 @@
             </div>
         </nav>
 
-        <div class="container mt-4">dz
+        <div class="container mt-4">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
 

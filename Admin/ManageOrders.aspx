@@ -33,7 +33,7 @@
                             </span>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select form-select-sm">
+                            <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select form-select-sm" SelectedValue='<%# Bind("Status") %>'>
                                 <asp:ListItem>Pending</asp:ListItem>
                                 <asp:ListItem>Processing</asp:ListItem>
                                 <asp:ListItem>Shipped</asp:ListItem>

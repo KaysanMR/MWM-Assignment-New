@@ -28,7 +28,7 @@
             <h4>Grand Total:
                 <asp:Label ID="lblGrandTotal" runat="server" CssClass="text-primary" /></h4>
             <hr />
-            <a href="ProductGallery.aspx" class="btn btn-outline-secondary">Continue Shopping</a>
+            <a href="Products.aspx" class="btn btn-outline-secondary">Continue Shopping</a>
             <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" CssClass="btn btn-success px-5" OnClick="btnCheckout_Click" />
         </div>
     </div>

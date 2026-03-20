@@ -8,14 +8,15 @@ namespace MWM_Assignment_New
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // We check authentication on every load
             if (Context.User.Identity.IsAuthenticated)
             {
-                // Switch to LoggedIn view
                 mvAuth.ActiveViewIndex = 1;
-                litUsername.Text = Context.User.Identity.Name;
 
-                // Requirement: Check for Admin Role
-                // This assumes you stored the role in a Session during Login
+                // Set the display name. If you have a 'FullName' in Session, use that instead.
+                litUsername.Text = Session["Username"]?.ToString() ?? Context.User.Identity.Name;
+
+                // Admin Check
                 if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
                 {
                     phAdminLinks.Visible = true;
@@ -31,8 +32,15 @@ namespace MWM_Assignment_New
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            Session.Clear(); // Clear all session data (including the Cart)
             Session.Abandon();
-            Response.Redirect("Default.aspx");
+
+            // Clear authentication cookie and redirect
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            cookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie);
+
+            Response.Redirect("~/Default.aspx");
         }
     }
 }
