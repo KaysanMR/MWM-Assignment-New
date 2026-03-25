@@ -1,25 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="MWM_Assignment_New.ProductGallery" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        /* This forces the DataList flow container to behave like a Bootstrap row */
-        #MainContent_dlProducts {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .product-card {
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        }
-    </style>
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-5">
         <div class="row mb-4">
@@ -38,7 +18,8 @@
             <asp:DataList ID="dlProducts" runat="server"
                 RepeatDirection="Horizontal"
                 RepeatLayout="Flow"
-                ItemStyle-CssClass="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+                CssClass="row w-100"
+                ItemStyle-CssClass="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">
                 <ItemTemplate>
                     <div class="card h-100 shadow-sm border-0 product-card w-100">
                         <div class="text-center p-3">

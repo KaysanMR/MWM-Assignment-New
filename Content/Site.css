@@ -29,3 +29,20 @@ textarea {
         padding: 0;
     }
 }
+
+.transition-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .transition-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+    }
+
+#about img {
+    transition: filter 0.5s ease;
+}
+
+    #about img:hover {
+        filter: brightness(1.1);
+    }
