@@ -35,6 +35,16 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" placeholder="e.g. 0123456789"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone"
+                            ErrorMessage="Phone number is required" ForeColor="Red" Display="Dynamic" ValidationGroup="vgRegister">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone"
+                            ErrorMessage="Invalid phone format" ForeColor="Red" Display="Dynamic" ValidationGroup="vgRegister"
+                            ValidationExpression="^[0-9+\- ]{7,15}$">*</asp:RegularExpressionValidator>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">Password</label>
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvPass" runat="server" ControlToValidate="txtPassword"

@@ -138,6 +138,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Customer\Profile.aspx" />
     <Content Include="Customer\Wishlist.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -281,6 +282,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>

@@ -42,23 +42,23 @@ namespace MWM_Assignment_New
                         }
                         else
                         {
-                            // 2. Insert new member 
-                            string insertQuery = "INSERT INTO Users (Username, [Password], Email, FullName, [Role]) " +
-                                               "VALUES (@User, @Pass, @Email, @Name, 'Member')";
+                            string insertQuery = "INSERT INTO Users (Username, [Password], Email, FullName, Phone, [Role]) " +
+                                                 "VALUES (@User, @Pass, @Email, @Name, @Phone, 'Member')";
 
                             SqlCommand insertCmd = new SqlCommand(insertQuery, con);
                             insertCmd.Parameters.AddWithValue("@User", txtUsername.Text.Trim());
                             insertCmd.Parameters.AddWithValue("@Pass", txtPassword.Text);
                             insertCmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                             insertCmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
+                            insertCmd.Parameters.AddWithValue("@Phone", txtPhone.Text.Trim()); // New Parameter
 
                             insertCmd.ExecuteNonQuery();
 
                             lblMessage.Text = "Registration successful! You can now login.";
                             lblMessage.ForeColor = Color.Green;
 
-                            // Clear form fields after success
-                            txtUsername.Text = txtEmail.Text = txtFullName.Text = "";
+                            // Clear form fields
+                            txtUsername.Text = txtEmail.Text = txtFullName.Text = txtPhone.Text = "";
                         }
                     }
                     catch (Exception ex)

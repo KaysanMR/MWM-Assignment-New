@@ -88,6 +88,8 @@
                                             <asp:Literal ID="litUsername" runat="server" /></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-3">
+                                        <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Profile.aspx") %>'><i class="bi bi-person-lines-fill me-2"></i>My Profile</a></li>
+
                                         <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Cart.aspx") %>'><i class="bi bi-cart3 me-2"></i>My Shopping Cart</a></li>
 
                                         <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Wishlist.aspx") %>'><i class="bi bi-heart me-2"></i>My Wishlist</a></li>
@@ -110,7 +112,7 @@
             </div>
         </nav>
 
-        <main class="flex-shrink-0">
+        <main class="flex-shrink-0 pb-5 mt-4">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </main>
 
