@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.UI.WebControls;
+
 
 namespace MWM_Assignment_New
 {
@@ -62,6 +64,61 @@ namespace MWM_Assignment_New
         protected void ddlFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGallery(ddlFilterCategory.SelectedValue);
+        }
+
+        // Helper to check wishlist status for the icon class
+        protected bool IsInWishlist(object productID)
+        {
+            if (Session["UserID"] == null) return false;
+
+            int userId = Convert.ToInt32(Session["UserID"]);
+            int prodId = Convert.ToInt32(productID);
+
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                string query = "SELECT COUNT(*) FROM Wishlist WHERE UserID = @UID AND ProductID = @PID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@UID", userId);
+                cmd.Parameters.AddWithValue("@PID", prodId);
+                con.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        // Handle the heart click
+        protected void dlProducts_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "ToggleWishlist")
+            {
+                if (Session["UserID"] == null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
+
+                int userId = Convert.ToInt32(Session["UserID"]);
+                int prodId = Convert.ToInt32(e.CommandArgument);
+
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    // Toggle Logic: If exists, delete. If not, insert.
+                    string query = @"
+                IF EXISTS (SELECT 1 FROM Wishlist WHERE UserID = @UID AND ProductID = @PID)
+                    DELETE FROM Wishlist WHERE UserID = @UID AND ProductID = @PID
+                ELSE
+                    INSERT INTO Wishlist (UserID, ProductID) VALUES (@UID, @PID)";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@UID", userId);
+                    cmd.Parameters.AddWithValue("@PID", prodId);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Refresh the list to update the heart icons
+                BindGallery(ddlFilterCategory.SelectedValue);
+            }
         }
     }
 }

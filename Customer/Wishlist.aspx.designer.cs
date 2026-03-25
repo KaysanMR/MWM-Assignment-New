@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MWM_Assignment_New
+namespace MWM_Assignment_New.Customer
 {
 
 
-    public partial class ProductGallery
+    public partial class Wishlist
     {
 
         /// <summary>
@@ -24,39 +24,30 @@ namespace MWM_Assignment_New
         protected global::System.Web.UI.ScriptManager sm1;
 
         /// <summary>
-        /// ddlFilterCategory control.
+        /// upWishlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFilterCategory;
+        protected global::System.Web.UI.UpdatePanel upWishlist;
 
         /// <summary>
-        /// upProducts control.
+        /// lblEmptyWishlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upProducts;
+        protected global::System.Web.UI.WebControls.Label lblEmptyWishlist;
 
         /// <summary>
-        /// lblNoProducts control.
+        /// gvWishlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoProducts;
-
-        /// <summary>
-        /// dlProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlProducts;
+        protected global::System.Web.UI.WebControls.GridView gvWishlist;
     }
 }
