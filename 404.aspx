@@ -5,11 +5,11 @@
     <div class="container vh-100 d-flex align-items-center justify-content-center">
         <div class="text-center">
             <div class="display-1 fw-bold text-primary mb-0" style="font-size: 8rem;">404</div>
-            <h2 class="fw-bold text-dark mb-4">Switch Not Found</h2>
+            <h2 class="fw-bold text-dark mb-4">Tin Not Found</h2>
             
             <p class="text-muted mb-5 shadow-sm p-3 bg-light rounded border-start border-primary border-4">
-                It looks like the page you're looking for has been de-soldered or moved to a different board. 
-                Let's get you back to the home row.
+                It looks like the page you're looking for slipped off the shelf or drifted out with the tide.
+                Let's get you back to the main catch.
             </p>
 
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -17,7 +17,7 @@
                     <i class="bi bi-house-door me-2"></i>Back to Home
                 </a>
                 <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
-                    <i class="bi bi-search me-2"></i>Browse Keyboards
+                    <i class="bi bi-search me-2"></i>Browse Canned Fish
                 </a>
             </div>
         </div>

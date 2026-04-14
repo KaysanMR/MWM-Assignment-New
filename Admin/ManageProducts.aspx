@@ -12,7 +12,7 @@
         </nav>
 
         <div class="card mb-5 shadow-sm border-primary">
-            <div class="card-header bg-primary text-white">Add New Keyboard</div>
+            <div class="card-header bg-primary text-white">Add New Canned Fish Product</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 mb-3">

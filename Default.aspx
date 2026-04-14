@@ -4,8 +4,8 @@
 
     <header class="py-5 bg-dark text-white text-center shadow-lg" style="background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);">
         <div class="container py-5">
-            <h1 class="display-4 fw-bold">Elevate Your Typing Experience</h1>
-            <p class="lead mb-4">Discover premium mechanical keyboards designed with precision and art.</p>
+            <h1 class="display-4 fw-bold">Reel In Your Next Pantry Favorite</h1>
+            <p class="lead mb-4">Discover premium sardines and canned fish packed with flavor, craft, and character.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <a href="Products.aspx" class="btn btn-primary btn-lg px-4 gap-3 shadow">Shop Now</a>
                 <a href="#about" class="btn btn-outline-light btn-lg px-4">Our Story</a>
@@ -41,17 +41,17 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="fw-bold">Why Clicky?</h2>
-                    <p class="lead">Where technology meets craftsmanship.</p>
-                    <p>Clicky isn't just a store; it's a project born from a passion for 3D art and mechanical precision. Every keyboard in our gallery is rendered with Non-Photorealistic Rendering (NPR) techniques to highlight the soul of the hardware.</p>
+                    <h2 class="fw-bold">Why Silver Shoal?</h2>
+                    <p class="lead">Where pantry staples meet playful presentation.</p>
+                    <p>Silver Shoal isn't just a store; it's a project born from a love of 3D art and beautifully illustrated seafood tins. Every product in our gallery is rendered with Non-Photorealistic Rendering (NPR) techniques to highlight the charm of each can and catch.</p>
                     <ul class="list-unstyled">
-                        <li><i class="bi bi-check2-circle text-primary me-2"></i> Custom-tuned switches</li>
-                        <li><i class="bi bi-check2-circle text-primary me-2"></i> Artist-designed keycaps</li>
+                        <li><i class="bi bi-check2-circle text-primary me-2"></i> Carefully curated sardine selections</li>
+                        <li><i class="bi bi-check2-circle text-primary me-2"></i> Artist-designed canned fish labels</li>
                         <li><i class="bi bi-check2-circle text-primary me-2"></i> Secure local checkout</li>
                     </ul>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="Images/about-hero.png" alt="3D Keyboard Render" class="img-fluid rounded shadow">
+                    <img src="Images/about-hero.png" alt="3D canned fish render" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>

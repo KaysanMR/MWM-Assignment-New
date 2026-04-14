@@ -22,7 +22,7 @@
                         <label class="col-form-label">Category Name:</label>
                     </div>
                     <div class="col-sm-6">
-                        <asp:TextBox ID="txtNewCategory" runat="server" CssClass="form-control" placeholder="e.g. Mechanical Switches"></asp:TextBox>
+                        <asp:TextBox ID="txtNewCategory" runat="server" CssClass="form-control" placeholder="e.g. Smoked Sardines"></asp:TextBox>
                     </div>
                     <div class="col-auto">
                         <asp:Button ID="btnAddCategory" runat="server" Text="Add Category" CssClass="btn btn-success" OnClick="btnAddCategory_Click" />

@@ -6,8 +6,8 @@
     <div class="container mt-5">
         <div class="row mb-4 align-items-center">
             <div class="col-md-8">
-                <h2 class="fw-bold text-dark">Explore Keyboards</h2>
-                <p class="text-muted">Find the perfect switch and aesthetic for your setup.</p>
+                <h2 class="fw-bold text-dark">Explore Canned Fish</h2>
+                <p class="text-muted">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
             </div>
             <div class="col-md-4">
                 <div class="input-group">

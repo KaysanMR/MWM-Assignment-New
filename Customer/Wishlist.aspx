@@ -7,7 +7,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <h2 class="fw-bold">My Wishlist</h2>
-                <p class="text-muted">Review and manage your saved mechanical keyboards.</p>
+                <p class="text-muted">Review and manage your saved sardines and canned fish picks.</p>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                                     <ItemTemplate>
                                         <div class="d-flex align-items-center p-2">
                                             <img src='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' 
-                                                 alt="Keyboard" class="img-thumbnail me-3" style="width: 80px; height: 60px; object-fit: contain;">
+                                                 alt="Canned fish product" class="img-thumbnail me-3" style="width: 80px; height: 60px; object-fit: contain;">
                                             <div>
                                                 <h6 class="mb-0 fw-bold"><%# Eval("ProductName") %></h6>
                                                 <small class="text-muted"><%# Eval("CategoryName") %></small>
