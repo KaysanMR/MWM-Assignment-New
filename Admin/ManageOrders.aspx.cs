@@ -41,12 +41,12 @@ namespace MWM_Assignment_New.Admin
         {
             switch (status)
             {
-                case "Pending": return "bg-warning text-dark";
-                case "Processing": return "bg-info text-white";
-                case "Shipped": return "bg-primary text-white";
-                case "Completed": return "bg-success text-white";
-                case "Cancelled": return "bg-danger text-white";
-                default: return "bg-secondary text-white";
+                case "Pending": return "status-pending";
+                case "Processing": return "status-processing";
+                case "Shipped": return "status-shipped";
+                case "Completed": return "status-completed";
+                case "Cancelled": return "status-cancelled";
+                default: return "badge bg-secondary";
             }
         }
 

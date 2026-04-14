@@ -44,10 +44,10 @@ namespace MWM_Assignment_New
         {
             switch (status.ToLower())
             {
-                case "pending": return "badge bg-warning text-dark";
-                case "shipped": return "badge bg-info text-white";
-                case "delivered": return "badge bg-success text-white";
-                case "cancelled": return "badge bg-danger text-white";
+                case "pending": return "badge status-pending";
+                case "shipped": return "badge status-shipped";
+                case "delivered": return "badge status-delivered";
+                case "cancelled": return "badge status-cancelled";
                 default: return "badge bg-secondary";
             }
         }

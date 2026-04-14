@@ -43,7 +43,7 @@
 
                     <asp:TemplateField HeaderText="Role">
                         <ItemTemplate>
-                            <span class='badge <%# Eval("Role").ToString() == "Admin" ? "bg-danger" : "bg-info" %>'>
+                            <span class='badge <%# Eval("Role").ToString() == "Admin" ? "role-admin" : "role-member" %>'>
                                 <%# Eval("Role") %>
                         </span>
                         </ItemTemplate>
