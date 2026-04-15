@@ -1,11 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MWM_Assignment_New.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container mt-5">
+    <div class="container page-shell">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-12">
-                <div class="card shadow">
+            <div class="col-md-5 col-sm-12">
+                <div class="card auth-card">
                     <div class="card-body">
+                        <div class="text-center mb-4">
+                            <span class="eyebrow">Member Access</span>
+                        </div>
                         <h2 class="text-center mb-4">Member Login</h2>
 
                         <div class="mb-3">
@@ -22,7 +25,7 @@
                                 ErrorMessage="Required" ForeColor="Red" Display="Dynamic" ValidationGroup="vgLogin">*</asp:RequiredFieldValidator>
                         </div>
 
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2 stack-mobile">
                             <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary"
                                 ValidationGroup="vgLogin" OnClick="btnLogin_Click" />
                         </div>

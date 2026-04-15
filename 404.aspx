@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container vh-100 d-flex align-items-center justify-content-center">
+    <div class="container page-shell vh-100 d-flex align-items-center justify-content-center">
         <div class="text-center">
             <div class="display-1 fw-bold text-primary mb-0" style="font-size: 8rem;">404</div>
             <h2 class="fw-bold text-dark mb-4">Tin Not Found</h2>
@@ -12,11 +12,11 @@
                 Let's get you back to the main catch.
             </p>
 
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href='<%= ResolveUrl("~/Default.aspx") %>' class="btn btn-primary btn-lg px-4 gap-3 rounded-pill shadow-sm">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center stack-mobile">
+                <a href='<%= ResolveUrl("~/Default.aspx") %>' class="btn btn-primary btn-lg px-4 gap-3">
                     <i class="bi bi-house-door me-2"></i>Back to Home
                 </a>
-                <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+                <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-secondary btn-lg px-4">
                     <i class="bi bi-search me-2"></i>Browse Canned Fish
                 </a>
             </div>

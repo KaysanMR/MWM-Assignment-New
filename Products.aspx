@@ -3,9 +3,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="sm1" runat="server" />
 
-    <div class="container mt-5">
-        <div class="row mb-4 align-items-center">
+    <div class="container page-shell">
+        <div class="row mb-4 align-items-center g-3">
             <div class="col-md-8">
+                <span class="eyebrow mb-2">Browse The Shelf</span>
                 <h2 class="fw-bold text-dark">Explore Canned Fish</h2>
                 <p class="text-muted">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
             </div>
@@ -32,17 +33,17 @@
                     <asp:DataList ID="dlProducts" runat="server"
                         RepeatDirection="Horizontal"
                         RepeatLayout="Flow"
-                        CssClass="row w-100 mx-0"
+                        CssClass="row w-100 mx-0 g-4"
                         OnItemCommand="dlProducts_ItemCommand"
                         ItemStyle-CssClass="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">
                         <ItemTemplate>
-                            <div class="card h-100 shadow-sm border-0 product-card w-100 position-relative">
+                            <div class="card h-100 product-card w-100 position-relative">
 
                                 <div class="position-absolute top-0 end-0 p-3" style="z-index: 5;">
                                     <asp:LinkButton ID="btnWishlist" runat="server"
                                         CommandName="ToggleWishlist"
                                         CommandArgument='<%# Eval("ProductID") %>'
-                                        CssClass="wishlist-btn shadow-sm bg-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+                                        CssClass="wishlist-btn d-flex align-items-center justify-content-center text-decoration-none"
                                         Style="width: 38px; height: 38px;">
                                         <i class='<%# IsInWishlist(Eval("ProductID")) ? "bi bi-heart-fill text-danger" : "bi bi-heart text-muted" %>'></i>
                                     </asp:LinkButton>

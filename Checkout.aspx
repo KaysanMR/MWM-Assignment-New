@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="MWM_Assignment_New.Checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container mt-5">
-        <div class="row">
+    <div class="container page-shell">
+        <div class="row g-4">
             <div class="col-md-7">
-                <div class="card shadow-sm border-0 p-4">
+                <div class="card p-4">
                     <h3 class="fw-bold mb-4">Shipping Information</h3>
                     
                     <div class="mb-3">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-md-5">
-                <div class="card shadow-sm border-0 bg-light p-4">
+                <div class="card bg-light p-4">
                     <h4 class="fw-bold mb-3">Order Summary</h4>
                     <hr />
                     
@@ -54,7 +54,7 @@
                     </div>
 
                     <asp:Button ID="btnPlaceOrder" runat="server" Text="Confirm Order" 
-                        CssClass="btn btn-primary btn-lg w-100 shadow-sm" OnClick="btnPlaceOrder_Click" />
+                        CssClass="btn btn-primary btn-lg w-100" OnClick="btnPlaceOrder_Click" />
                     
                     <asp:Label ID="lblError" runat="server" CssClass="text-danger mt-3 d-block" />
                     
