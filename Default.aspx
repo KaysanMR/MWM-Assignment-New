@@ -2,11 +2,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="landing-page">
-        <header class="py-5 bg-dark text-white text-center shadow-lg" style="background: #309898;">
+        <header class="hero-panel py-5 text-white text-center shadow-lg">
             <div class="container py-5">
                 <h1 class="display-4 fw-bold">Reel In Your Next Pantry Favorite</h1>
                 <p class="lead mb-4">Discover premium sardines and canned fish packed with flavor, craft, and character.</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mobile-stack-actions">
                     <a href="Products.aspx" class="btn btn-primary btn-lg px-4 gap-3 shadow">Shop Now</a>
                     <a href="#about" class="btn btn-outline-light btn-lg px-4">Our Story</a>
                 </div>
@@ -14,7 +14,7 @@
         </header>
 
         <section class="container my-5">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 section-heading mx-auto">
                 <h2 class="fw-bold">Featured Collections</h2>
                 <p class="text-muted">Handpicked favorites from our latest 3D designs.</p>
             </div>
@@ -40,7 +40,7 @@
         <section id="about" class="bg-light py-5">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mobile-center">
                         <h2 class="fw-bold">Why Silver Shoal?</h2>
                         <p class="lead">Where pantry staples meet playful presentation.</p>
                         <p>Silver Shoal isn't just a store; it's a project born from a love of 3D art and beautifully illustrated seafood tins. Every product in our gallery is rendered with Non-Photorealistic Rendering (NPR) techniques to highlight the charm of each can and catch.</p>

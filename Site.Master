@@ -8,29 +8,19 @@
     <title>Silver Shoal | Sardines &amp; Canned Fish</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Galindo&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Young+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="<%= ResolveUrl("~/Content/Site.css") %>" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
-    <style>
-        .navbar-brand {
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .nav-link {
-            font-weight: 500;
-        }
-    </style>
 </head>
 <body class="d-flex flex-column h-100 bg-light">
     <form id="form1" runat="server" class="site-shell">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm py-3 site-navbar">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href='<%= ResolveUrl("~/Default.aspx") %>'>
                     <i class="bi bi-water me-2 text-primary"></i>Silver Shoal
@@ -74,15 +64,15 @@
                                 <li class="nav-item">
                                     <a class="nav-link px-3" href='<%= ResolveUrl("~/Login.aspx") %>'>Login</a>
                                 </li>
-                                <li class="nav-item ms-lg-2">
-                                    <a class="btn btn-primary rounded-pill px-4 shadow-sm" href='<%= ResolveUrl("~/Register.aspx") %>'>Get Started</a>
+                                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                    <a class="btn btn-primary px-4 shadow-sm" href='<%= ResolveUrl("~/Register.aspx") %>'>Get Started</a>
                                 </li>
                             </asp:View>
 
                             <%-- View 1: User --%>
                             <asp:View ID="vLoggedIn" runat="server">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle d-flex align-items-center bg-secondary bg-opacity-10 rounded-pill px-3" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center bg-secondary bg-opacity-10 px-3 user-menu-trigger" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                         <i class="bi bi-person-circle fs-5 me-2"></i>
                                         <span>
                                             <asp:Literal ID="litUsername" runat="server" /></span>
@@ -116,7 +106,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </main>
 
-        <footer class="footer mt-auto py-5 bg-white border-top">
+        <footer class="footer mt-auto py-5 border-top site-footer">
             <div class="container text-center">
                 <p class="text-muted mb-0">
                     &copy; 2026 <strong>Silver Shoal</strong>. Packed with personality.

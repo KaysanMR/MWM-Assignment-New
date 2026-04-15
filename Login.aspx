@@ -4,8 +4,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-4 col-sm-12">
-                <div class="card shadow">
-                    <div class="card-body">
+                <div class="card shadow auth-card">
+                    <div class="card-body p-4 p-md-4 mobile-card-tight">
                         <h2 class="text-center mb-4">Member Login</h2>
 
                         <div class="mb-3">

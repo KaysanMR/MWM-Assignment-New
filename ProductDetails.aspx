@@ -4,9 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-5">
-        <div class="row">
+        <div class="row g-4">
             <div class="col-md-6 mb-4">
-                <div class="card border-0 shadow-sm p-3 text-center">
+                <div class="card border-0 shadow-sm p-3 text-center mobile-card-tight">
                     <asp:Image ID="imgProduct" runat="server" CssClass="img-fluid rounded" Style="max-height: 450px; object-fit: contain;" />
                 </div>
             </div>
@@ -39,15 +39,15 @@
                     <asp:Label ID="lblDescription" runat="server" />
                 </p>
 
-                <div class="card p-3 bg-light border-0">
+                <div class="card p-3 bg-light border-0 mobile-card-tight">
                     <div class="row g-3 align-items-center">
-                        <div class="col-auto">
+                        <div class="col-sm-auto">
                             <label class="fw-bold">Quantity:</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-sm-auto">
                             <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Text="1" CssClass="form-control" Style="width: 80px;" min="1"></asp:TextBox>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-sm">
                             <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CssClass="btn btn-primary w-100" OnClick="btnAddToCart_Click" />
                         </div>
                     </div>

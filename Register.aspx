@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MWM_Assignment_New.SignUp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
         <div class="col-md-6 col-sm-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
+            <div class="card shadow-sm auth-card">
+                <div class="card-body p-4 p-md-4 mobile-card-tight">
                     <h2 class="text-center mb-4">Create Account</h2>
                     
                     <asp:ValidationSummary ID="vsRegister" runat="server" 

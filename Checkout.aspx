@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-7">
-                <div class="card shadow-sm border-0 p-4">
+            <div class="col-md-7 mb-4 mb-md-0">
+                <div class="card shadow-sm border-0 p-4 mobile-card-tight">
                     <h3 class="fw-bold mb-4">Shipping Information</h3>
                     
                     <div class="mb-3">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-md-5">
-                <div class="card shadow-sm border-0 bg-light p-4">
+                <div class="card shadow-sm border-0 bg-light p-4 mobile-card-tight">
                     <h4 class="fw-bold mb-3">Order Summary</h4>
                     <hr />
                     

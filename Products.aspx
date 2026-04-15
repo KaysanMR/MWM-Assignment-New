@@ -4,7 +4,7 @@
     <asp:ScriptManager ID="sm1" runat="server" />
 
     <div class="container mt-5">
-        <div class="row mb-4 align-items-center">
+        <div class="row mb-4 align-items-center g-3">
             <div class="col-md-8">
                 <h2 class="fw-bold text-dark">Explore Canned Fish</h2>
                 <p class="text-muted">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
