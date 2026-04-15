@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="My Orders" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyOrders.aspx.cs" Inherits="MWM_Assignment_New.MyOrders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container mt-5">
+    <div class="container page-shell">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Purchase History</h2>
             <a href="Products.aspx" class="btn btn-outline-primary shadow-sm">

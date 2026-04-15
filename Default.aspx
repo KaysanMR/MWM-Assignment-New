@@ -33,32 +33,34 @@
             </div>
         </header>
 
-        <section class="container page-shell">
-            <div class="text-center mb-5 section-heading mx-auto">
+        <section class="page-shell section-cream">
+            <div class="container">
+                <div class="text-center mb-5 section-heading mx-auto">
                 <span class="eyebrow">Featured Tins</span>
                 <h2 class="fw-bold">Featured Collections</h2>
                 <p class="text-muted">Handpicked favorites from our latest 3D designs.</p>
-            </div>
+                </div>
         
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <asp:Repeater ID="rptFeatured" runat="server">
-                    <ItemTemplate>
-                        <div class="col">
-                            <div class="card h-100 product-card transition-hover">
-                                <img src='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' class="card-img-top p-3" alt='<%# Eval("ProductName") %>' style="height: 200px; object-fit: contain;">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title fw-bold"><%# Eval("ProductName") %></h5>
-                                    <p class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></p>
-                                    <a href='ProductDetails.aspx?id=<%# Eval("ProductID") %>' class="btn btn-sm btn-outline-dark">View Details</a>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <asp:Repeater ID="rptFeatured" runat="server">
+                        <ItemTemplate>
+                            <div class="col">
+                                <div class="card h-100 product-card transition-hover">
+                                    <img src='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' class="card-img-top p-3" alt='<%# Eval("ProductName") %>' style="height: 200px; object-fit: contain;">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title fw-bold"><%# Eval("ProductName") %></h5>
+                                        <p class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></p>
+                                        <a href='ProductDetails.aspx?id=<%# Eval("ProductID") %>' class="btn btn-sm btn-outline-dark">View Details</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="py-5">
+        <section id="about" class="py-5 section-cream">
             <div class="container">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-6">

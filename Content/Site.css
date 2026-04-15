@@ -5,8 +5,8 @@
     --site-canvas: #f4efe6;
     --site-surface: #fffaf2;
     --site-surface-strong: #ede2d0;
-    --site-accent: #ff6b4a;
-    --site-accent-soft: #ffe1d8;
+    --site-accent: #3d6fbf;
+    --site-accent-soft: #d9e4f6;
     --site-info-soft: #dff4ff;
     --site-success: #5b8f69;
     --site-warning: #ffd56f;
@@ -19,7 +19,7 @@
     --site-font-serif: "Young Serif", Georgia, serif;
     --site-font-mono: "IBM Plex Mono", Consolas, monospace;
     --bs-primary: var(--site-accent);
-    --bs-primary-rgb: 255, 107, 74;
+    --bs-primary-rgb: 61, 111, 191;
     --bs-secondary: #d7cec0;
     --bs-secondary-rgb: 215, 206, 192;
     --bs-success: var(--site-success);
@@ -207,7 +207,7 @@ span,
 .bg-dark,
 .navbar-dark,
 footer.footer {
-    background: var(--site-surface) !important;
+    background: #ffc247 !important;
     color: var(--site-ink) !important;
 }
 
@@ -229,7 +229,7 @@ footer.footer {
     height: 2.1rem;
     border: 2px solid var(--site-line);
     border-radius: 0.7rem;
-    background: var(--site-accent-soft);
+    background: rgba(255, 250, 242, 0.55);
     color: var(--site-ink) !important;
 }
 
@@ -247,7 +247,7 @@ footer.footer {
 .navbar-dark .nav-link:hover,
 .navbar-dark .nav-link:focus,
 .navbar-dark .dropdown-toggle.text-warning {
-    color: var(--site-accent) !important;
+    color: #264a83 !important;
 }
 
 .navbar-toggler {
@@ -258,7 +258,7 @@ footer.footer {
 }
 
 .navbar-toggler:focus {
-    box-shadow: var(--site-shadow-sm), 0 0 0 0.2rem rgba(255, 107, 74, 0.18);
+    box-shadow: var(--site-shadow-sm), 0 0 0 0.2rem rgba(61, 111, 191, 0.18);
 }
 
 .navbar-toggler-icon {
@@ -365,7 +365,7 @@ footer.footer {
 }
 
 .table-hover > tbody > tr:hover > * {
-    background: #fff0eb;
+    background: #e4ecfa;
     color: var(--site-ink);
 }
 
@@ -379,7 +379,7 @@ footer.footer {
 .form-select:focus,
 .form-check-input:focus {
     border-color: var(--site-accent);
-    box-shadow: 0 0 0 0.2rem rgba(255, 107, 74, 0.14);
+    box-shadow: 0 0 0 0.2rem rgba(61, 111, 191, 0.14);
 }
 
 .form-control[readonly] {
@@ -440,7 +440,7 @@ footer.footer {
 .btn-primary:focus-visible,
 .btn-primary:active {
     color: var(--site-surface);
-    background: #f15a37;
+    background: #2f5d9f;
     border-color: var(--site-line);
 }
 
@@ -651,16 +651,20 @@ footer.footer {
 
 .site-footer .text-muted,
 .site-footer a {
-    color: var(--site-muted) !important;
+    color: #3d3121 !important;
 }
 
 .site-footer a:hover {
-    color: var(--site-accent) !important;
+    color: #264a83 !important;
 }
 
 .page-shell {
     padding-top: 2rem;
     padding-bottom: 1rem;
+}
+
+.section-cream {
+    background: #f7f0e2;
 }
 
 .landing-page {

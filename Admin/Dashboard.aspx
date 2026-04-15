@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container mt-4">
+    <div class="container page-shell">
         <h2 class="mb-4 text-center">Admin Dashboard</h2>
 
         <div class="row text-center mt-4">
