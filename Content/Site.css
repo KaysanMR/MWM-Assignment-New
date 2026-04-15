@@ -16,6 +16,7 @@
     --site-shadow: 6px 6px 0 var(--site-line);
     --site-shadow-sm: 4px 4px 0 var(--site-line);
     --site-font-sans: "Space Grotesk", "Segoe UI", sans-serif;
+    --site-font-serif: "Young Serif", Georgia, serif;
     --site-font-mono: "IBM Plex Mono", Consolas, monospace;
     --bs-primary: var(--site-accent);
     --bs-primary-rgb: 255, 107, 74;
@@ -132,11 +133,17 @@ h6,
 .navbar-brand,
 .card-title,
 .breadcrumb-item.active {
+    font-family: var(--site-font-serif);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    color: var(--site-ink);
+}
+
+.navbar-brand {
     font-family: var(--site-font-sans);
     font-weight: 700;
     letter-spacing: -0.05em;
-    line-height: 1.05;
-    color: var(--site-ink);
 }
 
 h6,
