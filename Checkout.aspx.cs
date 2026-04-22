@@ -68,17 +68,21 @@ namespace MWM_Assignment_New
                 lblCouponMessage.Text = "Coupon removed.";
                 lblCouponMessage.CssClass = "d-block small mt-2 text-muted";
             }
-            else if (code == "TIN10" || code == "CATCH5")
-            {
-                Session["CouponCode"] = code;
-                lblCouponMessage.Text = code == "TIN10" ? "TIN10 applied: 10% off." : "CATCH5 applied: RM 5.00 off.";
-                lblCouponMessage.CssClass = "d-block small mt-2 text-success";
-            }
             else
             {
-                Session.Remove("CouponCode");
-                lblCouponMessage.Text = "Coupon code not recognized.";
-                lblCouponMessage.CssClass = "d-block small mt-2 text-danger";
+                CouponInfo coupon = CouponService.FindActiveCoupon(connString, code);
+                if (coupon == null)
+                {
+                    Session.Remove("CouponCode");
+                    lblCouponMessage.Text = "Coupon code not recognized.";
+                    lblCouponMessage.CssClass = "d-block small mt-2 text-danger";
+                }
+                else
+                {
+                    Session["CouponCode"] = coupon.Code;
+                    lblCouponMessage.Text = coupon.Code + " applied: " + coupon.Summary + ".";
+                    lblCouponMessage.CssClass = "d-block small mt-2 text-success";
+                }
             }
 
             LoadOrderSummary();
@@ -225,15 +229,7 @@ namespace MWM_Assignment_New
         {
             decimal discount = 0;
             string code = (Session["CouponCode"] ?? "").ToString();
-
-            if (code == "TIN10")
-            {
-                discount += subtotal * 0.10m;
-            }
-            else if (code == "CATCH5")
-            {
-                discount += 5m;
-            }
+            discount += CouponService.CalculateDiscount(CouponService.FindActiveCoupon(connString, code), subtotal);
 
             if (chkRedeemPoints.Checked && GetLoyaltyPoints() >= 50)
             {

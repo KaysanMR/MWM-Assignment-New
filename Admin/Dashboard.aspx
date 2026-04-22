@@ -50,6 +50,14 @@
                         <strong><asp:Label ID="lblTotalFeedback" runat="server" Text="0"></asp:Label></strong>
                         <a href="ManageFeedback.aspx" class="btn btn-warning text-white w-100">View Feedback</a>
                     </div>
+
+                    <div class="admin-sidebar-card border-dark">
+                        <div>
+                            <h5 class="text-dark">Coupons</h5>
+                            <p class="text-muted mb-0">Checkout discounts</p>
+                        </div>
+                        <a href="ManageCoupons.aspx" class="btn btn-outline-dark w-100">Manage Coupons</a>
+                    </div>
                 </aside>
             </div>
 

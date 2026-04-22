@@ -111,6 +111,7 @@
     <None Include="Admin\Web.config" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\ManageCategories.aspx" />
+    <Content Include="Admin\ManageCoupons.aspx" />
     <Content Include="Admin\ManageFeedback.aspx" />
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
@@ -258,6 +259,13 @@
     <Compile Include="Admin\ManageCategories.aspx.designer.cs">
       <DependentUpon>ManageCategories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ManageCoupons.aspx.cs">
+      <DependentUpon>ManageCoupons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCoupons.aspx.designer.cs">
+      <DependentUpon>ManageCoupons.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageFeedback.aspx.cs">
       <DependentUpon>ManageFeedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -340,6 +348,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CouponService.cs" />
     <Compile Include="LoyaltyService.cs" />
     <Compile Include="MockCatalog.cs" />
     <Compile Include="ProductBadgeService.cs" />
