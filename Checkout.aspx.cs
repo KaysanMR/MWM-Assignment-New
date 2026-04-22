@@ -15,7 +15,7 @@ namespace MWM_Assignment_New
             // Security Check: Redirect if not logged in or cart is empty
             if (Session["UserID"] == null) Response.Redirect("Login.aspx");
             if (Session["Cart"] == null || ((DataTable)Session["Cart"]).Rows.Count == 0)
-                Response.Redirect("ProductGallery.aspx");
+                Response.Redirect("Products.aspx");
 
             if (!IsPostBack)
             {

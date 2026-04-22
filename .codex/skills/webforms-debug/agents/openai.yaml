@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Forms Debug"
+  short_description: "Debug and verify this Web Forms app"
+  default_prompt: "Use $webforms-debug to diagnose a build, runtime, or Web Forms behavior issue in this project."

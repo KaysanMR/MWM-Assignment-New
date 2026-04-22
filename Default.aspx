@@ -18,14 +18,10 @@
                     </div>
 
                     <div class="col-lg-5">
-                        <div class="card hero-note">
-                            <div class="card-body">
-                                <span class="eyebrow mb-3">Shelf Notes</span>
-                                <ul>
-                                    <li>Rendered tins with crisp, illustrated label design.</li>
-                                    <li>Curated selections instead of a noisy, endless catalog.</li>
-                                    <li>Wishlist, fast checkout, and order tracking built in.</li>
-                                </ul>
+                        <div class="hero-image-placeholder" aria-label="Homepage hero image placeholder">
+                            <div>
+                                <span class="eyebrow mb-2">Image Placeholder</span>
+                                <p class="mb-0">Hero product image coming soon.</p>
                             </div>
                         </div>
                     </div>
@@ -38,7 +34,7 @@
                 <div class="text-center mb-5 section-heading mx-auto">
                 <span class="eyebrow">Featured Tins</span>
                 <h2 class="fw-bold">Featured Collections</h2>
-                <p class="text-muted">Handpicked favorites from our latest 3D designs.</p>
+                <p class="text-muted">Handpicked tins packed with flavor, color, and pantry-ready charm.</p>
                 </div>
         
                 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -65,11 +61,11 @@
                 <div class="row align-items-center g-4">
                     <div class="col-lg-6">
                         <span class="eyebrow">Why Silver Shoal</span>
-                        <h2 class="fw-bold">Where pantry staples meet playful presentation.</h2>
-                        <p>Silver Shoal isn't just a store; it's a project born from a love of 3D art and beautifully illustrated seafood tins. Every product in our gallery is rendered with Non-Photorealistic Rendering (NPR) techniques to highlight the charm of each can and catch.</p>
+                        <h2 class="fw-bold">Canned seafood with flavor, color, and character.</h2>
+                        <p>Silver Shoal curates pantry-ready seafood tins that are easy to love and easy to serve. From sardines in rich tomato sauce to tuna, mackerel, and premium seafood picks, every item is selected for bold flavor, dependable quality, and a shelf presence worth showing off.</p>
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Carefully curated sardine selections</li>
-                            <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Artist-designed canned fish labels</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Carefully curated sardines and seafood tins</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Distinctive labels for quick, confident browsing</li>
                             <li><i class="bi bi-check2-circle text-primary me-2"></i>Secure local checkout</li>
                         </ul>
                     </div>

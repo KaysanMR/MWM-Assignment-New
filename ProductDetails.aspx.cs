@@ -50,8 +50,29 @@ namespace MWM_Assignment_New
                         btnAddToCart.CssClass = "btn btn-secondary w-100";
                     }
                 }
-                else { Response.Redirect("Products.aspx"); }
+                else
+                {
+                    DataRow mockProduct = MockCatalog.FindProduct(id);
+                    if (mockProduct == null)
+                    {
+                        Response.Redirect("Products.aspx");
+                        return;
+                    }
+
+                    BindMockDetails(mockProduct);
+                }
             }
+        }
+
+        private void BindMockDetails(DataRow product)
+        {
+            lblProductName.Text = product["ProductName"].ToString();
+            litCrumb.Text = product["ProductName"].ToString();
+            lblPrice.Text = string.Format("{0:N2}", product["Price"]);
+            lblCategory.Text = product["CategoryName"].ToString();
+            lblDescription.Text = product["Description"].ToString();
+            imgProduct.ImageUrl = ResolveUrl(product["ImagePath"].ToString());
+            lblStock.Text = product["StockQuantity"].ToString();
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)

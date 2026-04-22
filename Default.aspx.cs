@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Linq;
 
 namespace MWM_Assignment_New
 {
@@ -19,17 +20,30 @@ namespace MWM_Assignment_New
 
         private void LoadFeaturedProducts()
         {
-            using (SqlConnection con = new SqlConnection(connString))
-            {
-                // Pulling the 3 newest products as "Featured"
-                string query = "SELECT TOP 3 ProductID, ProductName, Price, ImagePath FROM Products ORDER BY ProductID DESC";
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
+            DataTable dt = new DataTable();
 
-                rptFeatured.DataSource = dt;
-                rptFeatured.DataBind();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    // Pulling the 3 newest products as "Featured"
+                    string query = "SELECT TOP 3 ProductID, ProductName, Price, ImagePath FROM Products ORDER BY ProductID DESC";
+                    SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                    sda.Fill(dt);
+                }
             }
+            catch (SqlException)
+            {
+                dt = MockCatalog.CreateProductTable();
+            }
+
+            if (dt.Rows.Count == 0)
+            {
+                dt = MockCatalog.CreateProductTable();
+            }
+
+            rptFeatured.DataSource = dt.Rows.Cast<DataRow>().Take(3).CopyToDataTable();
+            rptFeatured.DataBind();
         }
     }
 }

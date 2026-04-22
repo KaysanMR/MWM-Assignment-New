@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Silver Shoal - Project ReadMe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #171717;
+            background: #f7f0e2;
+        }
+
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 32px 20px 56px;
+        }
+
+        h1,
+        h2 {
+            line-height: 1.2;
+        }
+
+        section {
+            margin-top: 24px;
+            padding: 20px;
+            border: 2px solid #171717;
+            background: #fffaf2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #171717;
+            text-align: left;
+        }
+
+        th {
+            background: #ffc247;
+        }
+
+        code {
+            padding: 2px 5px;
+            background: #ede2d0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Silver Shoal Canned Fish Storefront</h1>
+        <p>
+            Silver Shoal is an ASP.NET Web Forms e-commerce application for browsing and purchasing canned fish products.
+            It uses .NET Framework 4.8, SQL Server LocalDB, Forms Authentication, Bootstrap, and a database stored under
+            <code>App_Data</code>.
+        </p>
+
+        <section>
+            <h2>Test Accounts</h2>
+            <p>Use these accounts when testing the submitted application after the database seed data has been applied.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Admin</td>
+                        <td><code>admin</code></td>
+                        <td><code>Admin@123</code></td>
+                        <td>Access dashboard, manage users, products, categories, orders, and feedback.</td>
+                    </tr>
+                    <tr>
+                        <td>Member</td>
+                        <td><code>member</code></td>
+                        <td><code>Member@123</code></td>
+                        <td>Browse products, manage profile, wishlist items, checkout, and view order history.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Setup Requirements</h2>
+            <ul>
+                <li>Windows PC with Visual Studio 2019 or newer.</li>
+                <li>.NET Framework 4.8 targeting pack.</li>
+                <li>IIS Express.</li>
+                <li>SQL Server Express LocalDB.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How To Run</h2>
+            <ol>
+                <li>Open <code>MWM-Assignment-New.sln</code> in Visual Studio.</li>
+                <li>Restore NuGet packages if Visual Studio prompts for them.</li>
+                <li>Confirm <code>App_Data/myData.mdf</code> exists in the project folder.</li>
+                <li>Run the website using IIS Express from Visual Studio.</li>
+                <li>Open <code>Products.aspx</code> to browse the storefront.</li>
+            </ol>
+            <p>
+                From PowerShell, the project can also be built with:
+                <code>.\tools\Invoke-WebsiteChecks.ps1</code>
+            </p>
+        </section>
+
+        <section>
+            <h2>Application Walkthrough</h2>
+            <ol>
+                <li>Visit the home page and open the shop/catalog page.</li>
+                <li>Register a new account or sign in with the member test account.</li>
+                <li>Browse canned fish products, view product details, and add items to the cart.</li>
+                <li>Proceed to checkout to create a pending order.</li>
+                <li>Use the customer order history pages to view previous purchases and order details.</li>
+                <li>Sign in as admin to manage products, categories, users, orders, and feedback.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Project Notes</h2>
+            <ul>
+                <li>The main catalog page is <code>Products.aspx</code>.</li>
+                <li>Admin pages are stored under <code>Admin/</code>.</li>
+                <li>Customer-only pages are stored under <code>Customer/</code>.</li>
+                <li>The database connection string is named <code>KeyboardShopDB</code> for legacy reasons.</li>
+                <li>The business domain is a canned fish vendor storefront.</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

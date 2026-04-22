@@ -22,43 +22,71 @@ namespace MWM_Assignment_New
 
         private void BindCategories()
         {
-            using (SqlConnection con = new SqlConnection(connString))
+            DataTable categories = new DataTable();
+
+            try
             {
-                SqlCommand cmd = new SqlCommand("SELECT CategoryID, CategoryName FROM Categories", con);
-                con.Open();
-                ddlFilterCategory.DataSource = cmd.ExecuteReader();
-                ddlFilterCategory.DataTextField = "CategoryName";
-                ddlFilterCategory.DataValueField = "CategoryID";
-                ddlFilterCategory.DataBind();
-                ddlFilterCategory.Items.Insert(0, new System.Web.UI.WebControls.ListItem("All Categories", "0"));
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter("SELECT CategoryID, CategoryName FROM Categories", con);
+                    sda.Fill(categories);
+                }
             }
+            catch (SqlException)
+            {
+                categories = MockCatalog.CreateCategoryTable();
+            }
+
+            if (categories.Rows.Count == 0)
+            {
+                categories = MockCatalog.CreateCategoryTable();
+            }
+
+            ddlFilterCategory.DataSource = categories;
+            ddlFilterCategory.DataTextField = "CategoryName";
+            ddlFilterCategory.DataValueField = "CategoryID";
+            ddlFilterCategory.DataBind();
+            ddlFilterCategory.Items.Insert(0, new System.Web.UI.WebControls.ListItem("All Categories", "0"));
         }
 
         private void BindGallery(string categoryId = "0")
         {
-            using (SqlConnection con = new SqlConnection(connString))
+            DataTable dt = new DataTable();
+
+            try
             {
-                string query = @"SELECT p.*, c.CategoryName 
-                                 FROM Products p 
-                                 INNER JOIN Categories c ON p.CategoryID = c.CategoryID";
-
-                if (categoryId != "0")
+                using (SqlConnection con = new SqlConnection(connString))
                 {
-                    query += " WHERE p.CategoryID = @CatID";
+                    string query = @"SELECT p.*, c.CategoryName 
+                                     FROM Products p 
+                                     INNER JOIN Categories c ON p.CategoryID = c.CategoryID";
+
+                    if (categoryId != "0")
+                    {
+                        query += " WHERE p.CategoryID = @CatID";
+                    }
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    if (categoryId != "0") cmd.Parameters.AddWithValue("@CatID", categoryId);
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(dt);
                 }
-
-                SqlCommand cmd = new SqlCommand(query, con);
-                if (categoryId != "0") cmd.Parameters.AddWithValue("@CatID", categoryId);
-
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-
-                dlProducts.DataSource = dt;
-                dlProducts.DataBind();
-
-                lblNoProducts.Visible = (dt.Rows.Count == 0);
             }
+            catch (SqlException)
+            {
+                dt = MockCatalog.CreateProductTable(categoryId);
+            }
+
+            if (dt.Rows.Count == 0)
+            {
+                dt = MockCatalog.CreateProductTable(categoryId);
+            }
+
+            dlProducts.DataSource = dt;
+            dlProducts.DataBind();
+
+            lblNoProducts.Visible = (dt.Rows.Count == 0);
         }
 
         protected void ddlFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +127,12 @@ namespace MWM_Assignment_New
 
                 int userId = Convert.ToInt32(Session["UserID"]);
                 int prodId = Convert.ToInt32(e.CommandArgument);
+
+                if (MockCatalog.IsMockProductId(prodId))
+                {
+                    BindGallery(ddlFilterCategory.SelectedValue);
+                    return;
+                }
 
                 using (SqlConnection con = new SqlConnection(connString))
                 {

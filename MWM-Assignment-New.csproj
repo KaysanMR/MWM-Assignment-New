@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MWM_Assignment_New</RootNamespace>
     <AssemblyName>MWM-Assignment-New</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44357</IISExpressSSLPort>
@@ -176,8 +176,10 @@
     <Content Include="Customer\MyOrders.aspx" />
     <Content Include="Customer\OrderDetails.aspx" />
     <Content Include="OrderSuccess.aspx" />
+    <Content Include="Images\Products\placeholder-tin.svg" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="Products.aspx" />
+    <Content Include="ReadMe.html" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -314,6 +316,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MockCatalog.cs" />
     <Compile Include="Customer\MyOrders.aspx.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

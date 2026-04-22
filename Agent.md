@@ -1,0 +1,88 @@
+# Agent Notes
+
+## Project Snapshot
+
+- ASP.NET Web Forms application targeting .NET Framework 4.8.
+- Business domain: canned fish vendor storefront. Treat old keyboard-shop wording as legacy unless it appears in technical identifiers that have not been migrated yet.
+- Assignment brief reference: `Assignment Brief/CT081-3-3-Mobile and Web  Multimedia Assignment (1).md`.
+- The assignment requires an individual mobile-optimized .NET e-commerce app with SQL Server `App_Data` storage, Forms Authentication/authorization, 10-20 interlinked pages, Web Forms user controls, advanced data-bound controls, validation, customer/admin flows, feedback, order delivery states, documentation, user manual, and `ReadMe.html` with grader setup/credentials.
+- Solution: `MWM-Assignment-New.sln`.
+- Project: `MWM-Assignment-New.csproj`.
+- Main UI pages live at the repo root, with admin pages in `Admin/` and customer pages in `Customer/`.
+- Shared layout is in `Site.Master` and `Site.Mobile.Master`.
+- Shared CSS is in `Content/Site.css`; Bootstrap 5.2.3 and jQuery 3.4.1 are checked into `Content/`, `Scripts/`, and `packages/`.
+- Local database is `App_Data/myData.mdf`, connected through the legacy `KeyboardShopDB` connection name in `Web.config`.
+- Authentication uses ASP.NET Forms Authentication plus session values such as `UserID`, `UserRole`, and `Cart`.
+
+## Current Git State
+
+- Branch observed during inventory: `update-styling-v1`.
+- Existing modified files before these notes were added:
+  - `Admin/Dashboard.aspx`
+  - `Customer/Profile.aspx`
+- Treat those as user work unless explicitly told otherwise.
+
+## Build And Check Commands
+
+Use the helper script:
+
+```powershell
+.\tools\Invoke-WebsiteChecks.ps1
+```
+
+Watch and rebuild after edits:
+
+```powershell
+.\tools\Invoke-WebsiteChecks.ps1 -Watch
+```
+
+Start IIS Express and smoke-test the site:
+
+```powershell
+.\tools\Invoke-WebsiteChecks.ps1 -StartIisExpress
+```
+
+Build plus a running-site smoke check:
+
+```powershell
+.\tools\Invoke-WebsiteChecks.ps1 -SmokeUrl https://localhost:44357/
+```
+
+The script auto-locates Visual Studio MSBuild. The known local path is:
+
+```text
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
+```
+
+Baseline build result from inventory: build passed. The app now targets .NET Framework 4.8 to match the Bootstrap ScriptManager package.
+
+There is no dedicated test project in the current solution. For now, "test" means compile the Web Forms project and optionally smoke-test a running local URL.
+
+## Development Notes
+
+- Prefer existing Web Forms patterns: `.aspx` markup, `.aspx.cs` code-behind, and `.designer.cs` generated control declarations.
+- Avoid editing `.designer.cs` manually unless regenerating controls is impossible.
+- Keep database access consistent with the current `System.Data.SqlClient` style, but use parameterized SQL for new queries.
+- Admin-only pages should verify `Session["UserRole"] == "Admin"` before loading protected data.
+- Customer-only pages should verify `Session["UserID"]` before loading user data.
+- The catalog page is `Products.aspx`; the code-behind class is named `ProductGallery`.
+- Do not commit local database files, `bin/`, `obj/`, or Visual Studio state unless specifically asked.
+
+## Useful Codex Skills
+
+- `webforms-crud`: use for admin/customer CRUD pages, GridView handlers, and SQL data-binding work.
+- `webforms-debug`: use for build, runtime, designer, ScriptManager/UpdatePanel, LocalDB, and Web Forms lifecycle issues.
+- `webforms-layout`: use for Web Forms markup, Bootstrap layout, master-page consistency, and responsive page presentation.
+- `canned-fish-domain`: use whenever changing user-facing copy, sample data, product/category naming, or replacing legacy keyboard-shop assumptions.
+- `imagegen` / `generate-image`: useful if the shop needs canned fish product art, hero images, banners, or visual mockups.
+- `github:gh-address-comments`: useful if this work later moves through GitHub pull request review.
+- `skill-installer`: useful if we decide to install a web/frontend-specific skill; no ASP.NET Web Forms skill was found in the local skill inventory.
+- `docx`, `PowerPoint`, `Excel`: useful only for assignment deliverables, reports, slide decks, or spreadsheet analysis around the project.
+
+## Inventory Summary
+
+- Public/customer flow: default page, product listing/details, cart, checkout, order success, login, register, profile, wishlist, order history.
+- Admin flow: dashboard, categories, feedback, orders, products, users.
+- Assets: product images are stored under `Images/Products/`.
+- App startup: `Global.asax.cs`, `App_Start/BundleConfig.cs`, and `App_Start/RouteConfig.cs`.
+- Error handling: custom 404 page configured in `Web.config`.

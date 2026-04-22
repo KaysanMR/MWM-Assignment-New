@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Forms Layout"
+  short_description: "Layout conventions for this Web Forms app"
+  default_prompt: "Use $webforms-layout to improve a Web Forms page layout in this project."

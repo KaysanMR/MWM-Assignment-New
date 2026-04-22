@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Forms CRUD"
+  short_description: "Project CRUD patterns for Web Forms"
+  default_prompt: "Use $webforms-crud to add or modify an admin CRUD page in this Web Forms project."

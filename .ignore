@@ -1,0 +1,12 @@
+.git/
+.vs/
+bin/
+obj/
+packages/
+
+*.user
+*.suo
+*.cache
+*.pdb
+
+App_Data/*.ldf

@@ -742,9 +742,29 @@ footer.footer {
     gap: 0.9rem;
 }
 
-.hero-note {
+.hero-note,
+.hero-image-placeholder {
     max-width: 24rem;
     margin-left: auto;
+}
+
+.hero-image-placeholder {
+    min-height: 22rem;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    border: 2px dashed var(--site-line);
+    border-radius: var(--site-radius);
+    background:
+        linear-gradient(135deg, rgba(61, 111, 191, 0.12), rgba(255, 250, 242, 0.72)),
+        var(--site-surface);
+    box-shadow: var(--site-shadow-sm);
+    text-align: center;
+}
+
+.hero-image-placeholder p {
+    color: var(--site-muted);
+    font-weight: 600;
 }
 
 .hero-note .card-body {
@@ -862,7 +882,8 @@ footer.footer {
         justify-content: center;
     }
 
-    .hero-note {
+    .hero-note,
+    .hero-image-placeholder {
         margin-left: 0;
         max-width: 100%;
     }

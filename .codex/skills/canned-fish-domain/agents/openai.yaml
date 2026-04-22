@@ -1,0 +1,4 @@
+interface:
+  display_name: "Canned Fish Domain"
+  short_description: "Domain context for the canned fish vendor"
+  default_prompt: "Use $canned-fish-domain to align project changes with the canned fish vendor domain."
