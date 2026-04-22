@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace MWM_Assignment_New
@@ -89,6 +90,35 @@ namespace MWM_Assignment_New
             return Products.Any(product => product.ProductId == productId);
         }
 
+        internal static void EnsureProductExists(SqlConnection connection, SqlTransaction transaction, int productId)
+        {
+            MockProduct product = Products.FirstOrDefault(item => item.ProductId == productId);
+            if (product == null)
+            {
+                return;
+            }
+
+            MockCategory category = Categories.First(item => item.CategoryId == product.CategoryId);
+            Execute(connection, transaction, "IF NOT EXISTS (SELECT 1 FROM Categories WHERE CategoryID = @ID) BEGIN SET IDENTITY_INSERT Categories ON; INSERT INTO Categories (CategoryID, CategoryName) VALUES (@ID, @Name); SET IDENTITY_INSERT Categories OFF; END",
+                new SqlParameter("@ID", category.CategoryId),
+                new SqlParameter("@Name", category.CategoryName));
+
+            Execute(connection, transaction, @"IF NOT EXISTS (SELECT 1 FROM Products WHERE ProductID = @ID)
+BEGIN
+    SET IDENTITY_INSERT Products ON;
+    INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity, Description, ImagePath)
+    VALUES (@ID, @Name, @CatID, @Price, @Stock, @Desc, @Img);
+    SET IDENTITY_INSERT Products OFF;
+END",
+                new SqlParameter("@ID", product.ProductId),
+                new SqlParameter("@Name", product.ProductName),
+                new SqlParameter("@CatID", product.CategoryId),
+                new SqlParameter("@Price", product.Price),
+                new SqlParameter("@Stock", product.StockQuantity),
+                new SqlParameter("@Desc", product.Description),
+                new SqlParameter("@Img", PlaceholderImagePath));
+        }
+
         private static DataTable CreateProductSchema()
         {
             DataTable table = new DataTable();
@@ -101,6 +131,15 @@ namespace MWM_Assignment_New
             table.Columns.Add("Description", typeof(string));
             table.Columns.Add("ImagePath", typeof(string));
             return table;
+        }
+
+        private static void Execute(SqlConnection connection, SqlTransaction transaction, string commandText, params SqlParameter[] parameters)
+        {
+            using (SqlCommand command = new SqlCommand(commandText, connection, transaction))
+            {
+                command.Parameters.AddRange(parameters);
+                command.ExecuteNonQuery();
+            }
         }
 
         private sealed class MockCategory

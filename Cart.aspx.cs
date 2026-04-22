@@ -42,7 +42,7 @@ namespace MWM_Assignment_New
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
             // We will build this logic next!
-            Response.Redirect("Checkout.aspx");
+            Response.Redirect("~/Checkout.aspx");
         }
     }
 }

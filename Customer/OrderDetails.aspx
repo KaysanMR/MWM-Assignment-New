@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Order #<asp:Literal ID="litOrderID" runat="server" /></h2>
-            <a href="MyOrders.aspx" class="btn btn-outline-secondary btn-sm">
+            <a href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>' class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-arrow-left"></i> Back to History
             </a>
         </div>

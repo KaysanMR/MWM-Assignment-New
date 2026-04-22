@@ -13,7 +13,7 @@ namespace MWM_Assignment_New
             }
             else
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("~/Default.aspx");
             }
         }
     }

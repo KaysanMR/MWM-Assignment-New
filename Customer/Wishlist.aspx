@@ -43,7 +43,7 @@
 
                                 <asp:TemplateField HeaderText="Actions" ItemStyle-CssClass="text-end">
                                     <ItemTemplate>
-                                        <a href='../ProductDetails.aspx?id=<%# Eval("ProductID") %>' class="btn btn-sm btn-light border me-2">
+                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="btn btn-sm btn-light border me-2">
                                             View Details
                                         </a>
                                         <asp:LinkButton ID="btnRemove" runat="server" 

@@ -11,7 +11,7 @@
                             <h1 class="display-4 mb-3">Reel In Your Next Pantry Favorite</h1>
                             <p class="lead mb-4">Discover premium sardines and canned fish packed with flavor, craft, and character.</p>
                             <div class="d-grid gap-2 d-sm-flex hero-actions stack-mobile">
-                                <a href="Products.aspx" class="btn btn-primary btn-lg px-4">Shop Now</a>
+                                <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-primary btn-lg px-4">Shop Now</a>
                                 <a href="#about" class="btn btn-outline-dark btn-lg px-4">Our Story</a>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                     <div class="card-body text-center">
                                         <h5 class="card-title fw-bold"><%# Eval("ProductName") %></h5>
                                         <p class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></p>
-                                        <a href='ProductDetails.aspx?id=<%# Eval("ProductID") %>' class="btn btn-sm btn-outline-dark">View Details</a>
+                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="btn btn-sm btn-outline-dark">View Details</a>
                                     </div>
                                 </div>
                             </div>

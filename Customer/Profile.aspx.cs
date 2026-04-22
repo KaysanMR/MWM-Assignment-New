@@ -40,7 +40,7 @@ namespace MWM_Assignment_New.Customer
                     txtName.Text = dr["FullName"]?.ToString() ?? "";
                     txtEmail.Text = dr["Email"]?.ToString() ?? "";
                     txtPhone.Text = dr["Phone"]?.ToString() ?? "";
-                    txtAddress.Text = dr["Address"]?.ToString() ?? "";
+                    BindAddressParts(AddressFormatter.Split(dr["Address"]?.ToString()));
                 }
             } // This closes the 'using' block
         } // This closes the 'LoadUserProfile' method
@@ -57,7 +57,7 @@ namespace MWM_Assignment_New.Customer
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Name", txtName.Text);
                 cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
-                cmd.Parameters.AddWithValue("@Addr", txtAddress.Text);
+                cmd.Parameters.AddWithValue("@Addr", AddressFormatter.Combine(ReadAddressParts()));
                 cmd.Parameters.AddWithValue("@UID", userId);
 
                 con.Open();
@@ -68,6 +68,29 @@ namespace MWM_Assignment_New.Customer
                     Session["UserName"] = txtName.Text;
                 }
             }
+        }
+
+        private AddressParts ReadAddressParts()
+        {
+            return new AddressParts
+            {
+                Line1 = txtAddressLine1.Text,
+                Line2 = txtAddressLine2.Text,
+                City = txtCity.Text,
+                State = txtState.Text,
+                Postcode = txtPostcode.Text,
+                Country = txtCountry.Text
+            };
+        }
+
+        private void BindAddressParts(AddressParts parts)
+        {
+            txtAddressLine1.Text = parts.Line1;
+            txtAddressLine2.Text = parts.Line2;
+            txtCity.Text = parts.City;
+            txtState.Text = parts.State;
+            txtPostcode.Text = parts.Postcode;
+            txtCountry.Text = string.IsNullOrWhiteSpace(parts.Country) ? "Malaysia" : parts.Country;
         }
     } // This closes the Class
 } // This closes the Namespace

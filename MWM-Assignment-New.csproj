@@ -175,6 +175,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Customer\MyOrders.aspx" />
     <Content Include="Customer\OrderDetails.aspx" />
+    <Content Include="Customer\Products.aspx" />
     <Content Include="OrderSuccess.aspx" />
     <Content Include="Images\Products\placeholder-tin.svg" />
     <Content Include="ProductDetails.aspx" />
@@ -221,6 +222,7 @@
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddressFormatter.cs" />
     <Compile Include="Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>

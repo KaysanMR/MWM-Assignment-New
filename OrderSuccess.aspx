@@ -24,8 +24,8 @@
                     <hr class="my-4" />
 
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center stack-mobile">
-                        <a href="Products.aspx" class="btn btn-outline-primary btn-lg px-4">Continue Shopping</a>
-                        <a href="Customer/MyOrders.aspx" class="btn btn-primary btn-lg px-4">View My Orders</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-primary btn-lg px-4">Continue Shopping</a>
+                        <a href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>' class="btn btn-primary btn-lg px-4">View My Orders</a>
                     </div>
                 </div>
             </div>

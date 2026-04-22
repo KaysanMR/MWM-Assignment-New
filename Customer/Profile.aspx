@@ -35,9 +35,31 @@
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label small fw-bold text-muted">Shipping Address</label>
-                            <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
+                        <div class="row g-3 mb-4">
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-muted">Address Line 1</label>
+                                <asp:TextBox ID="txtAddressLine1" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3" placeholder="House/unit number and street"></asp:TextBox>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-muted">Address Line 2</label>
+                                <asp:TextBox ID="txtAddressLine2" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3" placeholder="Apartment, suite, building, landmark"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">City</label>
+                                <asp:TextBox ID="txtCity" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">State</label>
+                                <asp:TextBox ID="txtState" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Postcode</label>
+                                <asp:TextBox ID="txtPostcode" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Country</label>
+                                <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control border-0 bg-light py-2 px-3 rounded-3"></asp:TextBox>
+                            </div>
                         </div>
 
                         <div class="d-grid gap-2">

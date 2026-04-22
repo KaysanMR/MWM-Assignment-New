@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Products.aspx">Shop</a></li>
+                        <li class="breadcrumb-item"><a href='<%= ResolveUrl("~/Products.aspx") %>'>Shop</a></li>
                         <li class="breadcrumb-item active">
                             <asp:Literal ID="litCrumb" runat="server" /></li>
                     </ol>

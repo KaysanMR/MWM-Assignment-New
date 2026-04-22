@@ -7,13 +7,46 @@
                 <div class="card p-4">
                     <h3 class="fw-bold mb-4">Shipping Information</h3>
                     
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Full Delivery Address</label>
-                        <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" Rows="4" 
-                            CssClass="form-control" placeholder="House No, Street Name, City, Postcode, State"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvAddress" runat="server" 
-                            ControlToValidate="txtAddress" ErrorMessage="Please enter your shipping address." 
-                            CssClass="text-danger small" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <div class="row g-3 mb-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Address Line 1</label>
+                            <asp:TextBox ID="txtAddressLine1" runat="server" CssClass="form-control" placeholder="House/unit number and street"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvAddressLine1" runat="server"
+                                ControlToValidate="txtAddressLine1" ErrorMessage="Please enter address line 1."
+                                CssClass="text-danger small" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Address Line 2 <span class="text-muted fw-normal">(optional)</span></label>
+                            <asp:TextBox ID="txtAddressLine2" runat="server" CssClass="form-control" placeholder="Apartment, suite, building, landmark"></asp:TextBox>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">City</label>
+                            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="City"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvCity" runat="server"
+                                ControlToValidate="txtCity" ErrorMessage="Please enter your city."
+                                CssClass="text-danger small" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">State</label>
+                            <asp:TextBox ID="txtState" runat="server" CssClass="form-control" placeholder="State"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvState" runat="server"
+                                ControlToValidate="txtState" ErrorMessage="Please enter your state."
+                                CssClass="text-danger small" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Postcode</label>
+                            <asp:TextBox ID="txtPostcode" runat="server" CssClass="form-control" placeholder="Postcode"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPostcode" runat="server"
+                                ControlToValidate="txtPostcode" ErrorMessage="Please enter your postcode."
+                                CssClass="text-danger small" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Country</label>
+                            <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control" Text="Malaysia" placeholder="Country"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvCountry" runat="server"
+                                ControlToValidate="txtCountry" ErrorMessage="Please enter your country."
+                                CssClass="text-danger small" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </div>
                     </div>
 
                     <div class="mb-3">

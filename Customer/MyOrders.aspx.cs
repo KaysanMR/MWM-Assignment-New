@@ -57,7 +57,7 @@ namespace MWM_Assignment_New
             if (e.CommandName == "ViewDetails")
             {
                 // Redirect to a page that shows the specific items in that order
-                Response.Redirect("OrderDetails.aspx?id=" + e.CommandArgument);
+                Response.Redirect("~/Customer/OrderDetails.aspx?id=" + e.CommandArgument);
             }
         }
     }

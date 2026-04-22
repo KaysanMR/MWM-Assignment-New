@@ -60,7 +60,7 @@
 
                                     <div class="mt-auto d-flex justify-content-between align-items-center">
                                         <span class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></span>
-                                        <a href='ProductDetails.aspx?id=<%# Eval("ProductID") %>' class="stretched-link text-primary small fw-bold text-decoration-none">View <i class="bi bi-arrow-right"></i>
+                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="stretched-link text-primary small fw-bold text-decoration-none">View <i class="bi bi-arrow-right"></i>
                                         </a>
                                     </div>
                                 </div>

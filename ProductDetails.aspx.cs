@@ -14,7 +14,7 @@ namespace MWM_Assignment_New
             if (!IsPostBack)
             {
                 string prodId = Request.QueryString["id"];
-                if (string.IsNullOrEmpty(prodId)) Response.Redirect("Products.aspx");
+                if (string.IsNullOrEmpty(prodId)) Response.Redirect("~/Products.aspx");
 
                 LoadDetails(prodId);
             }
@@ -55,7 +55,7 @@ namespace MWM_Assignment_New
                     DataRow mockProduct = MockCatalog.FindProduct(id);
                     if (mockProduct == null)
                     {
-                        Response.Redirect("Products.aspx");
+                        Response.Redirect("~/Products.aspx");
                         return;
                     }
 
@@ -109,7 +109,7 @@ namespace MWM_Assignment_New
             }
 
             Session["Cart"] = dt;
-            Response.Redirect("Cart.aspx"); // Send them to the cart page to see their items
+            Response.Redirect("~/Cart.aspx"); // Send them to the cart page to see their items
         }
     }
 }
