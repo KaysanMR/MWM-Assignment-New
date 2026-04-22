@@ -28,40 +28,54 @@ namespace MWM_Assignment_New
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@ID", id);
                 con.Open();
+                ProductBadgeService.EnsureSchema(con);
+                MockCatalog.EnsurePreviewCatalogExists(con);
+                int recommendedProductId = 0;
+                int recommendedCategoryId = 0;
 
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
+                using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    lblProductName.Text = dr["ProductName"].ToString();
-                    litCrumb.Text = dr["ProductName"].ToString();
-                    lblPrice.Text = string.Format("{0:N2}", dr["Price"]);
-                    lblCategory.Text = dr["CategoryName"].ToString();
-                    lblDescription.Text = dr["Description"].ToString();
-                    imgProduct.ImageUrl = ResolveUrl(dr["ImagePath"].ToString());
-
-                    int stock = Convert.ToInt32(dr["StockQuantity"]);
-                    lblStock.Text = stock.ToString();
-                    SetStockBadge(stock);
-
-                    // UI logic for out-of-stock items
-                    if (stock <= 0)
+                    if (dr.Read())
                     {
-                        btnAddToCart.Enabled = false;
-                        btnAddToCart.Text = "Out of Stock";
-                        btnAddToCart.CssClass = "btn btn-secondary w-100";
+                        lblProductName.Text = dr["ProductName"].ToString();
+                        litCrumb.Text = dr["ProductName"].ToString();
+                        lblPrice.Text = string.Format("{0:N2}", dr["Price"]);
+                        lblCategory.Text = dr["CategoryName"].ToString();
+                        lblDescription.Text = dr["Description"].ToString();
+                        imgProduct.ImageUrl = ResolveUrl(dr["ImagePath"].ToString());
+
+                        recommendedProductId = Convert.ToInt32(dr["ProductID"]);
+                        recommendedCategoryId = Convert.ToInt32(dr["CategoryID"]);
+                        int stock = Convert.ToInt32(dr["StockQuantity"]);
+                        lblStock.Text = stock.ToString();
+                        litProductBadges.Text = ProductBadgeService.RenderBadges(dr["ProductID"], dr["ProductName"], dr["CategoryName"], dr["StockQuantity"], dr["Badges"]);
+                        SetStockBadge(stock);
+
+                        // UI logic for out-of-stock items
+                        if (stock <= 0)
+                        {
+                            btnAddToCart.Enabled = false;
+                            btnAddToCart.Text = "Out of Stock";
+                            btnAddToCart.CssClass = "btn btn-secondary w-100";
+                        }
                     }
                 }
-                else
-                {
-                    DataRow mockProduct = MockCatalog.FindProduct(id);
-                    if (mockProduct == null)
-                    {
-                        Response.Redirect("~/Products.aspx");
-                        return;
-                    }
 
-                    BindMockDetails(mockProduct);
+                if (recommendedProductId != 0)
+                {
+                    BindRecommendations(con, recommendedProductId, recommendedCategoryId);
+                    return;
                 }
+
+                DataRow mockProduct = MockCatalog.FindProduct(id);
+                if (mockProduct == null)
+                {
+                    Response.Redirect("~/Products.aspx");
+                    return;
+                }
+
+                BindMockDetails(mockProduct);
+                BindMockRecommendations(Convert.ToInt32(mockProduct["ProductID"]), Convert.ToInt32(mockProduct["CategoryID"]));
             }
         }
 
@@ -74,7 +88,70 @@ namespace MWM_Assignment_New
             lblDescription.Text = product["Description"].ToString();
             imgProduct.ImageUrl = ResolveUrl(product["ImagePath"].ToString());
             lblStock.Text = product["StockQuantity"].ToString();
+            litProductBadges.Text = ProductBadgeService.RenderBadges(product["ProductID"], product["ProductName"], product["CategoryName"], product["StockQuantity"], product["Badges"]);
             SetStockBadge(Convert.ToInt32(product["StockQuantity"]));
+        }
+
+        protected string RenderProductBadges(object productId, object productName, object categoryName, object stockQuantity, object storedBadges)
+        {
+            return ProductBadgeService.RenderBadges(productId, productName, categoryName, stockQuantity, storedBadges);
+        }
+
+        private void BindRecommendations(SqlConnection con, int productId, int categoryId)
+        {
+            string query = @"SELECT TOP 3 *
+FROM (
+    SELECT p.ProductID, p.ProductName, p.CategoryID, p.Price, p.StockQuantity, p.Description, p.ImagePath, p.Badges, c.CategoryName,
+        CASE WHEN p.CategoryID = @CategoryID THEN 0 ELSE 1 END AS SortGroup
+    FROM Products p
+    INNER JOIN Categories c ON p.CategoryID = c.CategoryID
+    WHERE p.ProductID <> @ProductID AND p.StockQuantity > 0
+) AS picks
+ORDER BY SortGroup, ProductName";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@ProductID", productId);
+                cmd.Parameters.AddWithValue("@CategoryID", categoryId);
+
+                DataTable recommendations = new DataTable();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(recommendations);
+                }
+
+                BindRecommendationTable(recommendations);
+            }
+        }
+
+        private void BindMockRecommendations(int productId, int categoryId)
+        {
+            DataTable source = MockCatalog.CreateProductTable();
+            DataTable recommendations = source.Clone();
+
+            foreach (DataRow row in source.Select("ProductID <> " + productId + " AND CategoryID = " + categoryId, "ProductName ASC"))
+            {
+                recommendations.ImportRow(row);
+                if (recommendations.Rows.Count == 3) break;
+            }
+
+            if (recommendations.Rows.Count < 3)
+            {
+                foreach (DataRow row in source.Select("ProductID <> " + productId + " AND CategoryID <> " + categoryId, "ProductName ASC"))
+                {
+                    recommendations.ImportRow(row);
+                    if (recommendations.Rows.Count == 3) break;
+                }
+            }
+
+            BindRecommendationTable(recommendations);
+        }
+
+        private void BindRecommendationTable(DataTable recommendations)
+        {
+            rptRecommendations.DataSource = recommendations;
+            rptRecommendations.DataBind();
+            pnlRecommendations.Visible = recommendations.Rows.Count > 0;
         }
 
         private void SetStockBadge(int stock)

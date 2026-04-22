@@ -6,7 +6,6 @@
     <div class="container page-shell">
         <div class="row mb-4 align-items-center g-3">
             <div class="col-md-8">
-                <span class="eyebrow mb-2">Browse The Shelf</span>
                 <h2 class="fw-bold text-dark">Explore Canned Fish</h2>
                 <p class="text-muted">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
             </div>
@@ -38,6 +37,10 @@
                         ItemStyle-CssClass="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex align-items-stretch">
                         <ItemTemplate>
                             <div class="card h-100 product-card w-100 position-relative">
+                                <div class="product-badge-stack">
+                                    <asp:Literal ID="litProductBadges" runat="server"
+                                        Text='<%# RenderProductBadges(Eval("ProductID"), Eval("ProductName"), Eval("CategoryName"), Eval("StockQuantity"), Eval("Badges")) %>' />
+                                </div>
 
                                 <div class="position-absolute top-0 end-0 p-3" style="z-index: 5;">
                                     <asp:LinkButton ID="btnWishlist" runat="server"

@@ -60,15 +60,6 @@ namespace MWM_Assignment_New.Admin
         protected global::System.Web.UI.WebControls.Label lblRevenue;
 
         /// <summary>
-        /// lblLowStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLowStock;
-
-        /// <summary>
         /// lblAverageRating control.
         /// </summary>
         /// <remarks>
@@ -76,5 +67,50 @@ namespace MWM_Assignment_New.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAverageRating;
+
+        /// <summary>
+        /// hfOrdersChartData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfOrdersChartData;
+
+        /// <summary>
+        /// hfTopProductsChartData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTopProductsChartData;
+
+        /// <summary>
+        /// hfInventoryChartData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfInventoryChartData;
+
+        /// <summary>
+        /// rptLowStockProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptLowStockProducts;
+
+        /// <summary>
+        /// pnlNoLowStockProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNoLowStockProducts;
     }
 }

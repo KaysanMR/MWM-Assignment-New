@@ -5,9 +5,6 @@
             <div class="col-md-7 col-sm-12">
                 <div class="card auth-card">
                     <div class="card-body">
-                        <div class="text-center mb-4">
-                            <span class="eyebrow">New Account</span>
-                        </div>
                         <h2 class="text-center mb-4">Create Account</h2>
                     
                         <asp:ValidationSummary ID="vsRegister" runat="server" 

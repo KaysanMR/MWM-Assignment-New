@@ -21,14 +21,14 @@ namespace MWM_Assignment_New
 
         private static readonly List<MockProduct> Products = new List<MockProduct>
         {
-            new MockProduct(-101, -1, "Pink Salt Sardines in Olive Oil", 10.90m, 34, "Golden Catch sardines finished with pink salt and olive oil for a clean, pantry-ready bite.", "~/Images/Products/pinksalt_oliveoil.PNG"),
-            new MockProduct(-102, -1, "Vine Tomato Sardines with Shoyu", 11.40m, 28, "Bright vine tomato meets savory shoyu in a richly seasoned sardine tin.", "~/Images/Products/vinetomato_shoyu.PNG"),
-            new MockProduct(-103, -1, "Japanese Yuzu Sardines with Tarragon", 12.20m, 24, "A fragrant sardine tin with citrusy yuzu and tarragon for a fresh, lifted finish.", "~/Images/Products/japanezeyuzu_tarragon.PNG"),
-            new MockProduct(-104, -1, "Lavender Sardines with Black Garlic", 12.80m, 18, "Soft floral notes and black garlic depth give these sardines a distinctive Golden Catch profile.", "~/Images/Products/lavender_blackgarlic.PNG"),
-            new MockProduct(-105, -5, "Anchovies in Chili Oil", 9.40m, 31, "Bold anchovies in fragrant chili oil for noodles, vegetables, and sharing plates."),
-            new MockProduct(-106, -4, "Smoked Mussels in Brine", 13.60m, 20, "Smoky mussels with a clean brine finish, made for snack boards and quick tapas."),
-            new MockProduct(-107, -6, "Family Pack Sardines in Tomato Sauce", 18.90m, 16, "A larger pantry tin of classic sardines in tomato sauce for family meals."),
-            new MockProduct(-108, -5, "Sambal Tuna Spread", 10.20m, 24, "Tuna blended with sambal-style heat for toast, crackers, and fast lunches.")
+            new MockProduct(-101, -1, "Pink Salt Sardines in Olive Oil", 10.90m, 34, "Golden Catch sardines finished with pink salt and olive oil for a clean, pantry-ready bite.", "~/Images/Products/pinksalt_oliveoil.PNG", "Best Seller, New"),
+            new MockProduct(-102, -1, "Vine Tomato Sardines with Shoyu", 11.40m, 28, "Bright vine tomato meets savory shoyu in a richly seasoned sardine tin.", "~/Images/Products/vinetomato_shoyu.PNG", "Best Seller, New"),
+            new MockProduct(-103, -1, "Japanese Yuzu Sardines with Tarragon", 12.20m, 24, "A fragrant sardine tin with citrusy yuzu and tarragon for a fresh, lifted finish.", "~/Images/Products/japanezeyuzu_tarragon.PNG", "New, Premium"),
+            new MockProduct(-104, -1, "Lavender Sardines with Black Garlic", 12.80m, 18, "Soft floral notes and black garlic depth give these sardines a distinctive Golden Catch profile.", "~/Images/Products/lavender_blackgarlic.PNG", "New, Premium"),
+            new MockProduct(-105, -5, "Anchovies in Chili Oil", 9.40m, 31, "Bold anchovies in fragrant chili oil for noodles, vegetables, and sharing plates.", PlaceholderImagePath, "Spicy"),
+            new MockProduct(-106, -4, "Smoked Mussels in Brine", 13.60m, 20, "Smoky mussels with a clean brine finish, made for snack boards and quick tapas.", PlaceholderImagePath, "Premium"),
+            new MockProduct(-107, -6, "Family Pack Sardines in Tomato Sauce", 18.90m, 16, "A larger pantry tin of classic sardines in tomato sauce for family meals.", PlaceholderImagePath, "Family Size, Best Seller"),
+            new MockProduct(-108, -5, "Sambal Tuna Spread", 10.20m, 24, "Tuna blended with sambal-style heat for toast, crackers, and fast lunches.", PlaceholderImagePath, "Spicy")
         };
 
         internal static DataTable CreateCategoryTable()
@@ -66,7 +66,8 @@ namespace MWM_Assignment_New
                     product.Price,
                     product.StockQuantity,
                     product.Description,
-                    product.ImagePath);
+                    product.ImagePath,
+                    product.Badges);
             }
 
             return table;
@@ -107,6 +108,8 @@ namespace MWM_Assignment_New
         {
             using (SqlTransaction transaction = connection.BeginTransaction())
             {
+                ProductBadgeService.EnsureSchema(connection, transaction);
+
                 foreach (MockProduct product in Products)
                 {
                     EnsureProductExists(connection, transaction, product.ProductId);
@@ -132,8 +135,8 @@ namespace MWM_Assignment_New
             Execute(connection, transaction, @"IF NOT EXISTS (SELECT 1 FROM Products WHERE ProductID = @ID)
 BEGIN
     SET IDENTITY_INSERT Products ON;
-    INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity, Description, ImagePath)
-    VALUES (@ID, @Name, @CatID, @Price, @Stock, @Desc, @Img);
+    INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity, Description, ImagePath, Badges)
+    VALUES (@ID, @Name, @CatID, @Price, @Stock, @Desc, @Img, @Badges);
     SET IDENTITY_INSERT Products OFF;
 END
 ELSE
@@ -144,7 +147,8 @@ BEGIN
         Price = @Price,
         StockQuantity = @Stock,
         Description = @Desc,
-        ImagePath = @Img
+        ImagePath = @Img,
+        Badges = @Badges
     WHERE ProductID = @ID;
 END",
                 new SqlParameter("@ID", product.ProductId),
@@ -153,7 +157,8 @@ END",
                 new SqlParameter("@Price", product.Price),
                 new SqlParameter("@Stock", product.StockQuantity),
                 new SqlParameter("@Desc", product.Description),
-                new SqlParameter("@Img", product.ImagePath));
+                new SqlParameter("@Img", product.ImagePath),
+                new SqlParameter("@Badges", product.Badges));
         }
 
         private static DataTable CreateProductSchema()
@@ -167,6 +172,7 @@ END",
             table.Columns.Add("StockQuantity", typeof(int));
             table.Columns.Add("Description", typeof(string));
             table.Columns.Add("ImagePath", typeof(string));
+            table.Columns.Add("Badges", typeof(string));
             return table;
         }
 
@@ -193,7 +199,7 @@ END",
 
         private sealed class MockProduct
         {
-            internal MockProduct(int productId, int categoryId, string productName, decimal price, int stockQuantity, string description, string imagePath = PlaceholderImagePath)
+            internal MockProduct(int productId, int categoryId, string productName, decimal price, int stockQuantity, string description, string imagePath = PlaceholderImagePath, string badges = "")
             {
                 ProductId = productId;
                 CategoryId = categoryId;
@@ -202,6 +208,7 @@ END",
                 StockQuantity = stockQuantity;
                 Description = description;
                 ImagePath = imagePath;
+                Badges = badges;
             }
 
             internal int ProductId { get; private set; }
@@ -211,6 +218,7 @@ END",
             internal int StockQuantity { get; private set; }
             internal string Description { get; private set; }
             internal string ImagePath { get; private set; }
+            internal string Badges { get; private set; }
         }
     }
 }

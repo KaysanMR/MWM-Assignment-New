@@ -63,8 +63,8 @@ namespace MWM_Assignment_New.Admin
 
                         using (SqlConnection con = new SqlConnection(connString))
                         {
-                            string query = "INSERT INTO Products (ProductName, CategoryID, Price, StockQuantity, Description, ImagePath) " +
-                                           "VALUES (@Name, @CatID, @Price, @StockQuantity, @Desc, @Img)";
+                            string query = "INSERT INTO Products (ProductName, CategoryID, Price, StockQuantity, Description, ImagePath, Badges) " +
+                                           "VALUES (@Name, @CatID, @Price, @StockQuantity, @Desc, @Img, @Badges)";
                             SqlCommand cmd = new SqlCommand(query, con);
                             cmd.Parameters.AddWithValue("@Name", txtProdName.Text.Trim());
                             cmd.Parameters.AddWithValue("@CatID", ddlCategories.SelectedValue);
@@ -72,8 +72,10 @@ namespace MWM_Assignment_New.Admin
                             cmd.Parameters.AddWithValue("@StockQuantity", int.Parse(txtStock.Text));
                             cmd.Parameters.AddWithValue("@Desc", txtDesc.Text.Trim());
                             cmd.Parameters.AddWithValue("@Img", dbPath);
+                            cmd.Parameters.AddWithValue("@Badges", ProductBadgeService.NormalizeBadges(txtBadges.Text));
 
                             con.Open();
+                            ProductBadgeService.EnsureSchema(con);
                             cmd.ExecuteNonQuery();
 
                             lblUploadMsg.Text = "Product added successfully!";
@@ -99,6 +101,7 @@ namespace MWM_Assignment_New.Admin
             txtPrice.Text = "";
             txtStock.Text = "";
             txtDesc.Text = "";
+            txtBadges.Text = "";
             ddlCategories.SelectedIndex = 0;
         }
 
@@ -106,6 +109,9 @@ namespace MWM_Assignment_New.Admin
         {
             using (SqlConnection con = new SqlConnection(connString))
             {
+                con.Open();
+                ProductBadgeService.EnsureSchema(con);
+
                 // Joins with Categories to show the Name instead of just the ID in your grid
                 string query = "SELECT p.*, c.CategoryName FROM Products p INNER JOIN Categories c ON p.CategoryID = c.CategoryID";
                 SqlDataAdapter sda = new SqlDataAdapter(query, con);
@@ -184,18 +190,21 @@ namespace MWM_Assignment_New.Admin
             decimal price = decimal.Parse(((TextBox)row.FindControl("txtEditPrice")).Text);
             int stock = int.Parse(((TextBox)row.FindControl("txtEditStock")).Text);
             int catId = int.Parse(((DropDownList)row.FindControl("ddlEditCat")).SelectedValue);
+            string badges = ProductBadgeService.NormalizeBadges(((TextBox)row.FindControl("txtEditBadges")).Text);
 
             using (SqlConnection con = new SqlConnection(connString))
             {
-                string query = "UPDATE Products SET ProductName=@Name, Price=@Price, StockQuantity=@Stock, CategoryID=@CatID WHERE ProductID=@ID";
+                string query = "UPDATE Products SET ProductName=@Name, Price=@Price, StockQuantity=@Stock, CategoryID=@CatID, Badges=@Badges WHERE ProductID=@ID";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Price", price);
                 cmd.Parameters.AddWithValue("@Stock", stock);
                 cmd.Parameters.AddWithValue("@CatID", catId);
+                cmd.Parameters.AddWithValue("@Badges", badges);
                 cmd.Parameters.AddWithValue("@ID", prodId);
 
                 con.Open();
+                ProductBadgeService.EnsureSchema(con);
                 cmd.ExecuteNonQuery();
                 gvProducts.EditIndex = -1;
                 BindProducts();

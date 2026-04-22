@@ -57,6 +57,11 @@
                         <label class="form-label">Description</label>
                         <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
                     </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Product Badges</label>
+                        <asp:TextBox ID="txtBadges" runat="server" CssClass="form-control" placeholder="Best Seller, New, Premium"></asp:TextBox>
+                        <div class="form-text">Separate multiple badges with commas.</div>
+                    </div>
                 </div>
                 <asp:Button ID="btnSaveProduct" runat="server" Text="Add to Inventory" CssClass="btn btn-primary px-4" OnClick="btnSaveProduct_Click" />
                 <asp:Label ID="lblUploadMsg" runat="server" CssClass="ms-3"></asp:Label>
@@ -100,6 +105,15 @@
                         <ItemTemplate><%# Eval("StockQuantity") %></ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="txtEditStock" runat="server" Text='<%# Bind("StockQuantity") %>' CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Badges">
+                        <ItemTemplate>
+                            <span class="small"><%# Eval("Badges") %></span>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditBadges" runat="server" Text='<%# Bind("Badges") %>' CssClass="form-control form-control-sm" placeholder="Best Seller, New"></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
 

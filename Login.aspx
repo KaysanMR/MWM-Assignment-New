@@ -6,9 +6,6 @@
             <div class="col-md-5 col-sm-12">
                 <div class="card auth-card">
                     <div class="card-body">
-                        <div class="text-center mb-4">
-                            <span class="eyebrow">Member Access</span>
-                        </div>
                         <h2 class="text-center mb-4">Member Login</h2>
 
                         <div class="mb-3">

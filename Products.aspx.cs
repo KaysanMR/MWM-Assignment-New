@@ -118,6 +118,11 @@ namespace MWM_Assignment_New
             return "badge bg-success align-self-start mb-3";
         }
 
+        protected string RenderProductBadges(object productId, object productName, object categoryName, object stockQuantity, object storedBadges)
+        {
+            return ProductBadgeService.RenderBadges(productId, productName, categoryName, stockQuantity, storedBadges);
+        }
+
         // Helper to check wishlist status for the icon class
         protected bool IsInWishlist(object productID)
         {

@@ -48,6 +48,7 @@ namespace MWM_Assignment_New
                     currentStatus = dr["Status"].ToString();
                     lblStatus.Text = currentStatus;
                     lblStatus.CssClass += GetStatusColor(currentStatus);
+                    lblTrackingSummary.Text = GetTrackingSummary(currentStatus);
                 }
                 dr.Close();
 
@@ -73,9 +74,19 @@ namespace MWM_Assignment_New
 
         protected string GetTrackingClass(string step)
         {
+            if (IsCancelled(currentStatus))
+            {
+                return "is-cancelled";
+            }
+
             int current = GetStatusRank(currentStatus);
             int target = GetStatusRank(step);
-            return current >= target ? "is-active" : "";
+            if (current > target)
+            {
+                return "is-complete";
+            }
+
+            return current == target ? "is-active" : "";
         }
 
         protected void btnSubmitFeedback_Click(object sender, EventArgs e)
@@ -155,6 +166,28 @@ INSERT INTO Feedbacks (UserID, OrderID, Rating, Comment, DateSubmitted) VALUES (
             }
         }
 
+        private string GetTrackingSummary(string status)
+        {
+            switch ((status ?? "").ToLower())
+            {
+                case "pending":
+                    return "We received your order and will start packing it shortly.";
+                case "processing":
+                    return "Your Golden Catch order is being packed for delivery.";
+                case "delivery":
+                case "shipped":
+                    return "Your order is on the way. Keep an eye out for delivery updates.";
+                case "delivered":
+                case "completed":
+                    return "Delivered. We hope the tins made it safely to your pantry.";
+                case "cancelled":
+                case "canceled":
+                    return "This order was cancelled. Contact support if this looks wrong.";
+                default:
+                    return "Order tracking will update as your status changes.";
+            }
+        }
+
         private int ReadRating()
         {
             int rating;
@@ -171,13 +204,19 @@ INSERT INTO Feedbacks (UserID, OrderID, Rating, Comment, DateSubmitted) VALUES (
             switch ((status ?? "").ToLower())
             {
                 case "pending": return 1;
-                case "processing":
+                case "processing": return 2;
                 case "delivery":
-                case "shipped": return 2;
+                case "shipped": return 3;
                 case "delivered":
-                case "completed": return 3;
+                case "completed": return 4;
                 default: return 0;
             }
+        }
+
+        private bool IsCancelled(string status)
+        {
+            string normalized = (status ?? "").ToLower();
+            return normalized == "cancelled" || normalized == "canceled";
         }
     }
 }

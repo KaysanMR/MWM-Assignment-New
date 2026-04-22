@@ -342,6 +342,7 @@
     </Compile>
     <Compile Include="LoyaltyService.cs" />
     <Compile Include="MockCatalog.cs" />
+    <Compile Include="ProductBadgeService.cs" />
     <Compile Include="Customer\MyOrders.aspx.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

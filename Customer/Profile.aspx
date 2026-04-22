@@ -7,7 +7,6 @@
             <div class="col-lg-4 col-xl-3 d-flex">
                 <aside class="profile-dashboard w-100 h-100">
                     <div class="profile-dashboard-hero">
-                        <span class="eyebrow d-inline-block mb-2">Golden Catch Club</span>
                         <h3 class="mb-1">
                             <asp:Literal ID="litDashboardName" runat="server"></asp:Literal>
                         </h3>

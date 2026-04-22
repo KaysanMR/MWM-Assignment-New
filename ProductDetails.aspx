@@ -22,6 +22,9 @@
 
                 <h1 class="fw-bold">
                     <asp:Label ID="lblProductName" runat="server" /></h1>
+                <div class="product-detail-badges mb-3">
+                    <asp:Literal ID="litProductBadges" runat="server" />
+                </div>
                 <h3 class="text-primary mb-3">RM
                     <asp:Label ID="lblPrice" runat="server" /></h3>
 
@@ -56,5 +59,43 @@
                 <asp:Label ID="lblMessage" runat="server" CssClass="d-block mt-3"></asp:Label>
             </div>
         </div>
+
+        <asp:Panel ID="pnlRecommendations" runat="server" CssClass="recommended-products-section mt-5" Visible="false">
+            <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-3">
+                <div>
+                    <h2 class="fw-bold mb-0">You may also like</h2>
+                </div>
+                <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-dark">Browse all</a>
+            </div>
+
+            <div class="row g-4">
+                <asp:Repeater ID="rptRecommendations" runat="server">
+                    <ItemTemplate>
+                        <div class="col-12 col-sm-6 col-lg-4 d-flex">
+                            <div class="card product-card recommended-product-card w-100 position-relative">
+                                <div class="product-badge-stack">
+                                    <asp:Literal ID="litRecommendedBadges" runat="server"
+                                        Text='<%# RenderProductBadges(Eval("ProductID"), Eval("ProductName"), Eval("CategoryName"), Eval("StockQuantity"), Eval("Badges")) %>' />
+                                </div>
+                                <div class="text-center p-3">
+                                    <img src='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' alt="Recommended canned fish"
+                                        class="card-img-top">
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="text-muted small text-uppercase fw-bold"><%# Eval("CategoryName") %></h6>
+                                    <h5 class="card-title h6 fw-bold mb-3"><%# Eval("ProductName") %></h5>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center gap-3">
+                                        <span class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></span>
+                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="stretched-link text-primary small fw-bold text-decoration-none">
+                                            View <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </asp:Panel>
     </div>
 </asp:Content>

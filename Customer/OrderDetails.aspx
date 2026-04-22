@@ -79,7 +79,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card shadow-sm border-0 bg-light p-4">
+                <div class="card shadow-sm border-0 bg-light p-4 order-summary-card">
                     <h5 class="fw-bold">Order Summary</h5>
                     <hr />
                     <p class="mb-1 text-muted">Order Date:</p>
@@ -87,19 +87,36 @@
                     
                     <p class="mb-1 text-muted">Status:</p>
                     <p><asp:Label ID="lblStatus" runat="server" CssClass="badge p-2" /></p>
+                    <asp:Label ID="lblTrackingSummary" runat="server" CssClass="order-tracking-summary"></asp:Label>
 
                     <div class="order-timeline my-4">
                         <div class='timeline-step <%# GetTrackingClass("Pending") %>'>
-                            <span></span>
-                            <strong>Pending</strong>
+                            <span><i class="bi bi-receipt"></i></span>
+                            <div>
+                                <strong>Order placed</strong>
+                                <small>Your seafood tins are in the queue.</small>
+                            </div>
                         </div>
-                        <div class='timeline-step <%# GetTrackingClass("Delivery") %>'>
-                            <span></span>
-                            <strong>Delivery</strong>
+                        <div class='timeline-step <%# GetTrackingClass("Processing") %>'>
+                            <span><i class="bi bi-box-seam"></i></span>
+                            <div>
+                                <strong>Packed</strong>
+                                <small>The pantry box is being prepared.</small>
+                            </div>
+                        </div>
+                        <div class='timeline-step <%# GetTrackingClass("Shipped") %>'>
+                            <span><i class="bi bi-truck"></i></span>
+                            <div>
+                                <strong>On the way</strong>
+                                <small>Your order has left the shelf.</small>
+                            </div>
                         </div>
                         <div class='timeline-step <%# GetTrackingClass("Delivered") %>'>
-                            <span></span>
-                            <strong>Delivered</strong>
+                            <span><i class="bi bi-house-check"></i></span>
+                            <div>
+                                <strong>Delivered</strong>
+                                <small>Ready for your next pantry meal.</small>
+                            </div>
                         </div>
                     </div>
                     
