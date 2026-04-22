@@ -56,6 +56,7 @@ namespace MWM_Assignment_New.Admin
 
                     LoadChartData(con);
                     BindLowStockProducts(con);
+                    BindRecentOrders(con);
                 }
                 catch (Exception)
                 {
@@ -171,6 +172,27 @@ ORDER BY StockQuantity ASC, ProductName ASC", con))
                 rptLowStockProducts.DataSource = lowStock;
                 rptLowStockProducts.DataBind();
                 pnlNoLowStockProducts.Visible = lowStock.Rows.Count == 0;
+            }
+        }
+
+        private void BindRecentOrders(SqlConnection con)
+        {
+            using (SqlCommand cmd = new SqlCommand(@"SELECT TOP 6
+    o.OrderID,
+    o.OrderDate,
+    o.TotalAmount,
+    o.Status,
+    COALESCE(NULLIF(u.FullName, ''), u.Username, 'Customer') AS CustomerName
+FROM Orders o
+INNER JOIN Users u ON o.UserID = u.UserID
+ORDER BY o.OrderDate DESC, o.OrderID DESC", con))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+            {
+                DataTable recentOrders = new DataTable();
+                adapter.Fill(recentOrders);
+                rptRecentOrders.DataSource = recentOrders;
+                rptRecentOrders.DataBind();
+                pnlNoRecentOrders.Visible = recentOrders.Rows.Count == 0;
             }
         }
     }

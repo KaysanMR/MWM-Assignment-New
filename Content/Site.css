@@ -636,6 +636,43 @@ footer.footer {
     box-shadow: 2px 2px 0 var(--site-line);
 }
 
+.admin-activity-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.12);
+}
+
+.admin-activity-row:last-child,
+.admin-low-stock-row:last-child {
+    border-bottom: 0;
+}
+
+.admin-activity-row div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.admin-activity-row span {
+    color: var(--site-muted);
+    font-size: 0.9rem;
+}
+
+.admin-status-pill {
+    justify-self: end;
+    width: fit-content;
+    padding: 0.25rem 0.55rem;
+    color: var(--site-line) !important;
+    font-size: 0.75rem !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: 2px solid var(--site-line);
+    border-radius: 999px;
+    background: #fff3c4;
+}
+
 .form-control,
 .form-select {
     background: var(--site-surface);

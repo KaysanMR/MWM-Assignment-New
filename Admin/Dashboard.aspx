@@ -153,6 +153,37 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-lg-5">
+                            <div class="card admin-chart-card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="fw-bold mb-1">Recent Order Activity</h5>
+                                            <p class="text-muted mb-0 small">Latest customer checkout movement.</p>
+                                        </div>
+                                        <a href="ManageOrders.aspx" class="small fw-bold">Open</a>
+                                    </div>
+                                    <asp:Repeater ID="rptRecentOrders" runat="server">
+                                        <ItemTemplate>
+                                            <div class="admin-activity-row">
+                                                <div>
+                                                    <strong>Order #<%# Eval("OrderID") %></strong>
+                                                    <span><%# Eval("CustomerName") %> · <%# Eval("OrderDate", "{0:dd MMM yyyy}") %></span>
+                                                </div>
+                                                <div class="text-end">
+                                                    <span class="admin-status-pill"><%# Eval("Status") %></span>
+                                                    <strong>RM <%# Eval("TotalAmount", "{0:N2}") %></strong>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <asp:Panel ID="pnlNoRecentOrders" runat="server" CssClass="profile-empty-note" Visible="false">
+                                        No recent orders yet.
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
