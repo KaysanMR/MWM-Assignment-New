@@ -15,7 +15,7 @@
         <h2 class="mb-4 text-center">Manage Categories</h2>
 
         <div class="card mb-4 shadow-sm">
-            <div class="card-header bg-success text-white">Add New Category</div>
+            <div class="card-header bg-success text-dark">Add New Category</div>
             <div class="card-body">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">

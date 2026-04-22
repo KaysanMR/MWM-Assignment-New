@@ -43,6 +43,7 @@
                                     <asp:LinkButton ID="btnWishlist" runat="server"
                                         CommandName="ToggleWishlist"
                                         CommandArgument='<%# Eval("ProductID") %>'
+                                        CausesValidation="false"
                                         CssClass="wishlist-btn d-flex align-items-center justify-content-center text-decoration-none"
                                         Style="width: 38px; height: 38px;">
                                         <i class='<%# IsInWishlist(Eval("ProductID")) ? "bi bi-heart-fill text-danger" : "bi bi-heart text-muted" %>'></i>
@@ -57,6 +58,7 @@
                                 <div class="card-body d-flex flex-column">
                                     <h6 class="text-muted small text-uppercase fw-bold"><%# Eval("CategoryName") %></h6>
                                     <h5 class="card-title h6 fw-bold mb-3"><%# Eval("ProductName") %></h5>
+                                    <span class='<%# GetStockBadgeClass(Eval("StockQuantity")) %>'><%# GetStockBadgeText(Eval("StockQuantity")) %></span>
 
                                     <div class="mt-auto d-flex justify-content-between align-items-center">
                                         <span class="text-primary fw-bold">RM <%# Eval("Price", "{0:N2}") %></span>

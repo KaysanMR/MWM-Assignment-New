@@ -43,8 +43,18 @@ namespace MWM_Assignment_New.Admin
                     // Count Pending Orders (Requirement check)
                     SqlCommand cmdOrders = new SqlCommand("SELECT COUNT(*) FROM Orders WHERE Status = 'Pending'", con);
                     lblPendingOrders.Text = cmdOrders.ExecuteScalar().ToString();
+
+                    SqlCommand cmdRevenue = new SqlCommand("SELECT ISNULL(SUM(TotalAmount), 0) FROM Orders", con);
+                    lblRevenue.Text = Convert.ToDecimal(cmdRevenue.ExecuteScalar()).ToString("N2");
+
+                    SqlCommand cmdLowStock = new SqlCommand("SELECT COUNT(*) FROM Products WHERE StockQuantity <= 5", con);
+                    lblLowStock.Text = cmdLowStock.ExecuteScalar().ToString();
+
+                    SqlCommand cmdRating = new SqlCommand("SELECT AVG(CAST(Rating AS decimal(10,2))) FROM Feedbacks", con);
+                    object rating = cmdRating.ExecuteScalar();
+                    lblAverageRating.Text = rating == DBNull.Value ? "N/A" : Convert.ToDecimal(rating).ToString("N1") + " / 5";
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // Log error or display message
                 }

@@ -17,11 +17,14 @@ namespace MWM_Assignment_New
             if (Session["Cart"] == null || ((DataTable)Session["Cart"]).Rows.Count == 0)
                 Response.Redirect("~/Products.aspx");
 
+            SyncLoyaltyPoints();
+
             if (!IsPostBack)
             {
                 LoadShippingAddress();
-                LoadOrderSummary();
             }
+
+            LoadOrderSummary();
         }
 
         private void LoadShippingAddress()
@@ -47,8 +50,50 @@ namespace MWM_Assignment_New
             }
 
             // This fills the labels you created in the ASPX file
+            decimal discount = CalculateDiscount(total);
+            decimal grandTotal = Math.Max(0, total - discount);
+
             lblSubtotal.Text = "RM " + total.ToString("N2");
-            lblGrandTotal.Text = "RM " + total.ToString("N2");
+            lblDiscount.Text = "RM " + discount.ToString("N2");
+            lblGrandTotal.Text = "RM " + grandTotal.ToString("N2");
+            lblLoyaltyPoints.Text = GetLoyaltyPoints().ToString();
+        }
+
+        protected void btnApplyCoupon_Click(object sender, EventArgs e)
+        {
+            string code = txtCouponCode.Text.Trim().ToUpperInvariant();
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                Session.Remove("CouponCode");
+                lblCouponMessage.Text = "Coupon removed.";
+                lblCouponMessage.CssClass = "d-block small mt-2 text-muted";
+            }
+            else if (code == "TIN10" || code == "CATCH5")
+            {
+                Session["CouponCode"] = code;
+                lblCouponMessage.Text = code == "TIN10" ? "TIN10 applied: 10% off." : "CATCH5 applied: RM 5.00 off.";
+                lblCouponMessage.CssClass = "d-block small mt-2 text-success";
+            }
+            else
+            {
+                Session.Remove("CouponCode");
+                lblCouponMessage.Text = "Coupon code not recognized.";
+                lblCouponMessage.CssClass = "d-block small mt-2 text-danger";
+            }
+
+            LoadOrderSummary();
+        }
+
+        protected void chkRedeemPoints_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRedeemPoints.Checked && GetLoyaltyPoints() < 50)
+            {
+                chkRedeemPoints.Checked = false;
+                lblCouponMessage.Text = "You need at least 50 points to redeem this reward.";
+                lblCouponMessage.CssClass = "d-block small mt-2 text-danger";
+            }
+
+            LoadOrderSummary();
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
@@ -64,6 +109,9 @@ namespace MWM_Assignment_New
 
             foreach (DataRow dr in dt.Rows)
                 grandTotal += Convert.ToDecimal(dr["Total"]);
+
+            decimal discount = CalculateDiscount(grandTotal);
+            grandTotal = Math.Max(0, grandTotal - discount);
 
             using (SqlConnection con = new SqlConnection(connString))
             {
@@ -108,7 +156,13 @@ namespace MWM_Assignment_New
                         cmdStock.ExecuteNonQuery();
                     }
 
+                    int pointsEarned = (int)Math.Floor(grandTotal);
+                    LoyaltyService.ApplyOrderPoints(con, trans, userId, chkRedeemPoints.Checked, pointsEarned);
+
                     trans.Commit();
+                    Session["LoyaltyPoints"] = LoyaltyService.GetPoints(connString, userId);
+                    Session["LastOrderNotification"] = "Order #" + newOrderId + " confirmation notification queued for your registered email. You earned " + pointsEarned + " loyalty points.";
+                    Session.Remove("CouponCode");
                     Session["Cart"] = null; // Important: Clear cart after success
                     Response.Redirect("~/OrderSuccess.aspx?id=" + newOrderId);
                 }
@@ -150,6 +204,43 @@ namespace MWM_Assignment_New
             txtState.Text = parts.State;
             txtPostcode.Text = parts.Postcode;
             txtCountry.Text = string.IsNullOrWhiteSpace(parts.Country) ? "Malaysia" : parts.Country;
+        }
+
+        private void SyncLoyaltyPoints()
+        {
+            LoyaltyService.SyncSession(connString, Session);
+        }
+
+        private int GetLoyaltyPoints()
+        {
+            if (Session["UserID"] == null)
+            {
+                return 0;
+            }
+
+            return LoyaltyService.SyncSession(connString, Session);
+        }
+
+        private decimal CalculateDiscount(decimal subtotal)
+        {
+            decimal discount = 0;
+            string code = (Session["CouponCode"] ?? "").ToString();
+
+            if (code == "TIN10")
+            {
+                discount += subtotal * 0.10m;
+            }
+            else if (code == "CATCH5")
+            {
+                discount += 5m;
+            }
+
+            if (chkRedeemPoints.Checked && GetLoyaltyPoints() >= 50)
+            {
+                discount += LoyaltyService.RedemptionDiscount;
+            }
+
+            return Math.Min(discount, subtotal);
         }
     }
 }

@@ -10,6 +10,11 @@ namespace MWM_Assignment_New
             if (Request.QueryString["id"] != null)
             {
                 litOrderID.Text = Request.QueryString["id"];
+                if (Session["LastOrderNotification"] != null)
+                {
+                    lblNotification.Text = Session["LastOrderNotification"].ToString();
+                    Session.Remove("LastOrderNotification");
+                }
             }
             else
             {

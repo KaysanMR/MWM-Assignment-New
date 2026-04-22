@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Security;
 
@@ -6,6 +7,8 @@ namespace MWM_Assignment_New
 {
     public partial class Site : System.Web.UI.MasterPage
     {
+        string connString = ConfigurationManager.ConnectionStrings["KeyboardShopDB"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // We check authentication on every load
@@ -15,6 +18,9 @@ namespace MWM_Assignment_New
 
                 // Set the display name. If you have a 'FullName' in Session, use that instead.
                 litUsername.Text = Session["Username"]?.ToString() ?? Context.User.Identity.Name;
+                litLoyaltyPoints.Text = Session["UserID"] == null
+                    ? "0"
+                    : LoyaltyService.SyncSession(connString, Session).ToString();
 
                 // Admin Check
                 if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")

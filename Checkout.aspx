@@ -64,6 +64,25 @@
                             </label>
                         </div>
                     </div>
+
+                    <div class="mb-0">
+                        <label class="form-label fw-bold">Rewards & Coupons</label>
+                        <div class="alert alert-light border mb-3">
+                            Loyalty balance:
+                            <strong><asp:Label ID="lblLoyaltyPoints" runat="server" Text="0"></asp:Label> points</strong>
+                        </div>
+                        <div class="input-group mb-2">
+                            <asp:TextBox ID="txtCouponCode" runat="server" CssClass="form-control" placeholder="Coupon code, e.g. CATCH5"></asp:TextBox>
+                            <asp:Button ID="btnApplyCoupon" runat="server" Text="Apply" CssClass="btn btn-outline-primary"
+                                CausesValidation="false" OnClick="btnApplyCoupon_Click" />
+                        </div>
+                        <div class="loyalty-redeem">
+                            <asp:CheckBox ID="chkRedeemPoints" runat="server" CssClass="loyalty-checkbox"
+                                AutoPostBack="true" OnCheckedChanged="chkRedeemPoints_CheckedChanged" />
+                            <label for="<%= chkRedeemPoints.ClientID %>" class="form-label mb-0">Redeem 50 points for RM 5.00 off</label>
+                        </div>
+                        <asp:Label ID="lblCouponMessage" runat="server" CssClass="d-block small mt-2"></asp:Label>
+                    </div>
                 </div>
             </div>
 
@@ -79,6 +98,10 @@
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping:</span>
                         <span class="text-success fw-bold">FREE</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Discount:</span>
+                        <span class="fw-bold text-success">- <asp:Label ID="lblDiscount" runat="server" Text="RM 0.00" /></span>
                     </div>
                     <hr />
                     <div class="d-flex justify-content-between mb-4">

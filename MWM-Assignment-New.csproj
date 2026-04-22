@@ -177,7 +177,29 @@
     <Content Include="Customer\OrderDetails.aspx" />
     <Content Include="Customer\Products.aspx" />
     <Content Include="OrderSuccess.aspx" />
+    <Content Include="Images\Can Logos\brand_logo.PNG" />
+    <Content Include="Images\Can Logos\garlic_logo.PNG" />
+    <Content Include="Images\Can Logos\ico_128.PNG" />
+    <Content Include="Images\Can Logos\seasalt_logo.PNG" />
+    <Content Include="Images\Can Logos\tomato_logo.PNG" />
+    <Content Include="Images\Can Logos\yuzu_logo.PNG" />
+    <Content Include="Images\Paper_Bag.PNG" />
+    <Content Include="Images\Poster-Designs\garlic.PNG" />
+    <Content Include="Images\Poster-Designs\seasalt.PNG" />
+    <Content Include="Images\Poster-Designs\tomato.PNG" />
+    <Content Include="Images\Poster-Designs\yuzu.PNG" />
+    <Content Include="Images\Product Photos\seasalt and garlic.PNG" />
+    <Content Include="Images\Product Photos\tomato and yuzu.PNG" />
+    <Content Include="Images\rating_star.svg" />
+    <Content Include="Images\rating_star_dull.png" />
+    <Content Include="Images\rating_star_filled.png" />
+    <Content Include="Images\Products\japanezeyuzu_tarragon.PNG" />
+    <Content Include="Images\Products\lavender_blackgarlic.PNG" />
+    <Content Include="Images\Products\pinksalt_oliveoil.PNG" />
     <Content Include="Images\Products\placeholder-tin.svg" />
+    <Content Include="Images\Products\vinetomato_shoyu.PNG" />
+    <Content Include="Images\sardine.PNG" />
+    <Content Include="Images\Store-Layout.PNG" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="ReadMe.html" />
@@ -318,6 +340,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LoyaltyService.cs" />
     <Compile Include="MockCatalog.cs" />
     <Compile Include="Customer\MyOrders.aspx.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>

@@ -3,9 +3,94 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container page-shell">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="card shadow-sm border-0 pt-3">
+        <div class="row g-4 align-items-stretch justify-content-center">
+            <div class="col-lg-4 col-xl-3 d-flex">
+                <aside class="profile-dashboard w-100 h-100">
+                    <div class="profile-dashboard-hero">
+                        <span class="eyebrow d-inline-block mb-2">Golden Catch Club</span>
+                        <h3 class="mb-1">
+                            <asp:Literal ID="litDashboardName" runat="server"></asp:Literal>
+                        </h3>
+                        <p class="text-muted mb-0">Your pantry rewards and recent shop activity.</p>
+                    </div>
+
+                    <div class="profile-dashboard-points">
+                        <span class="small text-muted">Loyalty Points</span>
+                        <strong>
+                            <asp:Label ID="lblLoyaltyBalance" runat="server" Text="0"></asp:Label>
+                        </strong>
+                        <div class="progress profile-points-progress" role="progressbar" aria-label="Reward progress">
+                            <div id="pointsProgressBar" runat="server" class="progress-bar"></div>
+                        </div>
+                        <asp:Label ID="lblNextReward" runat="server" CssClass="small text-muted d-block mt-2"></asp:Label>
+                    </div>
+
+                    <div class="profile-dashboard-stats">
+                        <div>
+                            <span>Orders</span>
+                            <strong><asp:Label ID="lblOrderCount" runat="server" Text="0"></asp:Label></strong>
+                        </div>
+                        <div>
+                            <span>Wishlist</span>
+                            <strong><asp:Label ID="lblWishlistCount" runat="server" Text="0"></asp:Label></strong>
+                        </div>
+                        <div>
+                            <span>Cart</span>
+                            <strong><asp:Label ID="lblCartCount" runat="server" Text="0"></asp:Label></strong>
+                        </div>
+                    </div>
+
+                    <div class="profile-dashboard-section">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Recent Orders</h5>
+                            <a href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>' class="small fw-bold">View all</a>
+                        </div>
+                        <asp:Repeater ID="rptRecentOrders" runat="server">
+                            <ItemTemplate>
+                                <a class="profile-mini-row" href='<%# ResolveUrl("~/Customer/OrderDetails.aspx?id=" + Eval("OrderID")) %>'>
+                                    <span>
+                                        <strong>#<%# Eval("OrderID") %></strong>
+                                        <small><%# Eval("OrderDate", "{0:dd MMM yyyy}") %></small>
+                                    </span>
+                                    <span>
+                                        <strong>RM <%# Eval("TotalAmount", "{0:N2}") %></strong>
+                                        <small><%# Eval("Status") %></small>
+                                    </span>
+                                </a>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <asp:Panel ID="pnlNoRecentOrders" runat="server" CssClass="profile-empty-note" Visible="false">
+                            No orders yet. Your first seafood haul will show up here.
+                        </asp:Panel>
+                    </div>
+
+                    <div class="profile-dashboard-section">
+                        <h5 class="mb-2">Points Activity</h5>
+                        <asp:Repeater ID="rptPointsHistory" runat="server">
+                            <ItemTemplate>
+                                <div class="profile-mini-row profile-mini-row-static">
+                                    <span>
+                                        <strong><%# Eval("Activity") %></strong>
+                                        <small><%# Eval("ActivityDate", "{0:dd MMM yyyy}") %></small>
+                                    </span>
+                                    <span class="profile-points-earned">+<%# Eval("Points") %></span>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <asp:Panel ID="pnlNoPointsHistory" runat="server" CssClass="profile-empty-note" Visible="false">
+                            Place an order to start building your points history.
+                        </asp:Panel>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-3">
+                        <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-primary">Shop Tins</a>
+                        <a href='<%= ResolveUrl("~/Customer/Wishlist.aspx") %>' class="btn btn-outline-dark">Open Wishlist</a>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="col-lg-6 col-xl-7 d-flex">
+                <div class="card shadow-sm border-0 pt-3 w-100 h-100 profile-form-card">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
                             <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">

@@ -14,7 +14,7 @@ namespace MWM_Assignment_New
             using (SqlConnection con = new SqlConnection(connString))
             {
                 // Added UserID to the select for session storage
-                string query = "SELECT UserID, Role FROM Users WHERE Username = @User AND [Password] = @Pass";
+                string query = "SELECT UserID, Role, LoyaltyPoints FROM Users WHERE Username = @User AND [Password] = @Pass";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@User", txtLoginUser.Text.Trim());
                 cmd.Parameters.AddWithValue("@Pass", txtLoginPass.Text);
@@ -22,6 +22,7 @@ namespace MWM_Assignment_New
                 try
                 {
                     con.Open();
+                    LoyaltyService.EnsureSchema(con);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
@@ -29,10 +30,12 @@ namespace MWM_Assignment_New
                         // 1. Capture User Data
                         string userId = reader["UserID"].ToString();
                         string role = reader["Role"].ToString();
+                        string loyaltyPoints = reader["LoyaltyPoints"].ToString();
 
                         // 2. Store in Session for use across the site
                         Session["UserID"] = userId;
                         Session["UserRole"] = role;
+                        Session["LoyaltyPoints"] = loyaltyPoints;
 
                         // 3. Create the Authentication Cookie (false = non-persistent)
                         FormsAuthentication.SetAuthCookie(txtLoginUser.Text, false);

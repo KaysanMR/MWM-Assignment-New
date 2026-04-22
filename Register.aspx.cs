@@ -33,6 +33,7 @@ namespace MWM_Assignment_New
                     try
                     {
                         con.Open();
+                        LoyaltyService.EnsureSchema(con);
                         int userCount = (int)checkCmd.ExecuteScalar();
 
                         if (userCount > 0)

@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="sm1" runat="server" />
-    <div class="container mt-5">
+    <div class="container page-shell">
         <div class="row mb-4">
             <div class="col-12">
                 <h2 class="fw-bold">My Wishlist</h2>
@@ -16,8 +16,8 @@
                 <asp:Label ID="lblEmptyWishlist" runat="server" Text="Your wishlist is empty." 
                     Visible="false" CssClass="alert alert-light border text-center py-4 d-block w-100"></asp:Label>
 
-                <div class="card shadow-sm border-0">
-                    <div class="table-responsive">
+                <div class="card shadow-sm border-0 wishlist-table-card">
+                    <div class="table-responsive wishlist-table-wrap">
                         <asp:GridView ID="gvWishlist" runat="server" AutoGenerateColumns="False" 
                             CssClass="table table-hover align-middle mb-0" GridLines="None"
                             OnRowCommand="gvWishlist_RowCommand" DataKeyNames="ProductID">
@@ -26,7 +26,7 @@
                                     <ItemTemplate>
                                         <div class="d-flex align-items-center p-2">
                                             <img src='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' 
-                                                 alt="Canned fish product" class="img-thumbnail me-3" style="width: 80px; height: 60px; object-fit: contain;">
+                                                 alt="Canned fish product" class="wishlist-product-img me-3">
                                             <div>
                                                 <h6 class="mb-0 fw-bold"><%# Eval("ProductName") %></h6>
                                                 <small class="text-muted"><%# Eval("CategoryName") %></small>
@@ -43,8 +43,8 @@
 
                                 <asp:TemplateField HeaderText="Actions" ItemStyle-CssClass="text-end">
                                     <ItemTemplate>
-                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="btn btn-sm btn-light border me-2">
-                                            View Details
+                                        <a href='<%# ResolveUrl("~/ProductDetails.aspx") + "?id=" + Eval("ProductID") %>' class="btn btn-sm btn-outline-dark me-2">
+                                            View Details <i class="bi bi-arrow-right ms-1"></i>
                                         </a>
                                         <asp:LinkButton ID="btnRemove" runat="server" 
                                             CommandName="RemoveItem" 

@@ -26,6 +26,9 @@ namespace MWM_Assignment_New
             {
                 using (SqlConnection con = new SqlConnection(connString))
                 {
+                    con.Open();
+                    MockCatalog.EnsurePreviewCatalogExists(con);
+
                     // Pulling the 3 newest products as "Featured"
                     string query = "SELECT TOP 3 ProductID, ProductName, Price, ImagePath FROM Products ORDER BY ProductID DESC";
                     SqlDataAdapter sda = new SqlDataAdapter(query, con);
@@ -37,7 +40,7 @@ namespace MWM_Assignment_New
                 dt = MockCatalog.CreateProductTable();
             }
 
-            if (dt.Rows.Count == 0)
+            if (dt.Rows.Count < 3)
             {
                 dt = MockCatalog.CreateProductTable();
             }

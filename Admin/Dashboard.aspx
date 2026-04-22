@@ -58,6 +58,36 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-success h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-success">Revenue</h5>
+                        <h2 class="display-6 my-3">RM <asp:Label ID="lblRevenue" runat="server" Text="0.00"></asp:Label></h2>
+                        <p class="card-text text-muted">Total completed and pending order value.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-danger h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger">Stock Alerts</h5>
+                        <h2 class="display-6 my-3"><asp:Label ID="lblLowStock" runat="server" Text="0"></asp:Label></h2>
+                        <p class="card-text text-muted">Products with five or fewer units left.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card border-info h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-info">Average Rating</h5>
+                        <h2 class="display-6 my-3"><asp:Label ID="lblAverageRating" runat="server" Text="N/A"></asp:Label></h2>
+                        <p class="card-text text-muted">Average feedback score from customers.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

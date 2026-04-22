@@ -28,6 +28,9 @@ namespace MWM_Assignment_New
             {
                 using (SqlConnection con = new SqlConnection(connString))
                 {
+                    con.Open();
+                    MockCatalog.EnsurePreviewCatalogExists(con);
+
                     SqlDataAdapter sda = new SqlDataAdapter("SELECT CategoryID, CategoryName FROM Categories", con);
                     sda.Fill(categories);
                 }
@@ -37,7 +40,7 @@ namespace MWM_Assignment_New
                 categories = MockCatalog.CreateCategoryTable();
             }
 
-            if (categories.Rows.Count == 0)
+            if (categories.Rows.Count < 6)
             {
                 categories = MockCatalog.CreateCategoryTable();
             }
@@ -57,6 +60,9 @@ namespace MWM_Assignment_New
             {
                 using (SqlConnection con = new SqlConnection(connString))
                 {
+                    con.Open();
+                    MockCatalog.EnsurePreviewCatalogExists(con);
+
                     string query = @"SELECT p.*, c.CategoryName 
                                      FROM Products p 
                                      INNER JOIN Categories c ON p.CategoryID = c.CategoryID";
@@ -78,7 +84,7 @@ namespace MWM_Assignment_New
                 dt = MockCatalog.CreateProductTable(categoryId);
             }
 
-            if (dt.Rows.Count == 0)
+            if (!MockCatalog.HasFullPreviewCatalog(dt))
             {
                 dt = MockCatalog.CreateProductTable(categoryId);
             }
@@ -92,6 +98,24 @@ namespace MWM_Assignment_New
         protected void ddlFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGallery(ddlFilterCategory.SelectedValue);
+        }
+
+        protected string GetStockBadgeText(object stockQuantity)
+        {
+            int stock = Convert.ToInt32(stockQuantity);
+            if (stock <= 0) return "Out of stock";
+            if (stock <= 5) return "Low stock";
+            if (stock <= 15) return "Only " + stock + " left";
+            return "In stock";
+        }
+
+        protected string GetStockBadgeClass(object stockQuantity)
+        {
+            int stock = Convert.ToInt32(stockQuantity);
+            if (stock <= 0) return "badge bg-danger align-self-start mb-3";
+            if (stock <= 5) return "badge bg-warning align-self-start mb-3";
+            if (stock <= 15) return "badge bg-info align-self-start mb-3";
+            return "badge bg-success align-self-start mb-3";
         }
 
         // Helper to check wishlist status for the icon class
@@ -128,14 +152,11 @@ namespace MWM_Assignment_New
                 int userId = Convert.ToInt32(Session["UserID"]);
                 int prodId = Convert.ToInt32(e.CommandArgument);
 
-                if (MockCatalog.IsMockProductId(prodId))
-                {
-                    BindGallery(ddlFilterCategory.SelectedValue);
-                    return;
-                }
-
                 using (SqlConnection con = new SqlConnection(connString))
                 {
+                    con.Open();
+                    MockCatalog.EnsurePreviewCatalogExists(con);
+
                     // Toggle Logic: If exists, delete. If not, insert.
                     string query = @"
                 IF EXISTS (SELECT 1 FROM Wishlist WHERE UserID = @UID AND ProductID = @PID)
@@ -146,7 +167,6 @@ namespace MWM_Assignment_New
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@UID", userId);
                     cmd.Parameters.AddWithValue("@PID", prodId);
-                    con.Open();
                     cmd.ExecuteNonQuery();
                 }
 

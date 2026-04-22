@@ -33,6 +33,7 @@
                         <asp:Label ID="lblStock" runat="server" CssClass="fw-bold" />
                         units left
                 </span>
+                    <asp:Label ID="lblStockBadge" runat="server" CssClass="badge"></asp:Label>
                 </div>
 
                 <p class="text-muted mb-4">

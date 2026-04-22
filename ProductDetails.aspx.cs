@@ -41,6 +41,7 @@ namespace MWM_Assignment_New
 
                     int stock = Convert.ToInt32(dr["StockQuantity"]);
                     lblStock.Text = stock.ToString();
+                    SetStockBadge(stock);
 
                     // UI logic for out-of-stock items
                     if (stock <= 0)
@@ -73,6 +74,31 @@ namespace MWM_Assignment_New
             lblDescription.Text = product["Description"].ToString();
             imgProduct.ImageUrl = ResolveUrl(product["ImagePath"].ToString());
             lblStock.Text = product["StockQuantity"].ToString();
+            SetStockBadge(Convert.ToInt32(product["StockQuantity"]));
+        }
+
+        private void SetStockBadge(int stock)
+        {
+            if (stock <= 0)
+            {
+                lblStockBadge.Text = "Out of stock";
+                lblStockBadge.CssClass = "badge bg-danger";
+            }
+            else if (stock <= 5)
+            {
+                lblStockBadge.Text = "Low stock";
+                lblStockBadge.CssClass = "badge bg-warning";
+            }
+            else if (stock <= 15)
+            {
+                lblStockBadge.Text = "Only " + stock + " left";
+                lblStockBadge.CssClass = "badge bg-info";
+            }
+            else
+            {
+                lblStockBadge.Text = "In stock";
+                lblStockBadge.CssClass = "badge bg-success";
+            }
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)

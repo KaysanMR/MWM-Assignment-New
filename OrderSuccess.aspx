@@ -18,7 +18,7 @@
                     
                     <div class="alert alert-info d-inline-block px-4 mt-3">
                         <i class="bi bi-info-circle me-2"></i> 
-                        A confirmation email has been sent to your registered address.
+                        <asp:Label ID="lblNotification" runat="server" Text="A confirmation notification has been queued for your registered email."></asp:Label>
                     </div>
 
                     <hr class="my-4" />

@@ -21,10 +21,10 @@ namespace MWM_Assignment_New
 
         private static readonly List<MockProduct> Products = new List<MockProduct>
         {
-            new MockProduct(-101, -1, "Spicy Sardines in Tomato Sauce", 8.90m, 34, "Firm sardines packed in a bright tomato sauce with a gentle chili finish."),
-            new MockProduct(-102, -2, "Tuna Chunks in Spring Water", 7.50m, 42, "Clean, flaky tuna chunks ready for sandwiches, rice bowls, and quick pantry meals."),
-            new MockProduct(-103, -3, "Mackerel in Olive Oil", 11.90m, 26, "Rich mackerel fillets preserved in olive oil for a fuller, savory bite."),
-            new MockProduct(-104, -4, "Premium Salmon Flakes", 14.80m, 18, "Tender salmon flakes for salads, toast, pasta, and simple lunch plates."),
+            new MockProduct(-101, -1, "Pink Salt Sardines in Olive Oil", 10.90m, 34, "Golden Catch sardines finished with pink salt and olive oil for a clean, pantry-ready bite.", "~/Images/Products/pinksalt_oliveoil.PNG"),
+            new MockProduct(-102, -1, "Vine Tomato Sardines with Shoyu", 11.40m, 28, "Bright vine tomato meets savory shoyu in a richly seasoned sardine tin.", "~/Images/Products/vinetomato_shoyu.PNG"),
+            new MockProduct(-103, -1, "Japanese Yuzu Sardines with Tarragon", 12.20m, 24, "A fragrant sardine tin with citrusy yuzu and tarragon for a fresh, lifted finish.", "~/Images/Products/japanezeyuzu_tarragon.PNG"),
+            new MockProduct(-104, -1, "Lavender Sardines with Black Garlic", 12.80m, 18, "Soft floral notes and black garlic depth give these sardines a distinctive Golden Catch profile.", "~/Images/Products/lavender_blackgarlic.PNG"),
             new MockProduct(-105, -5, "Anchovies in Chili Oil", 9.40m, 31, "Bold anchovies in fragrant chili oil for noodles, vegetables, and sharing plates."),
             new MockProduct(-106, -4, "Smoked Mussels in Brine", 13.60m, 20, "Smoky mussels with a clean brine finish, made for snack boards and quick tapas."),
             new MockProduct(-107, -6, "Family Pack Sardines in Tomato Sauce", 18.90m, 16, "A larger pantry tin of classic sardines in tomato sauce for family meals."),
@@ -66,7 +66,7 @@ namespace MWM_Assignment_New
                     product.Price,
                     product.StockQuantity,
                     product.Description,
-                    PlaceholderImagePath);
+                    product.ImagePath);
             }
 
             return table;
@@ -90,6 +90,32 @@ namespace MWM_Assignment_New
             return Products.Any(product => product.ProductId == productId);
         }
 
+        internal static bool HasFullPreviewCatalog(DataTable products)
+        {
+            if (products == null)
+            {
+                return false;
+            }
+
+            HashSet<int> productIds = new HashSet<int>(
+                products.AsEnumerable().Select(row => row.Field<int>("ProductID")));
+
+            return Products.All(product => productIds.Contains(product.ProductId));
+        }
+
+        internal static void EnsurePreviewCatalogExists(SqlConnection connection)
+        {
+            using (SqlTransaction transaction = connection.BeginTransaction())
+            {
+                foreach (MockProduct product in Products)
+                {
+                    EnsureProductExists(connection, transaction, product.ProductId);
+                }
+
+                transaction.Commit();
+            }
+        }
+
         internal static void EnsureProductExists(SqlConnection connection, SqlTransaction transaction, int productId)
         {
             MockProduct product = Products.FirstOrDefault(item => item.ProductId == productId);
@@ -109,6 +135,17 @@ BEGIN
     INSERT INTO Products (ProductID, ProductName, CategoryID, Price, StockQuantity, Description, ImagePath)
     VALUES (@ID, @Name, @CatID, @Price, @Stock, @Desc, @Img);
     SET IDENTITY_INSERT Products OFF;
+END
+ELSE
+BEGIN
+    UPDATE Products
+    SET ProductName = @Name,
+        CategoryID = @CatID,
+        Price = @Price,
+        StockQuantity = @Stock,
+        Description = @Desc,
+        ImagePath = @Img
+    WHERE ProductID = @ID;
 END",
                 new SqlParameter("@ID", product.ProductId),
                 new SqlParameter("@Name", product.ProductName),
@@ -116,7 +153,7 @@ END",
                 new SqlParameter("@Price", product.Price),
                 new SqlParameter("@Stock", product.StockQuantity),
                 new SqlParameter("@Desc", product.Description),
-                new SqlParameter("@Img", PlaceholderImagePath));
+                new SqlParameter("@Img", product.ImagePath));
         }
 
         private static DataTable CreateProductSchema()
@@ -156,7 +193,7 @@ END",
 
         private sealed class MockProduct
         {
-            internal MockProduct(int productId, int categoryId, string productName, decimal price, int stockQuantity, string description)
+            internal MockProduct(int productId, int categoryId, string productName, decimal price, int stockQuantity, string description, string imagePath = PlaceholderImagePath)
             {
                 ProductId = productId;
                 CategoryId = categoryId;
@@ -164,6 +201,7 @@ END",
                 Price = price;
                 StockQuantity = stockQuantity;
                 Description = description;
+                ImagePath = imagePath;
             }
 
             internal int ProductId { get; private set; }
@@ -172,6 +210,7 @@ END",
             internal decimal Price { get; private set; }
             internal int StockQuantity { get; private set; }
             internal string Description { get; private set; }
+            internal string ImagePath { get; private set; }
         }
     }
 }

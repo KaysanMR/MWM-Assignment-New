@@ -60,9 +60,9 @@
             <div class="container">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-6">
-                        <span class="eyebrow">Why Silver Shoal</span>
+                        <span class="eyebrow">Why Golden Catch</span>
                         <h2 class="fw-bold">Canned seafood with flavor, color, and character.</h2>
-                        <p>Silver Shoal curates pantry-ready seafood tins that are easy to love and easy to serve. From sardines in rich tomato sauce to tuna, mackerel, and premium seafood picks, every item is selected for bold flavor, dependable quality, and a shelf presence worth showing off.</p>
+                        <p>Golden Catch curates pantry-ready seafood tins that are easy to love and easy to serve. From pink salt and olive oil sardines to yuzu, shoyu, and black garlic flavor profiles, every item is selected for bold flavor, dependable quality, and a shelf presence worth showing off.</p>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Carefully curated sardines and seafood tins</li>
                             <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Distinctive labels for quick, confident browsing</li>
@@ -71,9 +71,41 @@
                     </div>
                     <div class="col-lg-6 text-center">
                         <div class="feature-figure">
-                            <img src="Images/about-hero.png" alt="3D canned fish render" class="img-fluid">
+                            <img src="Images/Product Photos/tomato and yuzu.PNG" alt="Golden Catch canned fish product render" class="img-fluid">
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="store-locator" class="py-5 section-cream store-locator-section">
+            <div class="container">
+                <div class="locator-panel locator-feature mb-3">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-8">
+                            <div class="locator-copy">
+                            <span class="eyebrow">Store Locator</span>
+                            <h2 class="fw-bold mb-3">Visit the Golden Catch Pantry.</h2>
+                            <p class="mb-3">Sample our signature sardine flavors, browse limited tins, and pick up ready-to-gift seafood packs from our Kuala Lumpur shelf.</p>
+                            <address class="mb-0">
+                                <strong>Golden Catch Tasting Room</strong><br />
+                                18 Jalan Kamunting, Chow Kit,<br />
+                                50300 Kuala Lumpur, Malaysia
+                            </address>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <img src='<%= ResolveUrl("~/Images/Store-Layout.PNG") %>' alt="Golden Catch store layout render" class="store-layout-img" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="locator-map-frame">
+                    <iframe
+                        title="Golden Catch Kuala Lumpur store map"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=101.6902%2C3.1524%2C101.7102%2C3.1724&amp;layer=mapnik&amp;marker=3.1624%2C101.7002"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>

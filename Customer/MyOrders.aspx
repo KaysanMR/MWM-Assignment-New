@@ -4,7 +4,7 @@
     <div class="container page-shell">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Purchase History</h2>
-            <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-outline-primary shadow-sm">
+            <a href='<%= ResolveUrl("~/Products.aspx") %>' class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> New Order
             </a>
         </div>
@@ -32,7 +32,7 @@
                                 <asp:LinkButton ID="btnViewDetails" runat="server" 
                                     CommandName="ViewDetails" 
                                     CommandArgument='<%# Eval("OrderID") %>' 
-                                    CssClass="btn btn-sm btn-light border">
+                                    CssClass="btn btn-primary">
                                     View Details
                                 </asp:LinkButton>
                             </ItemTemplate>
