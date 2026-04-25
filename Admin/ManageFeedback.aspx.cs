@@ -17,6 +17,7 @@ namespace MWM_Assignment_New.Admin
             if (!IsPostBack)
             {
                 BindFeedback();
+                BindContactMessages();
             }
         }
 
@@ -24,6 +25,9 @@ namespace MWM_Assignment_New.Admin
         {
             using (SqlConnection con = new SqlConnection(connString))
             {
+                con.Open();
+                ContactMessageService.EnsureSchema(con);
+
                 // Joining Feedbacks with Users based on your schema
                 string query = @"SELECT f.*, u.FullName 
                          FROM Feedbacks f 
@@ -35,6 +39,25 @@ namespace MWM_Assignment_New.Admin
                 sda.Fill(dt);
                 gvFeedback.DataSource = dt;
                 gvFeedback.DataBind();
+            }
+        }
+
+        private void BindContactMessages()
+        {
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                con.Open();
+                ContactMessageService.EnsureSchema(con);
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(@"SELECT ContactMessageID, FullName, Email, Subject, Message, DateSubmitted
+FROM ContactMessages
+ORDER BY DateSubmitted DESC", con))
+                {
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    gvContactMessages.DataSource = dt;
+                    gvContactMessages.DataBind();
+                }
             }
         }
 
@@ -55,6 +78,20 @@ namespace MWM_Assignment_New.Admin
                 con.Open();
                 cmd.ExecuteNonQuery();
                 BindFeedback();
+            }
+        }
+
+        protected void gvContactMessages_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int messageId = Convert.ToInt32(gvContactMessages.DataKeys[e.RowIndex].Value);
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM ContactMessages WHERE ContactMessageID = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", messageId);
+                con.Open();
+                ContactMessageService.EnsureSchema(con);
+                cmd.ExecuteNonQuery();
+                BindContactMessages();
             }
         }
     }

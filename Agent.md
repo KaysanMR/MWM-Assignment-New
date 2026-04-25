@@ -68,6 +68,14 @@ There is no dedicated test project in the current solution. For now, "test" mean
 - The catalog page is `Products.aspx`; the code-behind class is named `ProductGallery`.
 - Do not commit local database files, `bin/`, `obj/`, or Visual Studio state unless specifically asked.
 
+## UI Style Guide
+
+- Keep new UI elements consistent with the existing Golden Catch neobrutalist style: cream surfaces, black 2px borders, chunky rounded corners, offset black shadows, bold readable labels, and the established blue/orange/green accent colors from `Content/Site.css`.
+- Do not let utility controls sprawl across the full page width unless the workflow genuinely benefits from it. Search, filters, admin forms, and action groups should use intentional responsive columns with sensible `max-width` constraints.
+- Keep primary workflows visible and secondary controls tucked into collapsible or clearly grouped panels when they would clutter a browsing page. For product listing filters, prefer visible Search/Category controls and an expandable Filters panel for stock, sort, badge, apply, and clear actions.
+- Buttons, checkboxes, toggles, and form controls should have enough padding to feel tactile and should share the same border/shadow treatment. Avoid tiny native controls when a custom styled control is already used nearby.
+- On mobile, controls may stack full width; on tablet and desktop, favor compact columns that match the user’s diagram or nearby page patterns.
+
 ## Useful Codex Skills
 
 - `webforms-crud`: use for admin/customer CRUD pages, GridView handlers, and SQL data-binding work.

@@ -412,6 +412,101 @@ footer.footer {
     box-shadow: none !important;
 }
 
+.product-filter-panel {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.55fr) minmax(0, 1.45fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.product-filter-intro {
+    padding-bottom: 0.35rem;
+}
+
+.product-filter-controls {
+    display: grid;
+    grid-template-columns: minmax(20rem, 34rem) minmax(24rem, 28rem);
+    gap: 1rem;
+    align-items: end;
+    justify-content: start;
+    max-width: 66rem;
+}
+
+.filter-search-field {
+    min-width: 0;
+}
+
+.filter-category-field {
+    min-width: 0;
+}
+
+.filter-field {
+    min-width: 0;
+}
+
+.filter-field .form-label {
+    margin-bottom: 0.45rem;
+}
+
+.filter-field .input-group {
+    flex-wrap: nowrap;
+}
+
+.filter-field .input-group-text {
+    flex: 0 0 3.25rem;
+    justify-content: center;
+    box-shadow: var(--site-shadow-sm);
+}
+
+.category-filter-combo {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) auto;
+    gap: 0.85rem;
+    align-items: stretch;
+}
+
+.filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 9.75rem;
+    padding: 0.96rem 1.55rem;
+    white-space: nowrap;
+}
+
+.advanced-filter-collapse {
+    grid-column: 1 / -1;
+}
+
+.advanced-filter-menu {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 13rem));
+    gap: 1rem;
+    align-items: end;
+    margin-top: 0.35rem;
+    width: max-content;
+    max-width: 100%;
+    padding: 1.15rem;
+    background: rgba(255, 250, 242, 0.74);
+    border: 2px solid var(--site-line);
+    border-radius: var(--site-radius);
+    box-shadow: var(--site-shadow-sm);
+}
+
+.filter-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 0.35rem;
+}
+
+.filter-actions .btn {
+    min-width: 9.75rem;
+    padding: 0.9rem 1.35rem;
+}
+
 .wishlist-table-card .table {
     border-collapse: separate;
     border-spacing: 0;
@@ -705,6 +800,84 @@ footer.footer {
 .form-check-input:checked {
     background-color: var(--site-accent);
     border-color: var(--site-line);
+}
+
+.coupon-form-card .card-body {
+    padding: 1.5rem;
+}
+
+.coupon-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.75rem;
+    padding-top: 0.35rem;
+}
+
+.coupon-active-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.55rem;
+    width: 100%;
+    padding: 0.72rem 0.95rem;
+    background: var(--site-surface);
+    border: 2px solid var(--site-line);
+    border-radius: var(--site-radius);
+    box-shadow: var(--site-shadow-sm);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.coupon-active-toggle:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--site-shadow);
+}
+
+.coupon-active-input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.coupon-active-box {
+    display: inline-grid;
+    place-items: center;
+    width: 1.85rem;
+    height: 1.85rem;
+    color: var(--site-surface);
+    background: var(--site-surface);
+    border: 2px solid var(--site-line);
+    border-radius: 0.42rem;
+    box-shadow: 3px 3px 0 var(--site-line);
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.coupon-active-input:checked + .coupon-active-box {
+    background: var(--site-accent);
+}
+
+.coupon-active-input:focus-visible + .coupon-active-box {
+    outline: 3px solid rgba(61, 111, 191, 0.32);
+    outline-offset: 3px;
+}
+
+.coupon-active-box i {
+    opacity: 0;
+}
+
+.coupon-active-input:checked + .coupon-active-box i {
+    opacity: 1;
+}
+
+.coupon-active-toggle span:last-child {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.05rem;
 }
 
 .form-label {
@@ -1051,6 +1224,7 @@ footer.footer {
 
 .hero-copy {
     max-width: 38rem;
+    padding-top: 10pt;
 }
 
 .hero-panel .lead {
@@ -1161,6 +1335,41 @@ footer.footer {
     height: 100%;
     display: block;
     border: 0;
+}
+
+.contact-section {
+    border-top: 3px solid var(--site-line);
+}
+
+.contact-panel {
+    padding: 1.5rem;
+    border: 2px solid var(--site-line);
+    border-radius: var(--site-radius);
+    background: var(--site-surface);
+    box-shadow: var(--site-shadow-sm);
+}
+
+.contact-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.contact-form-card {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent;
+}
+
+.contact-form-card .card-body {
+    padding: 0;
+}
+
+.contact-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
 }
 
 .order-timeline {
@@ -1560,6 +1769,36 @@ footer.footer {
     .admin-dashboard-sidebar {
         position: static;
     }
+
+    .product-filter-panel {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .product-filter-controls {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .filter-search-field,
+    .advanced-filter-collapse {
+        grid-column: 1 / -1;
+    }
+
+    .filter-category-field {
+        min-width: 0;
+    }
+
+    .filter-toggle {
+        width: fit-content;
+        min-width: 9.75rem;
+    }
+
+    .advanced-filter-menu {
+        grid-template-columns: repeat(3, minmax(0, 13rem));
+        width: max-content;
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -1601,6 +1840,35 @@ footer.footer {
 
     .hero-actions .btn,
     .stack-mobile .btn {
+        width: 100%;
+    }
+
+    .product-filter-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .category-filter-combo {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-toggle {
+        width: 100%;
+    }
+
+    .advanced-filter-menu {
+        grid-template-columns: 1fr;
+        width: auto;
+        padding: 0.85rem;
+    }
+
+    .filter-actions,
+    .coupon-form-actions {
+        display: grid;
+        justify-content: stretch;
+    }
+
+    .filter-actions .btn,
+    .coupon-form-actions .btn {
         width: 100%;
     }
 

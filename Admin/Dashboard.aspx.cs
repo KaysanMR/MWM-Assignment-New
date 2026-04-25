@@ -51,7 +51,8 @@ namespace MWM_Assignment_New.Admin
                     object rating = cmdRating.ExecuteScalar();
                     lblAverageRating.Text = rating == DBNull.Value ? "N/A" : Convert.ToDecimal(rating).ToString("N1") + " / 5";
 
-                    SqlCommand cmdFeedback = new SqlCommand("SELECT COUNT(*) FROM Feedbacks", con);
+                    ContactMessageService.EnsureSchema(con);
+                    SqlCommand cmdFeedback = new SqlCommand("SELECT (SELECT COUNT(*) FROM Feedbacks) + (SELECT COUNT(*) FROM ContactMessages)", con);
                     lblTotalFeedback.Text = cmdFeedback.ExecuteScalar().ToString();
 
                     LoadChartData(con);

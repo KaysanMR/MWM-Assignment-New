@@ -52,7 +52,7 @@ namespace MWM_Assignment_New.Admin
         /// <summary>
         /// chkIsActive control.
         /// </summary>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsActive;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkIsActive;
 
         /// <summary>
         /// btnAddCoupon control.

@@ -22,5 +22,60 @@ namespace MWM_Assignment_New
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptFeatured;
+
+        /// <summary>
+        /// txtContactName control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtContactName;
+
+        /// <summary>
+        /// rfvContactName control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContactName;
+
+        /// <summary>
+        /// txtContactEmail control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtContactEmail;
+
+        /// <summary>
+        /// rfvContactEmail control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContactEmail;
+
+        /// <summary>
+        /// revContactEmail control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContactEmail;
+
+        /// <summary>
+        /// txtContactSubject control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtContactSubject;
+
+        /// <summary>
+        /// rfvContactSubject control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContactSubject;
+
+        /// <summary>
+        /// txtContactMessage control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtContactMessage;
+
+        /// <summary>
+        /// rfvContactMessage control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContactMessage;
+
+        /// <summary>
+        /// btnSendInquiry control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnSendInquiry;
+
+        /// <summary>
+        /// lblContactStatus control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Label lblContactStatus;
     }
 }

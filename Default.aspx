@@ -104,5 +104,85 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact" class="py-5 section-cream contact-section">
+            <div class="container">
+                <div class="contact-panel">
+                    <div class="row g-4 align-items-start">
+                        <div class="col-lg-5">
+                            <div class="contact-copy">
+                                <h2 class="fw-bold mb-3">Ask About the Next Tin Drop.</h2>
+                                <p class="mb-3">Have a question about flavors, pantry bundles, store pickup, or your next order? Send Golden Catch a note and we will keep it on file for follow-up.</p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><i class="bi bi-chat-left-text me-2 text-primary"></i>Visitor inquiries saved to the admin inbox</li>
+                                    <li class="mb-2"><i class="bi bi-bag-heart me-2 text-primary"></i>Useful for preorder requests and flavor interest</li>
+                                    <li><i class="bi bi-envelope-paper me-2 text-primary"></i>Great evidence for the assignment feedback requirement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="card contact-form-card">
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold">Name</label>
+                                            <asp:TextBox ID="txtContactName" runat="server" CssClass="form-control" placeholder="Your name"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvContactName" runat="server"
+                                                ControlToValidate="txtContactName"
+                                                ErrorMessage="Name is required."
+                                                CssClass="text-danger small"
+                                                Display="Dynamic"
+                                                ValidationGroup="ContactForm" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold">Email</label>
+                                            <asp:TextBox ID="txtContactEmail" runat="server" CssClass="form-control" placeholder="name@example.com" TextMode="Email"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvContactEmail" runat="server"
+                                                ControlToValidate="txtContactEmail"
+                                                ErrorMessage="Email is required."
+                                                CssClass="text-danger small"
+                                                Display="Dynamic"
+                                                ValidationGroup="ContactForm" />
+                                            <asp:RegularExpressionValidator ID="revContactEmail" runat="server"
+                                                ControlToValidate="txtContactEmail"
+                                                ValidationExpression="^\S+@\S+\.\S+$"
+                                                ErrorMessage="Enter a valid email address."
+                                                CssClass="text-danger small"
+                                                Display="Dynamic"
+                                                ValidationGroup="ContactForm" />
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold">Subject</label>
+                                            <asp:TextBox ID="txtContactSubject" runat="server" CssClass="form-control" placeholder="Store pickup, order help, flavor question"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvContactSubject" runat="server"
+                                                ControlToValidate="txtContactSubject"
+                                                ErrorMessage="Subject is required."
+                                                CssClass="text-danger small"
+                                                Display="Dynamic"
+                                                ValidationGroup="ContactForm" />
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold">Message</label>
+                                            <asp:TextBox ID="txtContactMessage" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" placeholder="Tell us what you need help with."></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvContactMessage" runat="server"
+                                                ControlToValidate="txtContactMessage"
+                                                ErrorMessage="Message is required."
+                                                CssClass="text-danger small"
+                                                Display="Dynamic"
+                                                ValidationGroup="ContactForm" />
+                                        </div>
+                                    </div>
+
+                                    <div class="contact-form-actions">
+                                        <asp:Button ID="btnSendInquiry" runat="server" Text="Send Inquiry" CssClass="btn btn-primary px-4" OnClick="btnSendInquiry_Click" ValidationGroup="ContactForm" />
+                                    </div>
+                                    <asp:Label ID="lblContactStatus" runat="server" CssClass="d-block mt-3"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </asp:Content>

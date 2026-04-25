@@ -14,28 +14,28 @@
 
         <h2 class="mb-4 text-center">Manage Coupons</h2>
 
-        <div class="card mb-5 shadow-sm border-primary">
+        <div class="card coupon-form-card mb-5 shadow-sm border-primary">
             <div class="card-header bg-primary text-white">Add New Coupon</div>
             <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-md-3">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4 col-xl-2">
                         <label class="form-label fw-bold">Code</label>
                         <asp:TextBox ID="txtCode" runat="server" CssClass="form-control" MaxLength="30" placeholder="TIN10"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvCode" runat="server" ControlToValidate="txtCode"
                             ErrorMessage="Coupon code is required." CssClass="text-danger small" Display="Dynamic" ValidationGroup="CouponAdd" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-8 col-xl-4">
                         <label class="form-label fw-bold">Description</label>
                         <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control" MaxLength="120" placeholder="Pantry starter discount"></asp:TextBox>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4 col-xl-2">
                         <label class="form-label fw-bold">Type</label>
                         <asp:DropDownList ID="ddlDiscountType" runat="server" CssClass="form-select">
                             <asp:ListItem Value="Percent">Percent</asp:ListItem>
                             <asp:ListItem Value="Fixed">Fixed RM</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4 col-xl-2">
                         <label class="form-label fw-bold">Value</label>
                         <asp:TextBox ID="txtDiscountValue" runat="server" CssClass="form-control" placeholder="10.00"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDiscountValue" runat="server" ControlToValidate="txtDiscountValue"
@@ -44,14 +44,19 @@
                             MinimumValue="0.01" MaximumValue="1000.00" Type="Double"
                             ErrorMessage="Enter a value above 0." CssClass="text-danger small" Display="Dynamic" ValidationGroup="CouponAdd" />
                     </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <div class="form-check mb-3">
-                            <asp:CheckBox ID="chkIsActive" runat="server" CssClass="form-check-input" Checked="true" />
-                            <label class="form-check-label" for="<%= chkIsActive.ClientID %>">Active</label>
-                        </div>
+                    <div class="col-md-4 col-xl-2">
+                        <label class="coupon-active-toggle">
+                            <input id="chkIsActive" runat="server" type="checkbox" class="coupon-active-input" checked="checked" />
+                            <span class="coupon-active-box">
+                                <i class="bi bi-check-lg"></i>
+                            </span>
+                            <span>Active</span>
+                        </label>
                     </div>
                 </div>
-                <asp:Button ID="btnAddCoupon" runat="server" Text="Add Coupon" CssClass="btn btn-primary px-4" OnClick="btnAddCoupon_Click" ValidationGroup="CouponAdd" />
+                <div class="coupon-form-actions mt-4 pt-2">
+                    <asp:Button ID="btnAddCoupon" runat="server" Text="Add Coupon" CssClass="btn btn-primary px-4" OnClick="btnAddCoupon_Click" ValidationGroup="CouponAdd" />
+                </div>
                 <asp:Label ID="lblCouponAdminMessage" runat="server" CssClass="d-block mt-2"></asp:Label>
             </div>
         </div>

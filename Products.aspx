@@ -4,62 +4,75 @@
     <asp:ScriptManager ID="sm1" runat="server" />
 
     <div class="container page-shell">
-        <div class="row mb-4 align-items-end g-3">
-            <div class="col-lg-4">
-                <h2 class="fw-bold text-dark">Explore Canned Fish</h2>
-                <p class="text-muted">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
+        <div class="product-filter-panel mb-5">
+            <div class="product-filter-intro">
+                <h2 class="fw-bold text-dark mb-2">Explore Canned Fish</h2>
+                <p class="text-muted mb-0">Find the perfect tin, flavor, and finish for your pantry shelf.</p>
             </div>
-            <div class="col-sm-6 col-lg-2">
-                <label class="form-label small fw-bold text-muted">Search</label>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Sardines, spicy..." />
-            </div>
-            <div class="col-sm-6 col-lg-2">
-                <label class="form-label small fw-bold text-muted">Category</label>
-                <div class="input-group">
-                    <label class="input-group-text bg-white border-end-0 text-muted">
-                        <i class="bi bi-filter"></i>
-                    </label>
-                    <asp:DropDownList ID="ddlFilterCategory" runat="server"
-                        CssClass="form-select border-start-0"
-                        AutoPostBack="True"
-                        OnSelectedIndexChanged="ddlFilterCategory_SelectedIndexChanged">
-                    </asp:DropDownList>
+
+            <div class="product-filter-controls">
+                <div class="filter-field filter-search-field">
+                    <label class="form-label small fw-bold text-muted">Search</label>
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Sardines, spicy..." />
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-2">
-                <label class="form-label small fw-bold text-muted">Stock</label>
-                <asp:DropDownList ID="ddlStockFilter" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
-                    <asp:ListItem Value="all">All stock</asp:ListItem>
-                    <asp:ListItem Value="available">Available</asp:ListItem>
-                    <asp:ListItem Value="low">Low stock</asp:ListItem>
-                    <asp:ListItem Value="out">Out of stock</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="col-sm-6 col-lg-2">
-                <label class="form-label small fw-bold text-muted">Sort</label>
-                <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
-                    <asp:ListItem Value="featured">Featured</asp:ListItem>
-                    <asp:ListItem Value="name-asc">Name A-Z</asp:ListItem>
-                    <asp:ListItem Value="price-asc">Price low-high</asp:ListItem>
-                    <asp:ListItem Value="price-desc">Price high-low</asp:ListItem>
-                    <asp:ListItem Value="stock-desc">Most stock</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="col-sm-6 col-lg-2">
-                <label class="form-label small fw-bold text-muted">Badge</label>
-                <asp:DropDownList ID="ddlBadgeFilter" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
-                    <asp:ListItem Value="">Any badge</asp:ListItem>
-                    <asp:ListItem Value="Best Seller">Best Seller</asp:ListItem>
-                    <asp:ListItem Value="New">New</asp:ListItem>
-                    <asp:ListItem Value="Premium">Premium</asp:ListItem>
-                    <asp:ListItem Value="Spicy">Spicy</asp:ListItem>
-                    <asp:ListItem Value="Limited">Limited</asp:ListItem>
-                    <asp:ListItem Value="Family Size">Family Size</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="col-sm-6 col-lg-2 d-grid gap-2">
-                <asp:Button ID="btnApplyFilters" runat="server" Text="Apply Filters" CssClass="btn btn-primary" OnClick="btnApplyFilters_Click" />
-                <asp:Button ID="btnClearFilters" runat="server" Text="Clear" CssClass="btn btn-outline-dark" CausesValidation="false" OnClick="btnClearFilters_Click" />
+
+                <div class="filter-field filter-category-field">
+                    <label class="form-label small fw-bold text-muted">Category</label>
+                    <div class="category-filter-combo">
+                        <asp:DropDownList ID="ddlFilterCategory" runat="server"
+                            CssClass="form-select"
+                            AutoPostBack="True"
+                            OnSelectedIndexChanged="ddlFilterCategory_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <button class="btn btn-outline-dark filter-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#advancedProductFilters" aria-expanded="false" aria-controls="advancedProductFilters">
+                            <i class="bi bi-sliders"></i>
+                            Filters
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collapse advanced-filter-collapse" id="advancedProductFilters">
+                    <div class="advanced-filter-menu">
+                        <div class="filter-field">
+                            <label class="form-label small fw-bold text-muted">Stock</label>
+                            <asp:DropDownList ID="ddlStockFilter" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
+                                <asp:ListItem Value="all">All stock</asp:ListItem>
+                                <asp:ListItem Value="available">Available</asp:ListItem>
+                                <asp:ListItem Value="low">Low stock</asp:ListItem>
+                                <asp:ListItem Value="out">Out of stock</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="filter-field">
+                            <label class="form-label small fw-bold text-muted">Sort</label>
+                            <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
+                                <asp:ListItem Value="featured">Featured</asp:ListItem>
+                                <asp:ListItem Value="name-asc">Name A-Z</asp:ListItem>
+                                <asp:ListItem Value="price-asc">Price low-high</asp:ListItem>
+                                <asp:ListItem Value="price-desc">Price high-low</asp:ListItem>
+                                <asp:ListItem Value="stock-desc">Most stock</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="filter-field">
+                            <label class="form-label small fw-bold text-muted">Badge</label>
+                            <asp:DropDownList ID="ddlBadgeFilter" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="FilterControl_Changed">
+                                <asp:ListItem Value="">Any badge</asp:ListItem>
+                                <asp:ListItem Value="Best Seller">Best Seller</asp:ListItem>
+                                <asp:ListItem Value="New">New</asp:ListItem>
+                                <asp:ListItem Value="Premium">Premium</asp:ListItem>
+                                <asp:ListItem Value="Spicy">Spicy</asp:ListItem>
+                                <asp:ListItem Value="Limited">Limited</asp:ListItem>
+                                <asp:ListItem Value="Family Size">Family Size</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="filter-actions">
+                            <asp:Button ID="btnApplyFilters" runat="server" Text="Apply Filters" CssClass="btn btn-primary" OnClick="btnApplyFilters_Click" />
+                            <asp:Button ID="btnClearFilters" runat="server" Text="Clear" CssClass="btn btn-outline-dark" CausesValidation="false" OnClick="btnClearFilters_Click" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
