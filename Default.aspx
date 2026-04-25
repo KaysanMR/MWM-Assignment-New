@@ -113,11 +113,6 @@
                             <div class="contact-copy">
                                 <h2 class="fw-bold mb-3">Ask About the Next Tin Drop.</h2>
                                 <p class="mb-3">Have a question about flavors, pantry bundles, store pickup, or your next order? Send Golden Catch a note and we will keep it on file for follow-up.</p>
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2"><i class="bi bi-chat-left-text me-2 text-primary"></i>Visitor inquiries saved to the admin inbox</li>
-                                    <li class="mb-2"><i class="bi bi-bag-heart me-2 text-primary"></i>Useful for preorder requests and flavor interest</li>
-                                    <li><i class="bi bi-envelope-paper me-2 text-primary"></i>Great evidence for the assignment feedback requirement</li>
-                                </ul>
                             </div>
                         </div>
                         <div class="col-lg-7">
