@@ -37,8 +37,8 @@
                         </div>
                         <strong><asp:Label ID="lblTotalProducts" runat="server" Text="0"></asp:Label></strong>
                         <div class="d-grid gap-2">
-                            <a href="ManageProducts.aspx" class="btn btn-info text-white">Manage Products</a>
-                            <a href="ManageCategories.aspx" class="btn btn-outline-info">Manage Categories</a>
+                            <a href="ManageProducts.aspx" class="btn btn-primary text-white">Manage Products</a>
+                            <a href="ManageCategories.aspx" class="btn btn-outline-primary">Manage Categories</a>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                             <p class="text-muted mb-0">Customer reviews</p>
                         </div>
                         <strong><asp:Label ID="lblTotalFeedback" runat="server" Text="0"></asp:Label></strong>
-                        <a href="ManageFeedback.aspx" class="btn btn-warning text-white w-100">View Feedback</a>
+                        <a href="ManageFeedback.aspx" class="btn btn-warning text-dark w-100">View Feedback</a>
                     </div>
 
                     <div class="admin-sidebar-card border-dark">
@@ -56,7 +56,7 @@
                             <h5 class="text-dark">Coupons</h5>
                             <p class="text-muted mb-0">Checkout discounts</p>
                         </div>
-                        <a href="ManageCoupons.aspx" class="btn btn-outline-dark w-100">Manage Coupons</a>
+                        <a href="ManageCoupons.aspx" class="btn btn-dark w-100">Manage Coupons</a>
                     </div>
                 </aside>
             </div>
@@ -137,7 +137,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-7">
+                        <div class="col-lg-5">
                             <div class="card admin-chart-card h-100">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -162,7 +162,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-5">
+                        <div class="col-12">
                             <div class="card admin-chart-card h-100">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
