@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,7 +12,6 @@ namespace MWM_Assignment_New.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Security Check
             if (Session["UserRole"] == null || Session["UserRole"].ToString() != "Admin")
             {
                 Response.Redirect("~/Login.aspx");
@@ -53,7 +52,6 @@ namespace MWM_Assignment_New.Admin
             int userId = Convert.ToInt32(gvUsers.DataKeys[e.RowIndex].Value);
             GridViewRow row = gvUsers.Rows[e.RowIndex];
 
-            // Finding the controls in the EditItemTemplate
             string fullName = ((TextBox)row.FindControl("txtEditName")).Text.Trim();
             string email = ((TextBox)row.FindControl("txtEditEmail")).Text.Trim();
             string role = ((DropDownList)row.FindControl("ddlRole")).SelectedValue;

@@ -11,6 +11,12 @@ namespace MWM_Assignment_New
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 string prodId = Request.QueryString["id"];

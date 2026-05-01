@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="MWM_Assignment_New.Admin.ManageUsers" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="MWM_Assignment_New.Admin.ManageUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -45,7 +45,7 @@
                         <ItemTemplate>
                             <span class='badge <%# Eval("Role").ToString() == "Admin" ? "bg-danger" : "bg-info" %>'>
                                 <%# Eval("Role") %>
-                        </span>
+                            </span>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:DropDownList ID="ddlRole" runat="server" SelectedValue='<%# Bind("Role") %>' CssClass="form-select form-select-sm">

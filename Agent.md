@@ -48,6 +48,12 @@ Build plus a running-site smoke check:
 .\tools\Invoke-WebsiteChecks.ps1 -SmokeUrl https://localhost:44357/
 ```
 
+Run checks against a different configuration, platform, or solution:
+
+```powershell
+.\tools\Invoke-WebsiteChecks.ps1 -Configuration Release -Platform "Any CPU" -Solution MWM-Assignment-New.sln
+```
+
 The script auto-locates Visual Studio MSBuild. The known local path is:
 
 ```text
@@ -57,6 +63,17 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bi
 Baseline build result from inventory: build passed. The app now targets .NET Framework 4.8 to match the Bootstrap ScriptManager package.
 
 There is no dedicated test project in the current solution. For now, "test" means compile the Web Forms project and optionally smoke-test a running local URL.
+
+## Search Workflow
+
+The repo has a `.ignore` file so `rg` skips generated and vendored folders.
+
+```powershell
+rg --files
+rg -n 'Session\[|SqlConnection|Response.Redirect' .
+```
+
+When searching file contents from PowerShell, include `.` as the path to avoid shell/glob surprises.
 
 ## Development Notes
 
@@ -90,7 +107,45 @@ There is no dedicated test project in the current solution. For now, "test" mean
 ## Inventory Summary
 
 - Public/customer flow: default page, product listing/details, cart, checkout, order success, login, register, profile, wishlist, order history.
-- Admin flow: dashboard, categories, feedback, orders, products, users.
+- Admin flow: dashboard, categories, feedback/contact messages, orders, products, and coupons.
 - Assets: product images are stored under `Images/Products/`.
 - App startup: `Global.asax.cs`, `App_Start/BundleConfig.cs`, and `App_Start/RouteConfig.cs`.
 - Error handling: custom 404 page configured in `Web.config`.
+
+## Remaining Work Notes
+
+These are the visible follow-ups found during the April 28, 2026 pass.
+
+### Confirmed placeholders to replace
+
+- `Default.aspx`: replace the hero image placeholder (`hero-image-placeholder`, "Hero product image coming soon.") with a real Golden Catch product/brand visual.
+- `Content/Site.css`: remove or repurpose `.hero-image-placeholder` styling after the homepage hero is replaced.
+- `About.aspx` / `Contact.aspx`: removed because the homepage owns the about and contact sections.
+- `MockCatalog.cs`: four mock products still use `~/Images/Products/placeholder-tin.svg` (`Anchovies in Chili Oil`, `Smoked Mussels in Brine`, `Family Pack Sardines in Tomato Sauce`, `Sambal Tuna Spread`). Add final product images or accept the generic fallback deliberately.
+- `README.md`: intro now uses Golden Catch/canned fish wording. Keep `KeyboardShopDB` only where it refers to the legacy connection string.
+- `Assignment Draft/assignment-report-draft.md`: fill bracketed report placeholders, especially product listing, feedback/ratings, browser testing, development issues, and test results.
+
+### Mobile UI cleanup checklist
+
+- Run a real mobile viewport pass at roughly 360px, 390px, 430px, 768px, and desktop width.
+- Check the collapsed navbar, account/admin dropdowns, and full-width mobile buttons.
+- Check homepage hero after the image replacement; make sure headline, CTAs, image, store locator, map, and contact form do not overlap or create horizontal scroll.
+- Check `Products.aspx` filters: search/category should stack cleanly, advanced filter menu should not overflow, and product cards should keep image/name/price/actions aligned.
+- Check tables on small screens: cart, wishlist, order history/details, admin products, users, categories, orders, feedback, and coupons now use the `responsive-gridview` stacked-card pattern; still needs visual browser verification at phone widths.
+- Check form-heavy pages: checkout, register, login, customer profile, feedback/rating, and admin create/edit forms should have comfortable touch targets and no cramped validation messages.
+- Check admin dashboard cards/charts/sidebar at tablet and phone sizes; these are likely to need spacing adjustments after the current dashboard/profile edits settle.
+
+### Content and asset polish
+
+- Decide whether `Images/Product Photos/` and `Images/Products/` both remain in use, or consolidate final catalog assets into one predictable folder.
+- Verify all product image paths render when the app is deployed under a virtual directory; prefer `ResolveUrl` or server-bound image paths where needed.
+- Confirm the store map/address is intentionally fictional or replace it with the final assignment/business location.
+- Review product/category/coupon copy for canned-fish language; avoid reintroducing keyboard-shop wording except in legacy technical identifiers.
+- Consider replacing the default `favicon.ico` if it does not match the Golden Catch brand.
+
+### Submission/documentation checks
+
+- Verify `ReadMe.html` setup steps, seed database assumptions, and demo credentials work from a clean checkout.
+- Confirm `App_Data/myData.mdf` exists and contains the expected admin/member accounts, categories, products, coupons, orders, wishlist/cart scenarios, and feedback examples.
+- Re-run `.\tools\Invoke-WebsiteChecks.ps1` after each markup/control change.
+- Before submission, run a browser smoke test for public pages, customer flow, admin flow, invalid validation cases, checkout, order status, and feedback/rating.

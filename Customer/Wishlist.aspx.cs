@@ -12,6 +12,12 @@ namespace MWM_Assignment_New.Customer // Added .Customer to the namespace
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             if (Session["UserID"] == null)
             {
                 Response.Redirect("~/Login.aspx");

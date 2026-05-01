@@ -14,15 +14,14 @@ namespace MWM_Assignment_New.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] == null || Session["UserRole"].ToString() != "Admin")
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
-                // Optional: Check if the session actually contains the Admin role 
-                // as an extra layer of protection.
-                if (Session["UserRole"] == null || Session["UserRole"].ToString() != "Admin")
-                {
-                    Response.Redirect("~/Login.aspx");
-                }
-
                 LoadSummaryStats();
             }
         }
@@ -35,11 +34,11 @@ namespace MWM_Assignment_New.Admin
                 {
                     con.Open();
 
-                    SqlCommand cmdUsers = new SqlCommand("SELECT COUNT(*) FROM Users", con);
-                    lblTotalUsers.Text = cmdUsers.ExecuteScalar().ToString();
-
                     SqlCommand cmdProducts = new SqlCommand("SELECT COUNT(*) FROM Products", con);
                     lblTotalProducts.Text = cmdProducts.ExecuteScalar().ToString();
+
+                    SqlCommand cmdUsers = new SqlCommand("SELECT COUNT(*) FROM Users", con);
+                    lblTotalUsers.Text = cmdUsers.ExecuteScalar().ToString();
 
                     SqlCommand cmdOrders = new SqlCommand("SELECT COUNT(*) FROM Orders WHERE Status = 'Pending'", con);
                     lblPendingOrders.Text = cmdOrders.ExecuteScalar().ToString();

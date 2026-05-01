@@ -62,7 +62,7 @@
         </div>
 
         <h3 class="mb-3">Active Coupon List</h3>
-        <div class="table-responsive">
+        <div class="table-responsive responsive-gridview">
             <asp:GridView ID="gvCoupons" runat="server" CssClass="table table-hover border"
                 AutoGenerateColumns="False" DataKeyNames="CouponID"
                 OnRowEditing="gvCoupons_RowEditing"

@@ -12,6 +12,12 @@ namespace MWM_Assignment_New
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             // Security Check: Redirect if not logged in or cart is empty
             if (Session["UserID"] == null) Response.Redirect("~/Login.aspx");
             if (Session["Cart"] == null || ((DataTable)Session["Cart"]).Rows.Count == 0)

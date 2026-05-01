@@ -60,7 +60,7 @@
                         <div class="form-check border rounded p-3 opacity-50">
                             <input class="form-check-input ms-1" type="radio" name="pay" id="card" disabled>
                             <label class="form-check-label ms-2" for="card">
-                                Credit/Debit Card (Coming Soon)
+                                Simulated Card Payment
                             </label>
                         </div>
                     </div>

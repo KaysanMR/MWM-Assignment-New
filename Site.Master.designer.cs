@@ -33,6 +33,15 @@ namespace MWM_Assignment_New
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// phStoreLinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phStoreLinks;
+
+        /// <summary>
         /// phAdminLinks control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace MWM_Assignment_New
         protected global::System.Web.UI.WebControls.View vLoggedIn;
 
         /// <summary>
+        /// phLoyaltyBadge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLoyaltyBadge;
+
+        /// <summary>
         /// litLoyaltyPoints control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,24 @@ namespace MWM_Assignment_New
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litUsername;
+
+        /// <summary>
+        /// phCustomerAccountLinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phCustomerAccountLinks;
+
+        /// <summary>
+        /// phAdminAccountLinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phAdminAccountLinks;
 
         /// <summary>
         /// btnLogout control.

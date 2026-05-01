@@ -12,15 +12,6 @@
                 <aside class="admin-dashboard-sidebar">
                     <h3 class="fw-bold mb-3">Management</h3>
 
-                    <div class="admin-sidebar-card border-primary">
-                        <div>
-                            <h5 class="text-primary">Users</h5>
-                            <p class="text-muted mb-0">Registered members</p>
-                        </div>
-                        <strong><asp:Label ID="lblTotalUsers" runat="server" Text="0"></asp:Label></strong>
-                        <a href="ManageUsers.aspx" class="btn btn-primary w-100">Go to Users</a>
-                    </div>
-
                     <div class="admin-sidebar-card border-success">
                         <div>
                             <h5 class="text-success">Orders</h5>
@@ -32,7 +23,16 @@
 
                     <div class="admin-sidebar-card border-info">
                         <div>
-                            <h5 class="text-info">Catalog</h5>
+                            <h5 class="text-info">Users</h5>
+                            <p class="text-muted mb-0">Registered site accounts</p>
+                        </div>
+                        <strong><asp:Label ID="lblTotalUsers" runat="server" Text="0"></asp:Label></strong>
+                        <a href="ManageUsers.aspx" class="btn btn-info text-white w-100">Manage Users</a>
+                    </div>
+
+                    <div class="admin-sidebar-card border-primary">
+                        <div>
+                            <h5 class="text-primary">Catalog</h5>
                             <p class="text-muted mb-0">Products in inventory</p>
                         </div>
                         <strong><asp:Label ID="lblTotalProducts" runat="server" Text="0"></asp:Label></strong>
@@ -137,7 +137,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-5">
+                        <div class="col-lg-7">
                             <div class="card admin-chart-card h-100">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">

@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-white fw-bold">Items Purchased</div>
-                    <div class="card-body p-0">
+                    <div class="card-body p-0 table-responsive responsive-gridview order-items-grid">
                         <asp:GridView ID="gvOrderItems" runat="server" AutoGenerateColumns="False" 
                             CssClass="table table-hover mb-0" GridLines="None">
                             <Columns>

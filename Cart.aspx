@@ -6,7 +6,7 @@
     <div class="container page-shell">
         <h2 class="fw-bold mb-4">Your Shopping Cart</h2>
 
-        <div class="table-responsive">
+        <div class="table-responsive responsive-gridview">
             <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False"
                 CssClass="table table-hover align-middle mb-0" OnRowDeleting="gvCart_RowDeleting" DataKeyNames="ProductID">
                 <Columns>

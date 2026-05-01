@@ -394,6 +394,26 @@ footer.footer {
     color: var(--site-muted);
     font-size: 0.74rem;
     text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.responsive-gridview .table {
+    min-width: 44rem;
+}
+
+.responsive-gridview .table td,
+.responsive-gridview .table th {
+    overflow-wrap: anywhere;
+}
+
+.responsive-gridview .btn {
+    white-space: nowrap;
+}
+
+.card-body.table-responsive {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none;
 }
 
 .table-hover > tbody > tr:hover > * {
@@ -1874,6 +1894,286 @@ footer.footer {
 
     .stack-mobile {
         display: grid;
+    }
+
+    .responsive-gridview {
+        overflow: visible;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .responsive-gridview .table {
+        display: block;
+        min-width: 0;
+        background: transparent;
+    }
+
+    .responsive-gridview .table thead,
+    .responsive-gridview .table tr:has(> th) {
+        display: none;
+    }
+
+    .responsive-gridview .table tbody,
+    .responsive-gridview .table tr,
+    .responsive-gridview .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .responsive-gridview .table tr {
+        margin-bottom: 1rem;
+        overflow: hidden;
+        border: 2px solid var(--site-line);
+        border-radius: var(--site-radius);
+        background: var(--site-surface);
+        box-shadow: var(--site-shadow-sm);
+    }
+
+    .responsive-gridview .table td {
+        display: grid;
+        grid-template-columns: minmax(7.25rem, 38%) minmax(0, 1fr);
+        gap: 0.75rem;
+        align-items: start;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid rgba(23, 23, 23, 0.14);
+        text-align: left !important;
+    }
+
+    .responsive-gridview .table td:last-child {
+        border-bottom: 0;
+    }
+
+    .responsive-gridview .table td::before {
+        content: "";
+        color: var(--site-muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+    }
+
+    .responsive-gridview .table td > .btn,
+    .responsive-gridview .table td > input[type="submit"],
+    .responsive-gridview .table td > input[type="button"] {
+        width: 100%;
+        margin: 0.2rem 0 !important;
+    }
+
+    .responsive-gridview .table .form-control,
+    .responsive-gridview .table .form-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .responsive-gridview .d-flex {
+        align-items: flex-start !important;
+    }
+
+    [id$="gvProducts"] td:nth-child(1)::before,
+    [id$="gvCategories"] td:nth-child(1)::before,
+    [id$="gvCoupons"] td:nth-child(1)::before {
+        content: "ID";
+    }
+
+    [id$="gvProducts"] td:nth-child(2)::before {
+        content: "Product";
+    }
+
+    [id$="gvProducts"] td:nth-child(3)::before {
+        content: "Category";
+    }
+
+    [id$="gvProducts"] td:nth-child(4)::before,
+    [id$="gvWishlist"] td:nth-child(2)::before,
+    [id$="gvCart"] td:nth-child(2)::before {
+        content: "Price";
+    }
+
+    [id$="gvProducts"] td:nth-child(5)::before {
+        content: "Stock";
+    }
+
+    [id$="gvProducts"] td:nth-child(6)::before {
+        content: "Badges";
+    }
+
+    [id$="gvProducts"] td:nth-child(7)::before,
+    [id$="gvCategories"] td:nth-child(3)::before,
+    .admin-orders-grid [id$="gvOrders"] td:last-child::before,
+    .customer-orders-grid [id$="gvOrders"] td:last-child::before,
+    [id$="gvFeedback"] td:nth-child(6)::before,
+    [id$="gvContactMessages"] td:nth-child(6)::before,
+    [id$="gvCoupons"] td:nth-child(7)::before,
+    [id$="gvCart"] td:nth-child(5)::before,
+    [id$="gvWishlist"] td:nth-child(3)::before {
+        content: "Actions";
+    }
+
+    [id$="gvProducts"] td:nth-child(7),
+    [id$="gvCategories"] td:nth-child(3),
+    .admin-orders-grid [id$="gvOrders"] td:last-child,
+    .customer-orders-grid [id$="gvOrders"] td:last-child,
+    [id$="gvFeedback"] td:nth-child(6),
+    [id$="gvContactMessages"] td:nth-child(6),
+    [id$="gvCoupons"] td:nth-child(7),
+    [id$="gvCart"] td:nth-child(5),
+    [id$="gvWishlist"] td:nth-child(3) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+    }
+
+    [id$="gvProducts"] td:nth-child(7)::before,
+    [id$="gvCategories"] td:nth-child(3)::before,
+    .admin-orders-grid [id$="gvOrders"] td:last-child::before,
+    .customer-orders-grid [id$="gvOrders"] td:last-child::before,
+    [id$="gvFeedback"] td:nth-child(6)::before,
+    [id$="gvContactMessages"] td:nth-child(6)::before,
+    [id$="gvCoupons"] td:nth-child(7)::before,
+    [id$="gvCart"] td:nth-child(5)::before,
+    [id$="gvWishlist"] td:nth-child(3)::before {
+        margin-right: auto;
+        flex: 0 0 min(38%, 9rem);
+    }
+
+    [id$="gvProducts"] td:nth-child(7) > .btn,
+    [id$="gvProducts"] td:nth-child(7) > input[type="submit"],
+    [id$="gvProducts"] td:nth-child(7) > input[type="button"],
+    [id$="gvCategories"] td:nth-child(3) > .btn,
+    [id$="gvCategories"] td:nth-child(3) > input[type="submit"],
+    [id$="gvCategories"] td:nth-child(3) > input[type="button"],
+    .admin-orders-grid [id$="gvOrders"] td:last-child > .btn,
+    .admin-orders-grid [id$="gvOrders"] td:last-child > input[type="submit"],
+    .admin-orders-grid [id$="gvOrders"] td:last-child > input[type="button"],
+    .customer-orders-grid [id$="gvOrders"] td:last-child > .btn,
+    .customer-orders-grid [id$="gvOrders"] td:last-child > input[type="submit"],
+    .customer-orders-grid [id$="gvOrders"] td:last-child > input[type="button"],
+    [id$="gvFeedback"] td:nth-child(6) > .btn,
+    [id$="gvFeedback"] td:nth-child(6) > input[type="submit"],
+    [id$="gvFeedback"] td:nth-child(6) > input[type="button"],
+    [id$="gvContactMessages"] td:nth-child(6) > .btn,
+    [id$="gvContactMessages"] td:nth-child(6) > input[type="submit"],
+    [id$="gvContactMessages"] td:nth-child(6) > input[type="button"],
+    [id$="gvCoupons"] td:nth-child(7) > .btn,
+    [id$="gvCoupons"] td:nth-child(7) > input[type="submit"],
+    [id$="gvCoupons"] td:nth-child(7) > input[type="button"],
+    [id$="gvCart"] td:nth-child(5) > .btn,
+    [id$="gvCart"] td:nth-child(5) > input[type="submit"],
+    [id$="gvCart"] td:nth-child(5) > input[type="button"],
+    [id$="gvWishlist"] td:nth-child(3) > .btn,
+    [id$="gvWishlist"] td:nth-child(3) > input[type="submit"],
+    [id$="gvWishlist"] td:nth-child(3) > input[type="button"],
+    [id$="gvWishlist"] td:nth-child(3) > a {
+        width: auto;
+        margin: 0 !important;
+    }
+
+    [id$="gvWishlist"] td:nth-child(3) > .btn-outline-danger,
+    [id$="gvWishlist"] td:nth-child(3) > a.btn-outline-danger {
+        min-width: 3.25rem;
+    }
+
+    [id$="gvCategories"] td:nth-child(2)::before {
+        content: "Category";
+    }
+
+    [id$="gvContactMessages"] td:nth-child(2)::before {
+        content: "Name";
+    }
+
+    [id$="gvContactMessages"] td:nth-child(3)::before {
+        content: "Email";
+    }
+
+    .admin-orders-grid [id$="gvOrders"] td:nth-child(1)::before,
+    .customer-orders-grid [id$="gvOrders"] td:nth-child(1)::before,
+    [id$="gvFeedback"] td:nth-child(3)::before {
+        content: "Order";
+    }
+
+    .admin-orders-grid [id$="gvOrders"] td:nth-child(2)::before,
+    .customer-orders-grid [id$="gvOrders"] td:nth-child(2)::before,
+    [id$="gvFeedback"] td:nth-child(1)::before,
+    [id$="gvContactMessages"] td:nth-child(1)::before {
+        content: "Date";
+    }
+
+    .admin-orders-grid [id$="gvOrders"] td:nth-child(3)::before,
+    [id$="gvFeedback"] td:nth-child(2)::before {
+        content: "Customer";
+    }
+
+    .admin-orders-grid [id$="gvOrders"] td:nth-child(4)::before,
+    .customer-orders-grid [id$="gvOrders"] td:nth-child(3)::before,
+    [id$="gvCart"] td:nth-child(4)::before {
+        content: "Total";
+    }
+
+    .admin-orders-grid [id$="gvOrders"] td:nth-child(5)::before,
+    .customer-orders-grid [id$="gvOrders"] td:nth-child(4)::before {
+        content: "Status";
+    }
+
+    [id$="gvFeedback"] td:nth-child(4)::before {
+        content: "Rating";
+    }
+
+    [id$="gvFeedback"] td:nth-child(5)::before {
+        content: "Comment";
+    }
+
+    [id$="gvContactMessages"] td:nth-child(4)::before {
+        content: "Subject";
+    }
+
+    [id$="gvContactMessages"] td:nth-child(5)::before {
+        content: "Message";
+    }
+
+    [id$="gvCoupons"] td:nth-child(2)::before {
+        content: "Code";
+    }
+
+    [id$="gvCoupons"] td:nth-child(3)::before {
+        content: "Description";
+    }
+
+    [id$="gvCoupons"] td:nth-child(4)::before {
+        content: "Type";
+    }
+
+    [id$="gvCoupons"] td:nth-child(5)::before {
+        content: "Value";
+    }
+
+    [id$="gvCoupons"] td:nth-child(6)::before {
+        content: "Active";
+    }
+
+    [id$="gvOrderItems"] td:nth-child(1)::before,
+    [id$="gvCart"] td:nth-child(1)::before,
+    [id$="gvWishlist"] td:nth-child(1)::before {
+        content: "Product";
+    }
+
+    [id$="gvOrderItems"] td:nth-child(2)::before {
+        content: "Price";
+    }
+
+    [id$="gvOrderItems"] td:nth-child(3)::before {
+        content: "Qty";
+    }
+
+    [id$="gvOrderItems"] td:nth-child(4)::before {
+        content: "Total";
+    }
+
+    [id$="gvCart"] td:nth-child(3)::before {
+        content: "Qty";
     }
 }
 

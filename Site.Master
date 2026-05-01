@@ -31,11 +31,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="~/Products.aspx">
-                                <i class="bi bi-shop me-1"></i>Shop
-                            </a>
-                        </li>
+                        <asp:PlaceHolder ID="phStoreLinks" runat="server" Visible="true">
+                            <li class="nav-item">
+                                <a class="nav-link" runat="server" href="~/Products.aspx">
+                                    <i class="bi bi-shop me-1"></i>Shop
+                                </a>
+                            </li>
+                        </asp:PlaceHolder>
 
                         <%-- Admin Section --%>
                         <asp:PlaceHolder ID="phAdminLinks" runat="server" Visible="false">
@@ -49,8 +51,11 @@
                                         <hr class="dropdown-divider opacity-50">
                                     </li>
                                     <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageProducts.aspx") %>'><i class="bi bi-box-seam me-2"></i>Manage Inventory</a></li>
+                                    <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageUsers.aspx") %>'><i class="bi bi-people me-2"></i>Manage Users</a></li>
+                                    <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageCategories.aspx") %>'><i class="bi bi-tags me-2"></i>Categories</a></li>
                                     <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageOrders.aspx") %>'><i class="bi bi-truck me-2"></i>Fulfillment</a></li>
-                                    <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageUsers.aspx") %>'><i class="bi bi-people me-2"></i>User Accounts</a></li>
+                                    <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageFeedback.aspx") %>'><i class="bi bi-chat-square-text me-2"></i>Feedback</a></li>
+                                    <li><a class="dropdown-item" href='<%= ResolveUrl("~/Admin/ManageCoupons.aspx") %>'><i class="bi bi-ticket-perforated me-2"></i>Coupons</a></li>
                                 </ul>
                             </li>
                         </asp:PlaceHolder>
@@ -70,12 +75,14 @@
 
                             <%-- View 1: User --%>
                             <asp:View ID="vLoggedIn" runat="server">
-                                <li class="nav-item me-lg-2 mb-2 mb-lg-0">
-                                    <span class="loyalty-nav-badge">
-                                        <i class="bi bi-star-fill me-1"></i>
-                                        <asp:Literal ID="litLoyaltyPoints" runat="server" /> points
-                                    </span>
-                                </li>
+                                <asp:PlaceHolder ID="phLoyaltyBadge" runat="server" Visible="true">
+                                    <li class="nav-item me-lg-2 mb-2 mb-lg-0">
+                                        <span class="loyalty-nav-badge">
+                                            <i class="bi bi-star-fill me-1"></i>
+                                            <asp:Literal ID="litLoyaltyPoints" runat="server" /> points
+                                        </span>
+                                    </li>
+                                </asp:PlaceHolder>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle d-flex align-items-center px-3 user-menu-trigger" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                         <i class="bi bi-person-circle fs-5 me-2"></i>
@@ -83,13 +90,18 @@
                                             <asp:Literal ID="litUsername" runat="server" /></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end mt-3">
-                                        <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Profile.aspx") %>'><i class="bi bi-person-lines-fill me-2"></i>My Profile</a></li>
+                                        <asp:PlaceHolder ID="phCustomerAccountLinks" runat="server" Visible="true">
+                                            <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Profile.aspx") %>'><i class="bi bi-person-lines-fill me-2"></i>My Profile</a></li>
 
-                                        <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Cart.aspx") %>'><i class="bi bi-cart3 me-2"></i>My Shopping Cart</a></li>
+                                            <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Cart.aspx") %>'><i class="bi bi-cart3 me-2"></i>My Shopping Cart</a></li>
 
-                                        <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Wishlist.aspx") %>'><i class="bi bi-heart me-2"></i>My Wishlist</a></li>
+                                            <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/Wishlist.aspx") %>'><i class="bi bi-heart me-2"></i>My Wishlist</a></li>
 
-                                        <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>'><i class="bi bi-receipt me-2"></i>Order History</a></li>
+                                            <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Customer/MyOrders.aspx") %>'><i class="bi bi-receipt me-2"></i>Order History</a></li>
+                                        </asp:PlaceHolder>
+                                        <asp:PlaceHolder ID="phAdminAccountLinks" runat="server" Visible="false">
+                                            <li><a class="dropdown-item py-2" href='<%= ResolveUrl("~/Admin/Dashboard.aspx") %>'><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a></li>
+                                        </asp:PlaceHolder>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>

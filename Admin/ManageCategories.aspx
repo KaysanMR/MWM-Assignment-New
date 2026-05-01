@@ -8,7 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Dashboard.aspx">Admin Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Categories</li>
             </ol>
         </nav>
 
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive responsive-gridview">
             <asp:GridView ID="gvCategories" runat="server" CssClass="table table-hover border"
                 AutoGenerateColumns="False" DataKeyNames="CategoryID"
                 OnRowEditing="gvCategories_RowEditing"

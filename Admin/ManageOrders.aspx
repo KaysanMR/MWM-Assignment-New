@@ -13,7 +13,7 @@
 
         <h2 class="mb-4">Customer Orders</h2>
 
-        <div class="table-responsive">
+        <div class="table-responsive responsive-gridview admin-orders-grid">
             <asp:GridView ID="gvOrders" runat="server" CssClass="table table-hover border shadow-sm"
                 AutoGenerateColumns="False" DataKeyNames="OrderID"
                 OnRowUpdating="gvOrders_RowUpdating" OnRowEditing="gvOrders_RowEditing"

@@ -69,7 +69,7 @@
         </div>
 
         <h3 class="mb-3">Current Inventory</h3>
-        <div class="table-responsive">
+        <div class="table-responsive responsive-gridview">
             <asp:GridView ID="gvProducts" runat="server" CssClass="table table-hover border"
                 AutoGenerateColumns="False" DataKeyNames="ProductID"
                 OnRowEditing="gvProducts_RowEditing"

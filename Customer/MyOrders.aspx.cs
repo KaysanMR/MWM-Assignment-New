@@ -12,6 +12,12 @@ namespace MWM_Assignment_New
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             // Security: Redirect to login if session expired
             if (Session["UserID"] == null) Response.Redirect("~/Login.aspx");
 

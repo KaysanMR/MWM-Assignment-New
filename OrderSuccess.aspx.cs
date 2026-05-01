@@ -6,6 +6,12 @@ namespace MWM_Assignment_New
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             // Security: If there is no ID in the URL, they shouldn't be here
             if (Request.QueryString["id"] != null)
             {

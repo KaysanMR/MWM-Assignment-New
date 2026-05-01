@@ -15,7 +15,7 @@
 
         <div class="card mb-4 shadow-sm">
             <div class="card-header">Order Ratings & Reviews</div>
-            <div class="card-body p-0">
+            <div class="card-body p-0 table-responsive responsive-gridview">
                 <asp:GridView ID="gvFeedback" runat="server" CssClass="table table-hover border shadow-sm mb-0"
                     AutoGenerateColumns="False" DataKeyNames="FeedbackID" OnRowDeleting="gvFeedback_RowDeleting">
                     <Columns>
@@ -37,7 +37,7 @@
 
         <div class="card shadow-sm">
             <div class="card-header">Visitor Contact Messages</div>
-            <div class="card-body p-0">
+            <div class="card-body p-0 table-responsive responsive-gridview">
                 <asp:GridView ID="gvContactMessages" runat="server" CssClass="table table-hover border shadow-sm mb-0"
                     AutoGenerateColumns="False" DataKeyNames="ContactMessageID" OnRowDeleting="gvContactMessages_RowDeleting">
                     <Columns>

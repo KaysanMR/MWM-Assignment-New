@@ -11,6 +11,13 @@ namespace MWM_Assignment_New
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            bool isAdmin = Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin";
+            phStoreLinks.Visible = !isAdmin;
+            phAdminLinks.Visible = false;
+            phLoyaltyBadge.Visible = false;
+            phCustomerAccountLinks.Visible = false;
+            phAdminAccountLinks.Visible = false;
+
             // We check authentication on every load
             if (Context.User.Identity.IsAuthenticated)
             {
@@ -18,20 +25,24 @@ namespace MWM_Assignment_New
 
                 // Set the display name. If you have a 'FullName' in Session, use that instead.
                 litUsername.Text = Session["Username"]?.ToString() ?? Context.User.Identity.Name;
-                litLoyaltyPoints.Text = Session["UserID"] == null
-                    ? "0"
-                    : LoyaltyService.SyncSession(connString, Session).ToString();
 
-                // Admin Check
-                if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+                if (isAdmin)
                 {
                     phAdminLinks.Visible = true;
+                    phAdminAccountLinks.Visible = true;
+                }
+                else
+                {
+                    phLoyaltyBadge.Visible = true;
+                    phCustomerAccountLinks.Visible = true;
+                    litLoyaltyPoints.Text = Session["UserID"] == null
+                        ? "0"
+                        : LoyaltyService.SyncSession(connString, Session).ToString();
                 }
             }
             else
             {
                 mvAuth.ActiveViewIndex = 0;
-                phAdminLinks.Visible = false;
             }
         }
 

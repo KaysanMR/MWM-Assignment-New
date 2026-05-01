@@ -12,12 +12,20 @@ namespace MWM_Assignment_New
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserRole"] != null && Session["UserRole"].ToString() == "Admin")
+            {
+                Response.Redirect("~/Admin/Dashboard.aspx");
+                return;
+            }
+
             if (!IsPostBack) BindCart();
         }
 
         private void BindCart()
         {
-            DataTable dt = (DataTable)Session["Cart"];
+            DataTable dt = Session["Cart"] as DataTable ?? CreateEmptyCart();
+            Session["Cart"] = dt;
+
             gvCart.DataSource = dt;
             gvCart.DataBind();
 
@@ -31,6 +39,17 @@ namespace MWM_Assignment_New
             btnCheckout.Enabled = (dt.Rows.Count > 0);
         }
 
+        private DataTable CreateEmptyCart()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ProductID", typeof(int));
+            dt.Columns.Add("ProductName", typeof(string));
+            dt.Columns.Add("Price", typeof(decimal));
+            dt.Columns.Add("Quantity", typeof(int));
+            dt.Columns.Add("Total", typeof(decimal));
+            return dt;
+        }
+
         protected void gvCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             DataTable dt = (DataTable)Session["Cart"];
@@ -41,7 +60,6 @@ namespace MWM_Assignment_New
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            // We will build this logic next!
             Response.Redirect("~/Checkout.aspx");
         }
     }

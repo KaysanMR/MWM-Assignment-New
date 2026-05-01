@@ -17,7 +17,7 @@
                     Visible="false" CssClass="alert alert-light border text-center py-4 d-block w-100"></asp:Label>
 
                 <div class="card shadow-sm border-0 wishlist-table-card">
-                    <div class="table-responsive wishlist-table-wrap">
+                    <div class="table-responsive wishlist-table-wrap responsive-gridview">
                         <asp:GridView ID="gvWishlist" runat="server" AutoGenerateColumns="False" 
                             CssClass="table table-hover align-middle mb-0" GridLines="None"
                             OnRowCommand="gvWishlist_RowCommand" DataKeyNames="ProductID">

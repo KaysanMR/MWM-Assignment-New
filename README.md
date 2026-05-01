@@ -1,6 +1,6 @@
 # MWM Assignment New
 
-ASP.NET Web Forms keyboard shop application using .NET Framework, Bootstrap, jQuery, Forms Authentication, and a LocalDB database stored in `App_Data/`.
+ASP.NET Web Forms canned fish storefront using .NET Framework, Bootstrap, jQuery, Forms Authentication, and a LocalDB database stored in `App_Data/`.
 
 ## Project Layout
 

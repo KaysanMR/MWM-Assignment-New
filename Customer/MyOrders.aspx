@@ -10,7 +10,7 @@
         </div>
 
         <div class="card shadow-sm border-0">
-            <div class="card-body p-0">
+            <div class="card-body p-0 table-responsive responsive-gridview customer-orders-grid">
                 <asp:GridView ID="gvOrders" runat="server" AutoGenerateColumns="False" 
                     CssClass="table table-hover mb-0" GridLines="None" 
                     OnRowCommand="gvOrders_RowCommand">
